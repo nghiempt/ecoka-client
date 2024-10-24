@@ -9,14 +9,13 @@ import { ROUTES } from '@/utils/route';
 import Link from 'next/link';
 
 interface Product {
-    id: number
-    name: string
-    price: number
-    image: string
-    description: string
-    status: string
-    discount: number
-    currentPrice: number
+    row: number;
+    id: number;
+    name: string;
+    category: string;
+    price: number;
+    description: string;
+    images: string[];
 }
 
 interface ProductProps {
@@ -31,7 +30,7 @@ export const Product: React.FC<ProductProps> = ({ products }) => {
                     <Card className="rounded-lg bg-gray-50 flex flex-col border-none">
                         <div className='relative w-full h-[280px] rounded-lg'>
                             <Image
-                                src={product?.image}
+                                src={product?.images[0]}
                                 alt={product?.name + ' image'}
                                 fill
                                 style={{ objectFit: 'cover' }}
@@ -48,7 +47,7 @@ export const Product: React.FC<ProductProps> = ({ products }) => {
                             </div>
                             <div className='w-full grid grid-cols-5 items-center'>
                                 <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
-                                    {product?.price} VND
+                                    {Intl.NumberFormat('de-DE').format(product?.price)} VND
                                 </p>
                             </div>
                         </div>
