@@ -14,6 +14,12 @@ const nextConfig = {
                 port: '',
                 pathname: '/farmcode/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'www.ecoka.vn',
+                port: '',
+                pathname: '/_next/**',
+            },
         ],
     },
 };
