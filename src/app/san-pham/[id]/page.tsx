@@ -1,9 +1,9 @@
-import ProductDetailPage from "@/modules/product/[id]";
+import BlogDetailPage from "@/modules/blog/[id]";
 
 export default function ProductDetail() {
   return (
     <div>
-      <ProductDetailPage />
+      <BlogDetailPage />
     </div>
   );
 }
