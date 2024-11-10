@@ -1,9 +1,9 @@
 'use client'
 
-import { BlogPage } from "@/modules/blog";
+import { ProductPage } from "@/modules/product";
 
 export default function Product() {
   return (
-    <BlogPage />
+    <ProductPage />
   );
 }
