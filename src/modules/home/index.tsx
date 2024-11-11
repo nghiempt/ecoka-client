@@ -3,7 +3,7 @@
 import { Product } from "@/components/global/product"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/layout/footer"
-import { home_blogs, home_products, URL } from "@/utils/constant"
+import { categories, home_blogs, home_products, URL } from "@/utils/constant"
 import { IMAGES } from "@/utils/image"
 import { ArrowUpRight, Facebook, Mail } from "lucide-react"
 import { ShoppingBag, Youtube } from "lucide-react"
@@ -14,6 +14,7 @@ import Image from "next/image"
 import { NavMobile } from "@/layout/nav-mobile"
 import { truncateText } from "@/utils/helper"
 import { useEffect, useState } from "react"
+import { getAll } from "@/utils/api"
 
 interface Product {
     row: number;
@@ -25,9 +26,18 @@ interface Product {
     images: string[];
 };
 
+interface ESG {
+    id: number;
+    row: number;
+    title: string;
+    description: string;
+    thumbnail: string;
+}
+
 export function HomePage() {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [esgs, setEsgs] = useState<ESG[]>([]);
 
     const fetchProducts = async () => {
         try {
@@ -75,8 +85,28 @@ export function HomePage() {
         }
     };
 
+    const fetchEsgs = async () => {
+        try {
+            const data = await getAll('https://n8n.khiemfle.com/webhook/aa7f04f4-7833-49c2-8c86-7a043f4a8a5a');
+            const transformedEsgs: ESG[] = data.map((item: any) => ({
+                id: item.id,
+                row: item.row_number,
+                title: item.title,
+                description: item.description,
+                thumbnail: item.thumbnail,
+            }));
+            setEsgs(transformedEsgs);
+            console.log(transformedEsgs);
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         fetchProducts();
+        fetchEsgs();
     }, []);
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
@@ -99,12 +129,24 @@ export function HomePage() {
                 </video>
                 <div className='w-full absolute top-0 pt-6 flex flex-col justify-center items-center gap-10 text-white'>
                     <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6">
-                        <Link href={ROUTES.HOME} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Trang Chủ</Link>
-                        <Link href={ROUTES.PRODUCT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Sản Phẩm</Link>
-                        <Link href={ROUTES.ABOUT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Giới Thiệu</Link>
-                        <Link href={ROUTES.ESG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">ESG</Link>
-                        <Link href={ROUTES.BLOG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Bài Viết</Link>
-                        <Link href={ROUTES.CONTACT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Liên Hệ</Link>
+                        <Link href={ROUTES.HOME} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Trang Chủ</Link>
+
+                        <div className="relative group h-full">
+                            <Link href={ROUTES.PRODUCT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                                Sản Phẩm
+                            </Link>
+
+                            <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out">
+                                {categories.map((category: any, index: number) => (
+                                    <Link href={ROUTES.PRODUCT + `${category.path}`} className="text-lg font-semibold transform duration-300 hover:scale-110">{category.name}</Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        <Link href={ROUTES.ABOUT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Giới Thiệu</Link>
+                        <Link href={ROUTES.ESG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">ESG</Link>
+                        <Link href={ROUTES.BLOG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Bài Viết</Link>
+                        <Link href={ROUTES.CONTACT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Liên Hệ</Link>
                     </nav>
                     <img className="w-28 h-28 lg:w-44 lg:h-44 object-cover mt-10 md:mt-0 lg:mt-0" src={IMAGES.LOGO_CIRCLE} alt="logo" />
                     <h1 className='text-[22px] lg:text-[60px] font-black'>Bring Nature To Your Life</h1>
@@ -120,18 +162,12 @@ export function HomePage() {
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
                 <div className="px-20 py-14 flex flex-col justify-start items-center">
                     <div className="flex flex-col lg:flex-row gap-10">
-                        <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
-                            <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">Chất lượng bền vững</div>
-                            <div className="hidden md:flex lg:flex font-medium text-md text-center">Quế và hồi được trồng trọt, thu hoạch thủ công và chế biến theo quy trình khoa học từ cây giống đến thành phẩm, với sự kiểm soát chặt chẽ để đạt chất lượng cao nhất theo tiêu chuẩn quốc tế.</div>
-                        </div>
-                        <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
-                            <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">Uy tín cao</div>
-                            <div className="hidden md:flex lg:flex font-medium text-md text-center">Với đội ngũ cán bộ công nhân viên được đào tạo bài bản, giàu kinh nghiệm, cơ sở vật chất, trang thiết bị hiện đại đạt tiêu chuẩn quốc tế giúp ECOKA luôn đặt uy tín lên hàng đầu và trở thành đối tác uy tín, tin cậy của khách hàng.</div>
-                        </div>
-                        <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
-                            <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">Đạo đức nhân văn</div>
-                            <div className="hidden md:flex lg:flex font-medium text-md text-center">Với phương châm là người bạn đồng hành thủy chung cùng bà con nông dân nghèo khó vùng cao, ECOKA cam kết mang lại lợi ích, chăm lo cuộc sống ấm no cho từng gia đình và cùng hợp tác phát triển lâu dài.</div>
-                        </div>
+                        {esgs.map((esg, index) => (
+                            <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
+                                <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">{esg.title}</div>
+                                <div className="hidden md:flex lg:flex font-medium text-md text-center">{esg.description}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>

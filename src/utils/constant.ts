@@ -1,3 +1,4 @@
+import path from "path";
 import { IMAGES } from "./image";
 
 export const URL = {
@@ -371,3 +372,26 @@ export const home_blogs: any = [
         status: "New",
     },
 ];
+
+export const categories: any = [
+    {
+        id: 1,
+        name: 'Thời Trang',
+        path: '/thoi-trang'
+    },
+    {
+        id: 2,
+        name: 'Nhà Bếp',
+        path: '/nha-bep',
+    },
+    {
+        id: 3,
+        name: 'Trang Trí Nhà Cửa',
+        path: '/trang-tri-nha-cua',
+    },
+    {
+        id: 4,
+        name: 'Nội Thất',
+        path: '/noi-that',
+    },
+]
