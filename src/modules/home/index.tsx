@@ -162,11 +162,34 @@ export function HomePage() {
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
                 <div className="px-20 py-14 flex flex-col justify-start items-center">
                     <div className="flex flex-col lg:flex-row gap-10">
-                        {esgs.map((esg, index) => (
+                        {/* {esgs.map((esg, index) => (
                             <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
                                 <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">{esg.title}</div>
                                 <div className="hidden md:flex lg:flex font-medium text-md text-center">{esg.description}</div>
                             </div>
+                        ))} */}
+                        {esgs.map((esg, index) => (
+                            <Link href="/esg" key={index}>
+                                <div
+                                    className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer"
+                                >
+                                    <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">
+                                        {esg.title}
+                                    </div>
+                                    <div
+                                        className="hidden md:flex lg:flex font-medium text-md text-center line-clamp-3"
+                                        style={{
+                                            display: '-webkit-box',
+                                            WebkitLineClamp: 3,
+                                            WebkitBoxOrient: 'vertical',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                        }}
+                                    >
+                                        {esg.description}
+                                    </div>
+                                </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
