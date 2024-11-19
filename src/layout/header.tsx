@@ -20,7 +20,7 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
-            <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6">
+            <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6 uppercase">
                 <Link href={ROUTES.HOME} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Trang Chủ</Link>
                 <div className="relative group h-full">
                     <Link href={ROUTES.PRODUCT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">

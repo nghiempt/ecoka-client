@@ -121,7 +121,7 @@ export function ESGPage() {
                     <section className="w-full py-10">
                         <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                             <div className="lg:w-1/2">
-                                <h2 className="text-3xl font-bold text-[rgb(var(--primary-rgb))] leading-tight">
+                                <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                                     {esgs[0].title}
                                 </h2>
                                 <p className="mt-4 text-lg text-gray-700">
@@ -143,7 +143,7 @@ export function ESGPage() {
                     {/* <section className="flex md:hidden lg:hidden w-full py-10">
                         <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                             <div className="lg:w-1/2">
-                                <h2 className="text-3xl font-bold text-[rgb(var(--primary-rgb))] leading-tight">
+                                <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                                     {esgs[1].title}
                                 </h2>
                                 <p className="mt-4 text-lg text-gray-700">
@@ -174,7 +174,7 @@ export function ESGPage() {
                                 />
                             </div>
                             <div className="lg:w-1/2 mt-10 md:mt-0 lg:mt-0">
-                                <h2 className="text-3xl font-bold text-[rgb(var(--primary-rgb))] leading-tight">
+                                <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                                     {esgs[1].title}
                                 </h2>
                                 <p className="mt-4 text-lg text-gray-700">
@@ -187,7 +187,7 @@ export function ESGPage() {
                     <section className="w-full py-10">
                         <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                             <div className="lg:w-1/2">
-                                <h2 className="text-3xl font-bold text-[rgb(var(--primary-rgb))] leading-tight">
+                                <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                                     {esgs[2].title}
                                 </h2>
                                 <p className="mt-4 text-lg text-gray-700">

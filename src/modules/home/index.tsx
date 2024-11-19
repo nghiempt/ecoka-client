@@ -127,7 +127,7 @@ export function HomePage() {
                 <video className="w-full h-[680px] md:h-[1000px] lg:h-[1000px] object-cover" autoPlay loop muted>
                     <source src={IMAGES.VIDEO_HOME} type="video/mp4" />
                 </video>
-                <div className='w-full absolute top-0 pt-6 flex flex-col justify-center items-center gap-10 text-white'>
+                <div className='w-full absolute top-0 pt-6 flex flex-col justify-center items-center gap-10 text-white uppercase'>
                     <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6">
                         <Link href={ROUTES.HOME} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Trang Chủ</Link>
 
@@ -161,6 +161,7 @@ export function HomePage() {
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
                 <div className="px-20 py-14 flex flex-col justify-start items-center">
+                    <div className="text-3xl font-bold mb-14">KINH DOANH BỀN VỮNG</div>
                     <div className="flex flex-col lg:flex-row gap-10">
                         {/* {esgs.map((esg, index) => (
                             <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
@@ -173,11 +174,11 @@ export function HomePage() {
                                 <div
                                     className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer"
                                 >
-                                    <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">
+                                    <div className="font-semibold text-xl lg:text-2xl md:text-2xl text-center">
                                         {esg.title}
                                     </div>
                                     <div
-                                        className="hidden md:flex lg:flex font-medium text-md text-center line-clamp-3"
+                                        className="hidden md:flex lg:flex font-light text-md text-center line-clamp-3"
                                         style={{
                                             display: '-webkit-box',
                                             WebkitLineClamp: 3,
@@ -253,6 +254,11 @@ export function HomePage() {
                                 })
                             }
                         </div>
+                        <Link className="w-full flex justify-center items-center mt-14" href={ROUTES.BLOG}>
+                            <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
+                                Xem thêm
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

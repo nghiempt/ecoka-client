@@ -43,7 +43,7 @@ export function Slider() {
     return (
         <div className="flex flex-col md:grid md:grid-cols-5 lg:grid lg:grid-cols-5">
             <div className="col-span-2 md:p-10 lg:p-10 flex flex-col justify-center">
-                <div className="text-black text-3xl font-bold mb-2 text-clip overflow-hidden text-center md:text-start lg:text-start">50+ Sản phẩm thân thiện với môi trường</div>
+                <div className="text-black text-3xl font-bold mb-2 text-clip overflow-hidden text-center md:text-start lg:text-start">200+ Sản phẩm thân thiện với môi trường</div>
                 <div className="text-sm font-medium text-gray-600 mb-5 text-clip overflow-hidden text-center md:text-start lg:text-start">Với mẫu mã đa dạng, họa tiết tinh tế, túi lục bình Chaneva xinh xắn, thời trang và thân thiện với môi trường này đã làm hài lòng rất nhiều khách trong và ngoài nước.</div>
                 <Link className="w-full flex justify-center items-center md:justify-start lg:justify-start" href="/san-pham">
                     <Button className="bg-[rgb(var(--primary-rgb))] rounded-lg lg:w-1/2 hover:opacity-80 hover:bg-[rgb(var(--primary-rgb))] text-ellipsis overflow-hidden whitespace-nowrap">

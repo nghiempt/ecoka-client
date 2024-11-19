@@ -129,7 +129,7 @@ const BlogDetailPage: React.FC = () => {
             <section className="w-full py-10">
               <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2">
-                  <h2 className="text-3xl font-bold text-[rgb(var(--primary-rgb))] leading-tight">
+                  <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                     {currentData?.title}
                   </h2>
                   <p className="mt-4 text-lg text-gray-700">
@@ -160,7 +160,7 @@ const BlogDetailPage: React.FC = () => {
                   />
                 </div>
                 <div className="lg:w-1/2 flex flex-col justify-center items-end text-right">
-                  <h2 className="text-2xl font-bold text-gray-600 leading-tight">
+                  <h2 className="text-2xl font-bold text-gray-800 leading-tight">
                     {currentData?.s1_title}
                   </h2>
                   <p className="mt-4 text-md text-gray-700">
@@ -173,7 +173,7 @@ const BlogDetailPage: React.FC = () => {
             <section className="w-full py-10">
               <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2 flex flex-col justify-center items-start">
-                  <h2 className="text-2xl font-bold text-gray-600 leading-tight">
+                  <h2 className="text-2xl font-bold text-gray-800 leading-tight">
                     {currentData?.s2_title}
                   </h2>
                   <p className="mt-4 text-md text-gray-700">
@@ -204,7 +204,7 @@ const BlogDetailPage: React.FC = () => {
                   />
                 </div>
                 <div className="lg:w-1/2 flex flex-col justify-center items-end text-right">
-                  <h2 className="text-2xl font-bold text-gray-600 leading-tight">
+                  <h2 className="text-2xl font-bold text-gray-800 leading-tight">
                     {currentData?.s3_title}
                   </h2>
                   <p className="mt-4 text-md text-gray-700">
