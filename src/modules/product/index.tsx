@@ -10,7 +10,8 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
+import { Share2, ArrowRightLeft, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button";
 interface Product {
     row: number;
     id: number;
@@ -67,7 +68,6 @@ export function ProductPage() {
             }));
             setProducts(transformedProducts.sort((a, b) => b.id - a.id));
 
-            // Extract unique categories
             const uniqueCategories = Array.from(new Set(transformedProducts.map((p) => p.category)));
             setCategories(uniqueCategories);
         } catch (err) {
@@ -124,10 +124,10 @@ export function ProductPage() {
                     </div>
                 </div>
             </div>
-            <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col lg:flex-row mt-8 gap-8">
-                <div className="w-full lg:w-1/5 rounded-lg mb-6 lg:mb-0">
+            <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col lg:flex-row justify-between mt-8 gap-8 ">
+                <div className="w-full lg:w-[22%] rounded-lg mb-6 lg:mb-0 min-h-[900px]">
                     <h3 className="text-lg font-semibold mb-4">Lọc theo danh mục</h3>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2">
                         <li
                             className={`cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === "all" ? " bg-white text-gray-950 shadow-lg font-medium" : "text-black"
                                 }`}
@@ -147,11 +147,10 @@ export function ProductPage() {
                         ))}
                     </ul>
                 </div>
-
-                <div className="w-full lg:w-4/5">
+                <div className="w-full lg:w-3/4">
                     {loading ? (
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {Array.from({ length: 8 }).map((_, index) => (
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+                            {Array.from({ length: 6 }).map((_, index) => (
                                 <div key={index} className="animate-pulse flex flex-col items-center">
                                     <div className="w-32 h-32 bg-gray-300 rounded-md mb-4"></div>
                                     <div className="w-24 h-4 bg-gray-300 rounded-md mb-2"></div>
@@ -160,7 +159,58 @@ export function ProductPage() {
                             ))}
                         </div>
                     ) : (
-                        <Product products={filteredProducts} />
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filteredProducts.map((product) => (
+                                <div key={product.id} className="relative group cursor-pointer rounded-lg">
+                                    <div className="rounded-lg bg-gray-50 flex flex-col border-none">
+                                        <div className="relative w-full h-[280px] rounded-lg">
+                                            <Image
+                                                src={product.images[0]}
+                                                alt={`${product.name} image`}
+                                                fill
+                                                style={{ objectFit: "cover" }}
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                className="rounded-lg"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col justify-center p-3 text-start">
+                                            <div className="text-lg font-bold mb-1 max-h-[28px] truncate">{product.name}</div>
+                                            <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
+                                                {product.description}
+                                            </div>
+                                            <div className="w-full grid grid-cols-5 items-center">
+                                                <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
+                                                    {Intl.NumberFormat("de-DE").format(product.price)} VND
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
+                                        New
+                                    </div>
+                                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+                                    <div className="absolute inset-0 w-full flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <Button className="w-2/3 mb-5 items-center font-bold rounded-sm bg-white opacity-100 text-[rgb(var(--quaternary-rgb))] hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
+                                            Chi tiết
+                                        </Button>
+                                        <div className="w-full p-3 flex flex-wrap justify-center items-center gap-2">
+                                            <div className="flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer">
+                                                <Share2 size={14} />
+                                                Share
+                                            </div>
+                                            <div className="flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer">
+                                                <ArrowRightLeft size={14} />
+                                                Compare
+                                            </div>
+                                            <div className="flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer">
+                                                <Heart size={14} />
+                                                Like
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     )}
                 </div>
             </div>
