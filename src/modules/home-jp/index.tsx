@@ -171,7 +171,7 @@ export function HomePage() {
 
                         <div className="relative group h-full">
                             <Link href={ROUTES.PRODUCT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
-                                Sản Phẩm
+                                Sản Phẩm-JP
                             </Link>
 
                             <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out">
@@ -275,7 +275,7 @@ export function HomePage() {
                                     .filter(([category, items]) => items.length >= 4)
                                     .flatMap(([category, items]) =>
                                         items.map((product) => (
-                                            <Link href={`/san-pham/${product.id}`} key={product.id} className="relative group cursor-pointer rounded-lg">
+                                            <div key={product.id} className="relative group cursor-pointer rounded-lg">
                                                 <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                                                     <div className="relative w-full h-[280px] rounded-lg">
                                                         <Image
@@ -302,7 +302,7 @@ export function HomePage() {
                                                 <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
                                                     New
                                                 </div>
-                                            </Link>
+                                            </div>
                                         ))
                                     )}
                             </div>

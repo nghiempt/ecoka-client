@@ -6,7 +6,9 @@ export const IMAGES = {
     HOME_GRID: "/home-grid.png",
     BANNER_LOGO: "/banner-logo.png",
     BREADCRUMB: "/breadcrumb.png",
-    FLAG_VN: "/flag-vietnam.png",
+    FLAG_VI: "/flag-vi.png",
+    FLAG_EN: "/flag-en.png",
+    FLAG_JP: "/flag-jp.png",
     //
     BLOG_01_MAIN: "/ecoka-blog-01-main.jpg",
     BLOG_02_MAIN: "/ecoka-blog-02-main.jpg",

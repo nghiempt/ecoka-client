@@ -40,7 +40,7 @@ export const Footer = () => {
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
                             <div>Nhà Cửa</div>
                             <div>Nhà Bếp</div>
-                            <div>Nội Thất</div>
+                            <div>Nhà Thú Cưng</div>
                             <div>Thời Trang</div>
                         </div>
                     </div>

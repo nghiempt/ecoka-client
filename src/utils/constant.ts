@@ -22,7 +22,7 @@ export const total_products: any = [
         name: "Dĩa Lục Bình Size 34cm Dùng Chụp Hình, Trang Trí, Lót Bàn Ăn - Lục Bình Tự Nhiên VN",
         price: "169.000",
         image: IMAGES.PRODUCT_02_MAIN,
-        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí nội thất theo chủ đề cabin.",
+        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí Nhà Thú Cưng theo chủ đề cabin.",
         status: "New",
     },
     {
@@ -102,7 +102,7 @@ export const total_products: any = [
         name: "Dĩa Lục Bình Size 30cm Dùng Chụp Hình, Trang Trí, Lót Bàn Ăn - Lục Bình Tự Nhiên VN",
         price: "30.000",
         image: IMAGES.PRODUCT_12_MAIN,
-        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí nội thất theo chủ đề cabin.",
+        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí Nhà Thú Cưng theo chủ đề cabin.",
         status: "New",
     },
     {
@@ -150,7 +150,7 @@ export const total_products: any = [
         name: "Hàng xuất khẩu, chứng nhận Châu Âu Thảm Lục Bình Tròn Sofa ,Decor Phòng Khách Phòng Ngủ Vintage",
         price: "215.000",
         image: IMAGES.PRODUCT_18_MAIN,
-        description: "Thảm lục bình là một sản phẩm trang trí nội thất. Thảm được đan bằng lục bình sử dụng màu sắc tự nhiên, nhẹ nhàng và sang trọng. Kiểu đan xương cá chắc chắn.",
+        description: "Thảm lục bình là một sản phẩm trang trí Nhà Thú Cưng. Thảm được đan bằng lục bình sử dụng màu sắc tự nhiên, nhẹ nhàng và sang trọng. Kiểu đan xương cá chắc chắn.",
         status: "New",
     },
     {
@@ -225,7 +225,7 @@ export const home_products: any = [
         name: "Dĩa Lục Bình Size 34cm Dùng Chụp Hình, Trang Trí, Lót Bàn Ăn - Lục Bình Tự Nhiên VN",
         price: "169.000",
         image: IMAGES.PRODUCT_02_MAIN,
-        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí nội thất theo chủ đề cabin.",
+        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí Nhà Thú Cưng theo chủ đề cabin.",
         status: "New",
     },
     {
@@ -292,7 +292,7 @@ export const related_products: any = [
         name: "Dĩa Lục Bình Size 34cm Dùng Chụp Hình, Trang Trí, Lót Bàn Ăn - Lục Bình Tự Nhiên VN",
         price: "169.000",
         image: IMAGES.PRODUCT_02_MAIN,
-        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí nội thất theo chủ đề cabin.",
+        description: "Miếng lót bàn ăn dệt bằng tay từ lục bình thân thiện với môi trường, mang đến cảm giác an toàn hơn, lành mạnh hơn, có ý thức về môi trường. Tạo nên sự đặc biệt bất kỳ ngôi nhà nông thôn nào, phòng ăn boho, phòng khách, nhà nhỏ kiểu nông thôn hoặc kiểu trang trí Nhà Thú Cưng theo chủ đề cabin.",
         status: "New",
     },
     {
@@ -391,7 +391,7 @@ export const categories: any = [
     },
     {
         id: 4,
-        name: 'Nội Thất',
+        name: 'Nhà Thú Cưng',
         path: '/noi-that',
     },
 ]

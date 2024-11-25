@@ -16,7 +16,9 @@ export const Header = () => {
                         <Link href={URL.YOUTUBE} target="_blank"><Youtube className="text-white" /></Link>
                         <Link href={URL.MAIL} target="_blank"><Mail className="text-white" /></Link>
                         <Link href={URL.SHOPPING} target="_blank"><ShoppingBag className="text-white" size={19} /></Link>
-                        <Image src={IMAGES.FLAG_VN} alt="img" width={21} height={21} />
+                        <Image src={IMAGES.FLAG_VI} alt="img" width={21} height={21} />
+                        <Image src={IMAGES.FLAG_EN} alt="img" width={21} height={21} />
+                        <Image src={IMAGES.FLAG_JP} alt="img" width={21} height={21} />
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Share2, ArrowRightLeft, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 interface Product {
     row: number;
     id: number;
@@ -114,7 +115,7 @@ export function ProductPage() {
                         height={50}
                         className="text-center"
                     />
-                    <h1 className="text-4xl font-semibold mb-2">SẢN PHẨM</h1>
+                    <h1 className="text-4xl font-semibold mb-2">SẢN PHẨM EN</h1>
                     <div className="flex gap-2 items-center">
                         <Link href={ROUTES.HOME} className="font-semibold text-sm">
                             Trang chủ
@@ -129,7 +130,7 @@ export function ProductPage() {
                     <h3 className="text-lg font-semibold mb-4">Lọc theo danh mục</h3>
                     <ul className="space-y-2">
                         <li
-                            className={`cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === "all" ? " bg-white text-gray-950 border font-medium" : "text-black"
+                            className={`cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === "all" ? " bg-white text-gray-950 shadow-lg font-medium" : "text-black"
                                 }`}
                             onClick={() => handleFilterChange("all")}
                         >
@@ -138,7 +139,7 @@ export function ProductPage() {
                         {categories.map((category) => (
                             <li
                                 key={category}
-                                className={`uppercase cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === category ? " bg-white text-gray-950 border font-medium " : "text-black"
+                                className={`cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === category ? " bg-white text-gray-950 shadow-lg font-medium " : "text-black"
                                     }`}
                                 onClick={() => handleFilterChange(category)}
                             >
@@ -161,7 +162,7 @@ export function ProductPage() {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredProducts.map((product) => (
-                                <Link href={`/san-pham/${product.id}`} key={product.id} className="relative group cursor-pointer rounded-lg">
+                                <div key={product.id} className="relative group cursor-pointer rounded-lg">
                                     <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                                         <div className="relative w-full h-[280px] rounded-lg">
                                             <Image
@@ -208,7 +209,7 @@ export function ProductPage() {
                                             </div>
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
                             ))}
                         </div>
                     )}
