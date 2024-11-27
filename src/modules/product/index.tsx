@@ -103,8 +103,8 @@ export function ProductPage() {
             <Header />
             <NavMobile />
             <div
-                className="bg-cover bg-center h-[250px] w-full md:w-2/3 lg:w-2/3 flex justify-center items-center md:rounded-lg lg:rounded-lg"
-                style={{ backgroundImage: `url('/breadcrumb.png')` }}
+                className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
+                style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}
             >
                 <div className="w-full flex flex-col justify-center items-center">
                     <Image

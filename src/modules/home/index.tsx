@@ -232,6 +232,15 @@ export function HomePage() {
                         ))}
                     </div>
                 </div>
+                <div className="px-20 pb-14 mt-10 flex flex-col justify-start items-center">
+                    <div className="text-3xl font-bold mb-14">CHỨNG NHẬN</div>
+                    <div className="flex flex-col lg:flex-row gap-10">
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/pjqmxyre74hfxhs7vras.png" alt="img" width={200} height={0} />
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/x9nl75qr5n9qullcqesw.jpg" alt="img" width={280} height={0} />
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/hhzrcqlvmhrylzwwqqi5.jpg" alt="img" width={200} height={0} />
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/ccrn8pxro2oayevqrg4d.jpg" alt="img" width={260} height={0} />
+                    </div>
+                </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
                 {/* <div className="w-full flex flex-col justify-start items-center mb-14 mt-8">
                     <div className="text-3xl font-bold text-center mb-8">Sản Phẩm</div>
