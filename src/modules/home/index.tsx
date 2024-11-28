@@ -166,7 +166,7 @@ export function HomePage() {
                     <source src={IMAGES.VIDEO_HOME} type="video/mp4" />
                 </video>
                 <div className='w-full absolute top-0 pt-6 flex flex-col justify-center items-center gap-10 text-white'>
-                    <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6">
+                    <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6 uppercase">
                         <Link href={ROUTES.HOME} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Trang Chủ</Link>
 
                         <div className="relative group h-full">
@@ -232,13 +232,13 @@ export function HomePage() {
                         ))}
                     </div>
                 </div>
-                <div className="px-20 pb-14 mt-10 flex flex-col justify-start items-center">
-                    <div className="text-3xl font-bold mb-14">CHỨNG NHẬN</div>
-                    <div className="flex flex-col lg:flex-row gap-10">
-                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/pjqmxyre74hfxhs7vras.png" alt="img" width={200} height={0} />
-                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/x9nl75qr5n9qullcqesw.jpg" alt="img" width={280} height={0} />
+                <div className="w-full pb-14 mt-10 flex flex-col justify-center items-center">
+                    <div className="w-full text-3xl font-bold mb-14 text-center">CHỨNG NHẬN</div>
+                    <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-4">
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/hhzrcqlvmhrylzwwqqi5.jpg" alt="img" width={200} height={0} />
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732782449/ecoka/kypqpxwuqlrzivuqulfd.png" alt="img" width={280} height={0} />
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/ccrn8pxro2oayevqrg4d.jpg" alt="img" width={260} height={0} />
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/pjqmxyre74hfxhs7vras.png" alt="img" width={200} height={0} />
                     </div>
                 </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
