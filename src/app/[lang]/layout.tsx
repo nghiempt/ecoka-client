@@ -10,7 +10,6 @@ export async function generateMetadata({ params: { lang } }: {
   params: { lang: string }
 }): Promise<Metadata> {
   const dictionary = await getDictionary(lang as any)
-
   return {
     title: dictionary.title,
     description: dictionary.description,
