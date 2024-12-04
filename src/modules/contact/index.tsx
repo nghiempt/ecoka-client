@@ -15,6 +15,7 @@ import { ROUTES } from "@/utils/route"
 import { useEffect, useState } from "react"
 import { getAll } from "@/utils/api"
 
+
 interface Company {
     id: number;
     row: number;
