@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Roboto_Slab } from "next/font/google";
 import "../globals.css";
 import { i18n } from '@/i18n/settings'
 import { getDictionary } from '@/i18n/get-dictionary'
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const montserrat = Roboto_Slab({ subsets: ["latin"], weight: "400" });
 
 export async function generateMetadata({ params: { lang } }: {
   params: { lang: string }

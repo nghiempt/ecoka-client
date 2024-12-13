@@ -5,10 +5,10 @@ import { Header } from "@/layout/header"
 import { NavMobile } from "@/layout/nav-mobile"
 import { IMAGES } from "@/utils/image"
 
-export function AboutPage() {
+export function AboutPage({dictionary}: {dictionary: any}) {
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header />
+            <Header page={"ve-chung-toi"} />
             <NavMobile />
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center gap-10 mt-10 md:mt-0 lg:mt-0">
                 <video className="w-full object-cover rounded-lg" autoPlay loop muted>
@@ -16,7 +16,7 @@ export function AboutPage() {
                 </video>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
                 <div className="w-5/6 md:w-2/3 lg:w-2/3 text-center">
-                    <h1 className="text-4xl font-bold text-[rgb(var(--quaternary-rgb))] mb-5">Về Chúng Tôi</h1>
+                    <h1 className="text-4xl font-bold text-[rgb(var(--quaternary-rgb))] mb-5">{dictionary.about_title}</h1>
                     <p className="text-lg text-[rgb(var(--quaternary-rgb))]">
                         Là công ty sản xuất và thương mại các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên.
                     </p>

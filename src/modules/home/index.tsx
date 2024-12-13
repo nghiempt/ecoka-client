@@ -3,7 +3,7 @@
 import { Product } from "@/components/global/product"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/layout/footer"
-import { categories, home_blogs, home_products, URL } from "@/utils/constant"
+import { categories, URL } from "@/utils/constant"
 import { IMAGES } from "@/utils/image"
 import { ArrowUpRight, Facebook, Mail } from "lucide-react"
 import { ShoppingBag, Youtube } from "lucide-react"
@@ -201,12 +201,6 @@ export function HomePage() {
                 <div className="px-20 py-14 flex flex-col justify-start items-center">
                     <div className="text-3xl font-bold mb-14">KINH DOANH BỀN VỮNG</div>
                     <div className="flex flex-col lg:flex-row gap-10">
-                        {/* {esgs.map((esg, index) => (
-                            <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
-                                <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">{esg.title}</div>
-                                <div className="hidden md:flex lg:flex font-medium text-md text-center">{esg.description}</div>
-                            </div>
-                        ))} */}
                         {esgs.map((esg, index) => (
                             <Link href="/esg" key={index}>
                                 <div
@@ -233,7 +227,7 @@ export function HomePage() {
                     </div>
                 </div>
                 <div className="w-full pb-14 mt-10 flex flex-col justify-center items-center">
-                    <div className="w-full text-3xl font-bold mb-14 text-center">CHỨNG NHẬN</div>
+                    <div className="w-full text-3xl font-bold mb-8 text-center">CHỨNG NHẬN</div>
                     <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-4">
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/hhzrcqlvmhrylzwwqqi5.jpg" alt="img" width={200} height={0} />
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732782449/ecoka/kypqpxwuqlrzivuqulfd.png" alt="img" width={280} height={0} />
@@ -242,29 +236,6 @@ export function HomePage() {
                     </div>
                 </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
-                {/* <div className="w-full flex flex-col justify-start items-center mb-14 mt-8">
-                    <div className="text-3xl font-bold text-center mb-8">Sản Phẩm</div>
-                    <div className="w-full mb-8">
-                        {loading ? (
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {Array.from({ length: 8 }).map((_, index) => (
-                                    <div key={index} className="animate-pulse flex flex-col items-center">
-                                        <div className="w-32 h-32 bg-gray-300 rounded-md mb-4"></div>
-                                        <div className="w-24 h-4 bg-gray-300 rounded-md mb-2"></div>
-                                        <div className="w-16 h-4 bg-gray-300 rounded-md"></div>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <Product products={Object.values(products).flat()} />
-                        )}
-                    </div>
-                    <Link className="w-full flex justify-center items-center" href={ROUTES.PRODUCT}>
-                        <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
-                            Xem thêm
-                        </Button>
-                    </Link>
-                </div> */}
                 <div className="w-full flex flex-col justify-start items-center mb-14 mt-8">
                     <div className="text-3xl font-bold text-center mb-8">Sản Phẩm</div>
                     <div className="w-full mb-8">
@@ -339,7 +310,7 @@ export function HomePage() {
                     <div className="w-full mb-8">
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                             {
-                                home_blogs?.map((blog: any, index: any) => {
+                                []?.map((blog: any, index: any) => {
                                     return (
                                         <div key={index} className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
                                             <div className='relative w-full h-[240px] rounded-lg'>

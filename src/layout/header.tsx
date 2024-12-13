@@ -5,7 +5,7 @@ import Image from "next/image"
 import { IMAGES } from "@/utils/image"
 import { categories, URL } from "@/utils/constant"
 
-export const Header = () => {
+export const Header = ({ page }: { page: any }) => {
     return (
         <div className="w-full flex flex-col justify-center items-center">
             <div className="w-full bg-[rgb(var(--quaternary-rgb))] flex items-center justify-center">
@@ -16,9 +16,15 @@ export const Header = () => {
                         <Link href={URL.YOUTUBE} target="_blank"><Youtube className="text-white" /></Link>
                         <Link href={URL.MAIL} target="_blank"><Mail className="text-white" /></Link>
                         <Link href={URL.SHOPPING} target="_blank"><ShoppingBag className="text-white" size={19} /></Link>
-                        <Image src={IMAGES.FLAG_VI} alt="img" width={21} height={21} />
-                        <Image src={IMAGES.FLAG_EN} alt="img" width={21} height={21} />
-                        <Image src={IMAGES.FLAG_JP} alt="img" width={21} height={21} />
+                        <Link href={`/vi/${page}`}>
+                            <Image src={IMAGES.FLAG_VI} alt="img" width={21} height={21} />
+                        </Link>
+                        <Link href={`/en/${page}`}>
+                            <Image src={IMAGES.FLAG_EN} alt="img" width={21} height={21} />
+                        </Link>
+                        <Link href={`/jp/${page}`}>
+                            <Image src={IMAGES.FLAG_JP} alt="img" width={21} height={21} />
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@ interface Product {
     images: string[];
 }
 
-export function ProductPage() {
+export function ProductPage({dictionary}: {dictionary: any}) {
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<string[]>([]);
@@ -36,6 +36,7 @@ export function ProductPage() {
 
             const raw = JSON.stringify({
                 method: "GET",
+                lang: dictionary.lang
             });
 
             const requestOptions = {
@@ -100,7 +101,7 @@ export function ProductPage() {
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header />
+            <Header page={"san-pham"} />
             <NavMobile />
             <div
                 className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"

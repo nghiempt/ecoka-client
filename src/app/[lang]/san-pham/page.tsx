@@ -1,9 +1,18 @@
+
 'use client'
 
-import { ProductPage } from "@/modules/product";
+import { getDictionary } from '@/i18n/get-dictionary'
+import { ProductPage } from '@/modules/product';
 
-export default function Product() {
+export default async function Product({
+  params: { lang }
+}: {
+  params: { lang: string }
+}) {
+  const dictionary = await getDictionary(lang as any)
   return (
-    <ProductPage />
+    <>
+      <ProductPage dictionary={dictionary} />
+    </>
   );
 }

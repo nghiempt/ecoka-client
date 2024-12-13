@@ -106,7 +106,7 @@ const BlogDetailPage: React.FC = () => {
       ) : (
         <>
           <div className="w-full md:w-2/3 lg:w-2/3 bg-cover bg-center h-[250px] flex justify-center items-center md:rounded-lg lg:rounded-lg z-10"
-            style={{ backgroundImage: `url('/breadcrumb.png')` }}>
+            style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
             <div className="w-full flex flex-col justify-center items-center">
               <Image
                 src={IMAGES.BANNER_LOGO}

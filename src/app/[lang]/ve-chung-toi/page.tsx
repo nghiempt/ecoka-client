@@ -1,9 +1,17 @@
 'use client'
 
-import { AboutPage } from "@/modules/about";
+import { getDictionary } from '@/i18n/get-dictionary'
+import { AboutPage } from '@/modules/about';
 
-export default function About() {
+export default async function About({
+  params: { lang }
+}: {
+  params: { lang: string }
+}) {
+  const dictionary = await getDictionary(lang as any)
   return (
-    <AboutPage />
+    <>
+      <AboutPage dictionary={dictionary} />
+    </>
   );
 }

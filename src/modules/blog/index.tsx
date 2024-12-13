@@ -128,7 +128,7 @@ export function BlogPage() {
                                             />
                                         </div>
                                         <h1 className="text-[13px] font-medium mt-1">{blog.date}</h1>
-                                        <h1 className="text-[16px] font-semibold max-h-[48px]">{blog.title}</h1>
+                                        <h1 className="w-full text-[16px] font-semibold max-h-[48px] line-clamp-2">{blog.title}</h1>
                                         <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">Tác giả: {blog.author}</h1>
                                     </div>
                                 </Link>

@@ -10,10 +10,10 @@ export function Slider() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [paginationIndex, setPaginationIndex] = useState(0)
     const [slidesData, setSlidesData] = useState([
-        { id: "01", image: IMAGES.PRODUCT_22_MAIN, title: 'Thảm Cói Trải Sàn', roomType: 'Nhà Cửa' },
-        { id: "02", image: IMAGES.PRODUCT_12_MAIN, title: 'Dĩa Lục Bình', roomType: 'Nhà Bếp' },
-        { id: "03", image: IMAGES.PRODUCT_14_MAIN, title: 'Lồng Mèo Handmade', roomType: 'Nhà Thú Cưng' },
-        { id: "04", image: IMAGES.PRODUCT_19_MAIN, title: 'Giỏ Xách Đẹp', roomType: 'Thời Trang' }
+        { id: "01", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000454/ecoka/ecoka-product-22-main_sjbc4d.webp", title: 'Thảm Cói Trải Sàn', roomType: 'Nhà Cửa' },
+        { id: "02", image: 'https://res.cloudinary.com/farmcode/image/upload/v1729000247/ecoka/ecoka-product-12-main_jlmsvh.webp', title: 'Dĩa Lục Bình', roomType: 'Nhà Bếp' },
+        { id: "03", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000296/ecoka/ecoka-product-14-main_ng8hln.webp", title: 'Lồng Mèo Handmade', roomType: 'Nhà Thú Cưng' },
+        { id: "04", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000394/ecoka/ecoka-product-19-main_rvl1ul.webp", title: 'Giỏ Xách Đẹp', roomType: 'Thời Trang' }
     ]);
 
     const totalSlides = slidesData.length;
