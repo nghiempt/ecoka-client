@@ -19,7 +19,7 @@ interface ESG {
     thumbnail: string;
 }
 
-export function ESGPage() {
+export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
     const [esgs, setEsgs] = useState<ESG[]>([]);
     const [loading, setLoading] = useState(true);
     const apiUrl = "https://n8n.khiemfle.com/webhook/aa7f04f4-7833-49c2-8c86-7a043f4a8a5a";
@@ -89,8 +89,8 @@ export function ESGPage() {
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header />
-            <NavMobile />
+            <Header lang={lang} page={"esg"} dictionary={dictionary} />
+            <NavMobile lang={lang} dictionary={dictionary} />
             <div className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
                 <div className="w-full flex flex-col justify-center items-center">
@@ -106,7 +106,7 @@ export function ESGPage() {
                     </h1>
                     <div className="flex gap-2 items-center">
                         <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            Trang chủ
+                            {dictionary.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
                         <h1 className="text-sm">ESG</h1>
@@ -119,7 +119,7 @@ export function ESGPage() {
                 <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
                     <div className="w-full h-10 rounded-md bg-[rgb(var(--primary-rgb))] opacity-30 my-6"></div>
                     <section className="w-full py-10">
-                        <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+                        <div className="w-full flex flex-col lg:flex-row items-center lg:gap-7 justify-center">
                             <div className="lg:w-1/2">
                                 <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                                     {esgs[0]?.title}
@@ -163,7 +163,7 @@ export function ESGPage() {
                         </div>
                     </section> */}
                     <section className="hidden md:flex lg:flex w-full py-10">
-                        <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+                        <div className="w-full flex flex-col lg:flex-row lg:gap-7 items-center justify-center">
                             <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-start items-center">
                                 <Image
                                     src={esgs[1].thumbnail}
@@ -185,7 +185,7 @@ export function ESGPage() {
                         </div>
                     </section>
                     <section className="w-full py-10">
-                        <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+                        <div className="w-full flex flex-col lg:flex-row items-center lg:gap-7 justify-center">
                             <div className="lg:w-1/2">
                                 <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                                     {esgs[2].title}
@@ -208,7 +208,7 @@ export function ESGPage() {
                     </section>
                 </div>)}
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer />
+            <Footer dictionary={dictionary} />
         </div>
     )
 }

@@ -122,7 +122,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-      <Header page={`san-pham/${currentData?.id}`} lang={lang} dictionary={dictionary} />
+      <Header page={`san-pham`} lang={lang} dictionary={dictionary} />
       {loading ? (
         <div className="w-full min-h-screen flex justify-center items-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
@@ -141,9 +141,9 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
               />
               <h1 className="text-4xl font-semibold mb-2">{dictionary.PRODUCT_breadcrumb_main}</h1>
               <div className="flex gap-2 items-center">
-                <Link href="/" className="font-semibold text-sm">{dictionary.PRODUCT_breadcrumb_submain_1}</Link>
+                <Link href={`/${lang}`} className="font-semibold text-sm">{dictionary.PRODUCT_breadcrumb_submain_1}</Link>
                 <ChevronRight size={20} />
-                <Link href="/product" className="font-semibold text-sm">{dictionary.DETAIL_PRODUCT_breadcrumb_submain_2}</Link>
+                <Link href={`/${lang}/san-pham`} className="font-semibold text-sm">{dictionary.DETAIL_PRODUCT_breadcrumb_submain_2}</Link>
                 <ChevronRight size={20} />
                 <h1 className="text-sm">{truncateText(currentData?.name, 12)}</h1>
               </div>
@@ -216,7 +216,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-center md:text-left">
-                      Color
+                      {dictionary.DETAIL_PRODUCT_color}
                     </h3>
                     <div className="flex justify-center md:justify-start space-x-2 mt-2">
                       {colors.map((colorObj) => (
@@ -265,26 +265,26 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                         variant="outline"
                         className="border-black border-2  px-6 py-2 w-full md:w-auto font-semibold"
                       >
-                        Get Quote
+                        {dictionary.DETAIL_PRODUCT_get_quote}
                       </Button>
                     </div>
                   </div>
                   <hr />
                   <div className="text-sm text-gray-600 mt-4 space-y-2">
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Danh mục:</p>
+                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_1}:</p>
                       <p>Thời trang</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Xuất xứ:</p>
+                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_2}:</p>
                       <p>Việt Nam</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Chất liệu:</p>
+                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_3}:</p>
                       <p>Da</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Nguồn</p>
+                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_origin}</p>
                       <div className="flex space-x-2">
                         <Button variant="outline" size="sm" className="p-1 border-none">
                           <FaFacebook className="text-lg" />
@@ -302,9 +302,9 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
               </div>
               <div className="w-full h-1 bg-[rgb(var(--primary-rgb))] mt-16"></div>
               <div className="w-full flex flex-col justify-start items-start mt-8">
-                <div className="text-2xl font-bold text-left mb-8">Sản Phẩm Liên Quan</div>
+                <div className="text-2xl font-bold text-left mb-8">{dictionary.DETAIL_PRODUCT_subtitle_1}</div>
                 <div className="w-full z-10">
-                  <Product products={relatedProducts} />
+                  <Product lang={lang} dictionary={dictionary} products={relatedProducts} />
                 </div>
               </div>
             </div>

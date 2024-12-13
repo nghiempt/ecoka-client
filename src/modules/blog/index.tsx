@@ -20,7 +20,7 @@ interface Blog {
     date: string;
 };
 
-export function BlogPage() {
+export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -75,8 +75,8 @@ export function BlogPage() {
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header />
-            <NavMobile />
+            <Header lang={lang} page={"bai-viet"} dictionary={dictionary} />
+            <NavMobile lang={lang} dictionary={dictionary} />
             <div className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
                 <div className="w-full flex flex-col justify-center items-center">
@@ -88,14 +88,14 @@ export function BlogPage() {
                         className="text-center"
                     />
                     <h1 className="text-4xl font-semibold mb-2">
-                        BÀI VIẾT
+                        {dictionary.BLOG_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
                         <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            Trang chủ
+                            {dictionary.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">Bài viết</h1>
+                        <h1 className="text-sm">{dictionary.BLOG_breadcrumb_submain_3}</h1>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@ export function BlogPage() {
                     ) : (
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                             {blogs.map((blog) => (
-                                <Link key={blog.row} href={`/bai-viet/${blog.id}`}>
+                                <Link key={blog.row} href={`/${lang}/bai-viet/${blog.id}`}>
                                     <div className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
                                         <div className="relative w-full h-[240px] rounded-lg">
                                             <Image
@@ -129,7 +129,7 @@ export function BlogPage() {
                                         </div>
                                         <h1 className="text-[13px] font-medium mt-1">{blog.date}</h1>
                                         <h1 className="w-full text-[16px] font-semibold max-h-[48px] line-clamp-2">{blog.title}</h1>
-                                        <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">Tác giả: {blog.author}</h1>
+                                        <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary.HOME_blog_author}: {blog.author}</h1>
                                     </div>
                                 </Link>
                             ))}
@@ -138,7 +138,7 @@ export function BlogPage() {
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer />
+            <Footer dictionary={dictionary} />
         </div>
     );
 }

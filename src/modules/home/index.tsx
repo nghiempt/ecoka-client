@@ -34,7 +34,7 @@ interface ESG {
     thumbnail: string;
 }
 
-export function HomePage({ dictionary }: { dictionary: any }) {
+export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }) {
     const [products, setProducts] = useState<{ [key: string]: Product[] }>({});
 
     const [loading, setLoading] = useState<boolean>(true);
@@ -140,7 +140,7 @@ export function HomePage({ dictionary }: { dictionary: any }) {
     }, []);
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <NavMobile dictionary={dictionary} />
+            <NavMobile lang={lang} dictionary={dictionary} />
             <div className="w-full bg-[rgb(var(--quaternary-rgb))] flex items-center justify-center">
                 <div className="w-2/3 py-6 flex flex-col lg:flex-row items-center justify-end gap-4">
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
@@ -167,32 +167,32 @@ export function HomePage({ dictionary }: { dictionary: any }) {
                 </video>
                 <div className='w-full absolute top-0 pt-6 flex flex-col justify-center items-center gap-10 text-white'>
                     <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6 uppercase">
-                        <Link href={ROUTES.HOME} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                        <Link href={`/${lang}/`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                             {dictionary.HEADER_title[0]}
                         </Link>
 
                         <div className="relative group h-full">
-                            <Link href={ROUTES.PRODUCT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                            <Link href={`/${lang}${ROUTES.PRODUCT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                                 {dictionary.HEADER_title[1]}
                             </Link>
 
                             <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out">
                                 {categories.map((category: any, index: number) => (
-                                    <Link href={ROUTES.PRODUCT + `${category.path}`} className="text-lg font-semibold transform duration-300 hover:scale-110">{category.name}</Link>
+                                    <Link href={`/${lang}${ROUTES.PRODUCT}${category.path}`} className="text-lg font-semibold transform duration-300 hover:scale-110">{category.name}</Link>
                                 ))}
                             </div>
                         </div>
 
-                        <Link href={ROUTES.ABOUT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                        <Link href={`http://localhost:3000/${lang}${ROUTES.ABOUT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                             {dictionary.HEADER_title[2]}
                         </Link>
-                        <Link href={ROUTES.ESG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                        <Link href={`/${lang}${ROUTES.ESG}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                             {dictionary.HEADER_title[3]}
                         </Link>
-                        <Link href={ROUTES.BLOG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                        <Link href={`/${lang}${ROUTES.BLOG}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                             {dictionary.HEADER_title[4]}
                         </Link>
-                        <Link href={ROUTES.CONTACT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                        <Link href={`/${lang}${ROUTES.CONTACT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                             {dictionary.HEADER_title[5]}
                         </Link>
                     </nav>

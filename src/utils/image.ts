@@ -13,4 +13,5 @@ export const IMAGES = {
   FLAG_VI: "/images/flag-vi.png",
   FLAG_EN: "/images/flag-en.png",
   FLAG_JP: "/images/flag-jp.png",
+  BLOG_01_MAIN: "",
 };

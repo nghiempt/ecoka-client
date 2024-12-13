@@ -12,7 +12,7 @@ export default async function Contact({
   return (
     <>
       <h1>{dictionary.title}</h1>
-      <ContactPage />
+      <ContactPage lang={lang} dictionary={dictionary} />
     </>
   );
 }

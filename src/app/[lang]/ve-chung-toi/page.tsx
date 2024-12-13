@@ -11,7 +11,7 @@ export default async function About({
   const dictionary = await getDictionary(lang as any)
   return (
     <>
-      <AboutPage dictionary={dictionary} />
+      <AboutPage lang={lang} dictionary={dictionary} />
     </>
   );
 }

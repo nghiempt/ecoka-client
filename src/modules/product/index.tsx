@@ -101,8 +101,8 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header lang={lang} page={"san-pham"} dictionary={dictionary} />
-            <NavMobile dictionary={dictionary} />
+            <Header lang={lang} page="san-pham" dictionary={dictionary} />
+            <NavMobile lang={lang} dictionary={dictionary} />
             <div
                 className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}
@@ -162,7 +162,7 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredProducts.map((product) => (
-                                <Link href={`/san-pham/${product.id}`} key={product.id} className="relative group cursor-pointer rounded-lg">
+                                <Link href={`/${lang}/san-pham/${product.id}`} key={product.id} className="relative group cursor-pointer rounded-lg">
                                     <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                                         <div className="relative w-full h-[280px] rounded-lg">
                                             <Image
