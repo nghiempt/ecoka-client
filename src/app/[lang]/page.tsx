@@ -1,9 +1,14 @@
-'use client'
 
+import { getDictionary } from '@/i18n/get-dictionary'
 import { HomePage } from "@/modules/home";
 
-export default function Home() {
+export default async function Home({ params: { lang } }: {
+  params: { lang: string }
+}) {
+  const dictionary = await getDictionary(lang as any)
   return (
-    <HomePage />
+    <>
+      <HomePage dictionary={dictionary} />
+    </>
   );
 }

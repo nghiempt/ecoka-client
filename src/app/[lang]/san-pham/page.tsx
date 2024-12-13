@@ -1,5 +1,4 @@
 
-'use client'
 
 import { getDictionary } from '@/i18n/get-dictionary'
 import { ProductPage } from '@/modules/product';
@@ -12,7 +11,7 @@ export default async function Product({
   const dictionary = await getDictionary(lang as any)
   return (
     <>
-      <ProductPage dictionary={dictionary} />
+      <ProductPage lang={lang} dictionary={dictionary} />
     </>
   );
 }

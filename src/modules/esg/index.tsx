@@ -122,16 +122,16 @@ export function ESGPage() {
                         <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                             <div className="lg:w-1/2">
                                 <h2 className="text-3xl font-bold text-gray-800 leading-tight">
-                                    {esgs[0].title}
+                                    {esgs[0]?.title}
                                 </h2>
                                 <p className="mt-4 text-lg text-gray-700">
-                                    {esgs[0].description}
+                                    {esgs[0]?.description}
                                 </p>
                                 <div className="w-1/2 h-4 rounded-md bg-[rgb(var(--primary-rgb))] opacity-30 my-6"></div>
                             </div>
                             <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-end items-center">
                                 <Image
-                                    src={esgs[0].thumbnail}
+                                    src={esgs[0]?.thumbnail}
                                     alt="img"
                                     width={500}
                                     height={300}

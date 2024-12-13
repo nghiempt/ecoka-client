@@ -1,6 +1,162 @@
 {
-    "lang": "jp",
+    "lang": "ja",
     "title": "ECOKA HANDICRAFTS",
-    "description": "CÔNG TY CỔ PHẦN ECOKA. Là công ty sản xuất và thương mại các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên như: lục bình, ...",
-    "about_title": "abc"
+    "HOME_header": [
+        "ホーム",
+        "製品",
+        "会社概要",
+        "ESG",
+        "ブログ",
+        "お問い合わせ"
+    ],
+    "HOME_title": "自然をあなたの生活に",
+    "HOME_description": "ECOKA株式会社は、水草、籐、竹、マクラメなど100%天然素材を使用した伝統的な手工芸品を製造および輸出する会社です。",
+    "HOME_discovery": "発見する",
+    "HOME_subtitle_1": "持続可能なビジネス",
+    "HOME_subtitle_2": "認証",
+    "HOME_subtitle_3": "製品",
+    "HOME_subtitle_4": "記事",
+    "HOME_new_tag": "新しい",
+    "HOME_button_more": "もっと見る",
+    "HOME_decor_tag": "デコレーションコーナーを共有する",
+    "HOME_hashtag": "#TrangTriNoiThat",
+    "HOME_discovery_title": "200 種類以上の環境に優しい製品",
+    "HOME_discovery_brief": "多様なデザインと繊細なモチーフを備えた、この可愛くてファッショナブルで環境に優しい Chaneva ウォーターヒヤシンス バッグは、国内外の多くのお客様にご満足いただいています。",
+    "HOME_button_discovery": "発見する",
+    "HOME_blog_author": "著者",
+    "PRODUCT_breadcrumb_main": "製品",
+    "PRODUCT_breadcrumb_submain_1": "ホーム",
+    "PRODUCT_filter": "カテゴリーでフィルタ",
+    "PRODUCT_all_products": "すべての製品",
+    "PRODUCT_button_detail": "詳細",
+    "PRODUCT_button_share": "シェア",
+    "PRODUCT_button_compare": "比較",
+    "PRODUCT_button_like": "お気に入り",
+    "DETAIL_PRODUCT_breadcrumb_submain_2": "製品",
+    "DETAIL_PRODUCT_rating": "評価",
+    "DETAIL_PRODUCT_size": "サイズ",
+    "DETAIL_PRODUCT_cart": "カートに追加",
+    "DETAIL_PRODUCT_get_quote": "見積もりを取得",
+    "DETAIL_PRODUCT_sub_description_1": "カテゴリー",
+    "DETAIL_PRODUCT_sub_description_2": "原産地",
+    "DETAIL_PRODUCT_sub_description_3": "素材",
+    "DETAIL_PRODUCT_sub_description_origin": "ソース",
+    "DETAIL_PRODUCT_subtitle_1": "関連製品",
+    "ABOUT_title": "私たちについて",
+    "ABOUT_brief": "100%天然素材を使用した伝統的な手工芸品の製造および販売を専門とする会社。",
+    "ABOUT_section_1": [
+        "歴史と発展",
+        "Ecokaは、2018年からの4年以上の経験を持つ小規模な手工芸ワークショップとして始まりました。環境に優しい手工芸品を作り、ベトナムのメコンデルタ地域で利用可能な天然素材（水草、い草、籐、竹など）を使用して製品を作成しました。主な国際顧客として、アメリカ、イギリス、フランスなどがあります。熟練した職人チームが、製品品質要件について厳密にトレーニングされ、多様なデザイン、洗練された仕上がり、高品質の製品を保証します。Ecokaを選ぶと、プロフェッショナルなサービス、保証された製品品質、そして手頃な価格に満足することでしょう。"
+    ],
+    "ABOUT_section_2": [
+        "ビジョンとミッション",
+        "環境に優しい素材を使用して高品質な製品を製造および輸出する分野で、国際的に認められるベトナムブランドになることを目指しています。顧客に素晴らしいサービスを提供するだけでなく、メコンデルタの貧しい人々に仕事の機会を提供し、若者にキャリアの方向性を示すことを目指しています。環境保護を事業の中心に据え、Ecokaの使命は、安全で環境に優しい製品を提供し、多くの人々のプラスチック製品の消費習慣を変えることです。最終的な目標は、ベトナム製品を国際市場に広めることです。"
+    ],
+    "ABOUT_section_3": [
+        "コアバリュー",
+        "ベトナムおよび国際市場における環境に優しい高品質な消費財の信頼の象徴になること。"
+    ],
+    "ABOUT_section_4": [
+        "規模と施設",
+        [
+            "総面積",
+            "チーム",
+            "生産能力",
+            "主な市場"
+        ],
+        [
+            "6500平方メートル（工場、オフィス、乾燥室、ショールーム、倉庫、梱包エリアを含む）",
+            "20年以上の伝統的な手工芸経験を持つ600人の熟練した労働者。製品品質要件について徹底的にトレーニングされています。",
+            "月80TEUS。",
+            "アメリカ、カナダ、フランス。国内工場向けの材料サプライヤー。顧客の要件に応じてカスタマイズ可能。"
+        ]
+    ],
+    "ESG_section_1": [
+        "環境",
+        "ECOKAは、ハンドバッグの製造に100%天然素材である水草を使用することで環境保護に取り組んでいます。この素材は環境に優しいだけでなく、自然に長期間接触した後に生分解可能であり、プラスチック廃棄物や汚染物質を最小限に抑えます。ECOKAの生産プロセスは、資源を最適化し、エネルギーと水の消費を削減し、自然の生態系を保護することに貢献するよう設計されています。"
+    ],
+    "ESG_section_2": [
+        "社会",
+        "ECOKAは、伝統的な手工芸スキルで有名なメコンデルタ地域の職人に安定した雇用を提供しています。同社は、伝統的な手工芸の保存と発展を支援するだけでなく、地元労働者の経済的生活を向上させています。また、ECOKAは地域社会活動に貢献し、公正な労働環境を構築し、持続可能な開発イニシアチブをサポートしています。"
+    ],
+    "ESG_section_3": [
+        "ガバナンス",
+        "ECOKAは、労働および環境規制を遵守しながら、持続可能な開発を確保するために透明で責任あるガバナンスポリシーを実施しています。同社は高いビジネス倫理を維持し、国際基準を満たす高品質の製品を製造することを約束しています。また、生産プロセスを継続的に改善し、効率を高めるとともに、環境や社会への悪影響を最小限に抑える努力を続けています。"
+    ],
+    "BLOG_breadcrumb_main": "ブログ",
+    "BLOG_breadcrumb_submain_3": "ブログ",
+    "CONTACT_breadcrumb_main": "お問い合わせ",
+    "CONTACT_breadcrumb_submain_3": "お問い合わせ",
+    "CONTACT_title": "お問い合わせ",
+    "CONTACT_brief": "当社の製品やサービスについての詳細は、メールでお問い合わせください。スタッフが常にお手伝いする準備を整えています。お気軽にどうぞ！",
+    "CONTACT_left_section": [
+        "住所",
+        [
+            "電話番号",
+            "電話"
+        ],
+        [
+            "営業時間",
+            "月曜日",
+            "土曜日",
+            "日曜日",
+            "休業"
+        ]
+    ],
+    "CONTACT_right_section": [
+        [
+            "お名前",
+            "お名前を入力してください"
+        ],
+        [
+            "メールアドレス",
+            "nguyenvana@gmail.com"
+        ],
+        [
+            "件名",
+            "これは件名です"
+        ],
+        [
+            "内容",
+            "ここに内容を記入してください"
+        ]
+    ],
+    "CONTACT_button_send": "送信",
+    "HEADER_title": [
+        "ホーム",
+        "製品",
+        "会社概要",
+        "ESG",
+        "ブログ",
+        "お問い合わせ"
+    ],
+    "FOOTER_section_1": "100%天然素材を使用した伝統的な手工芸品の製造および販売を専門とする会社。",
+    "FOOTER_section_2": [
+        "ホーム",
+        "会社概要",
+        "ブログ",
+        "お問い合わせ",
+        "ESG"
+    ],
+    "FOOTER_section_3": [
+        "製品",
+        "ホームデコ",
+        "キッチン用品",
+        "ペット用品",
+        "ファッション"
+    ],
+    "FOOTER_section_4": [
+        "私たちについて",
+        "Facebook",
+        "YouTube",
+        "Shopee",
+        "メール"
+    ],
+    "FOOTER_section_5": [
+        "サポート",
+        "オファー",
+        "フランチャイズ",
+        "利用規約",
+        "ポリシー"
+    ]
 }

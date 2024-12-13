@@ -137,7 +137,7 @@ export function ContactPage() {
                                 <div>
                                     <h3 className="font-semibold text-lg">Địa chỉ</h3>
                                     <p className="text-gray-600">
-                                        {company[0].address}
+                                        {company[0]?.address}
                                     </p>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@ export function ContactPage() {
                                 </svg>
                                 <div>
                                     <h3 className="font-semibold text-lg">Số điện thoại</h3>
-                                    <p className="text-gray-600">Mobile: {company[0].phone}</p>
+                                    <p className="text-gray-600">Mobile: {company[0]?.phone}</p>
                                 </div>
                             </div>
                             <div className="flex items-start space-x-4">

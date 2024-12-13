@@ -3,13 +3,13 @@ import { Facebook, Youtube, Mail, ShoppingBag } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
-export const Footer = () => {
+export const Footer = ({ dictionary }: { dictionary: any }) => {
     return (
         <div className="w-5/6 md:w-2/3 lg:w-2/3 pb-6">
             <div className="w-full grid grid-row-1 md:grid-cols-6 lg:grid-cols-6 gap-10 md:gap-24 lg:gap-24">
                 <div className="md:col-span-2 lg:col-span-2 flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
                     <Image src={IMAGES.LOGO} width={160} height={160} alt="logo" />
-                    <div className="text-center md:text-left lg:text-left text-[14px]">Là công ty sản xuất và thương mại các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên.</div>
+                    <div className="text-center md:text-left lg:text-left text-[14px]">{dictionary.FOOTER_section_1}</div>
                     <div className="flex justify-start items-center gap-4">
                         <div className="bg-gray-100 p-2 rounded-lg">
                             <Facebook />
@@ -27,39 +27,39 @@ export const Footer = () => {
                 </div>
                 <div className="md:col-span-4 lg:col-span-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 text-[14px]">
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Trang Chủ</div>
+                        <div className="text-gray-700 font-semibold">{dictionary.FOOTER_section_2[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Giới Thiệu</div>
-                            <div>Bài Viết</div>
-                            <div>Liên Hệ</div>
-                            <div>ESG</div>
+                            <div>{dictionary.FOOTER_section_2[1]}</div>
+                            <div>{dictionary.FOOTER_section_2[2]}</div>
+                            <div>{dictionary.FOOTER_section_2[3]}</div>
+                            <div>{dictionary.FOOTER_section_2[4]}</div>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Sản Phẩm</div>
+                        <div className="text-gray-700 font-semibold">{dictionary.FOOTER_section_3[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Nhà Cửa</div>
-                            <div>Nhà Bếp</div>
-                            <div>Nhà Thú Cưng</div>
-                            <div>Thời Trang</div>
+                            <div>{dictionary.FOOTER_section_3[1]}</div>
+                            <div>{dictionary.FOOTER_section_3[2]}</div>
+                            <div>{dictionary.FOOTER_section_3[3]}</div>
+                            <div>{dictionary.FOOTER_section_3[4]}</div>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Chúng Tôi</div>
+                        <div className="text-gray-700 font-semibold">{dictionary.FOOTER_section_4[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Facebook</div>
-                            <div>Youtube</div>
-                            <div>Shopee</div>
-                            <div>Email</div>
+                            <div>{dictionary.FOOTER_section_4[1]}</div>
+                            <div>{dictionary.FOOTER_section_4[2]}</div>
+                            <div>{dictionary.FOOTER_section_4[3]}</div>
+                            <div>{dictionary.FOOTER_section_4[4]}</div>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Hỗ Trợ</div>
+                        <div className="text-gray-700 font-semibold">{dictionary.FOOTER_section_5[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Ưu Đãi</div>
-                            <div>Nhượng Quyền</div>
-                            <div>Điều Khoản</div>
-                            <div>Chính Sách</div>
+                            <div>{dictionary.FOOTER_section_5[1]}</div>
+                            <div>{dictionary.FOOTER_section_5[2]}</div>
+                            <div>{dictionary.FOOTER_section_5[3]}</div>
+                            <div>{dictionary.FOOTER_section_5[4]}</div>
                         </div>
                     </div>
                 </div>

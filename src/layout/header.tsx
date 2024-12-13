@@ -5,7 +5,7 @@ import Image from "next/image"
 import { IMAGES } from "@/utils/image"
 import { categories, URL } from "@/utils/constant"
 
-export const Header = ({ page }: { page: any }) => {
+export const Header = ({ page, lang, dictionary }: { page: string; lang: string; dictionary: any }) => {
     return (
         <div className="w-full flex flex-col justify-center items-center">
             <div className="w-full bg-[rgb(var(--quaternary-rgb))] flex items-center justify-center">
@@ -29,10 +29,12 @@ export const Header = ({ page }: { page: any }) => {
                 </div>
             </div>
             <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6 uppercase">
-                <Link href={ROUTES.HOME} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Trang Chủ</Link>
+                <Link href={ROUTES.HOME} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                    {dictionary.HEADER_title[0]}
+                </Link>
                 <div className="relative group h-full">
                     <Link href={ROUTES.PRODUCT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
-                        Sản Phẩm
+                        {dictionary.HEADER_title[1]}
                     </Link>
 
                     <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out">
@@ -41,10 +43,18 @@ export const Header = ({ page }: { page: any }) => {
                         ))}
                     </div>
                 </div>
-                <Link href={ROUTES.ABOUT} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Giới Thiệu</Link>
-                <Link href={ROUTES.ESG} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">ESG</Link>
-                <Link href={ROUTES.BLOG} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Bài Viết</Link>
-                <Link href={ROUTES.CONTACT} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Liên Hệ</Link>
+                <Link href={ROUTES.ABOUT} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                    {dictionary.HEADER_title[2]}
+                </Link>
+                <Link href={ROUTES.ESG} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                    {dictionary.HEADER_title[3]}
+                </Link>
+                <Link href={ROUTES.BLOG} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                    {dictionary.HEADER_title[4]}
+                </Link>
+                <Link href={ROUTES.CONTACT} className="text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                    {dictionary.HEADER_title[5]}
+                </Link>
             </nav>
         </div>
     )
