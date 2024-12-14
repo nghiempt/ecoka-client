@@ -95,7 +95,7 @@ export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
                 <div className="w-full flex flex-col justify-center items-center">
                     <Image
-                        src={IMAGES.BANNER_LOGO}
+                        src={IMAGES?.BANNER_LOGO}
                         alt='img'
                         width={50}
                         height={50}
@@ -106,7 +106,7 @@ export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                     </h1>
                     <div className="flex gap-2 items-center">
                         <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            {dictionary.PRODUCT_breadcrumb_submain_1}
+                            {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
                         <h1 className="text-sm">ESG</h1>

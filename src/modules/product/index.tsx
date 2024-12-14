@@ -36,7 +36,7 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
 
             const raw = JSON.stringify({
                 method: "GET",
-                lang: dictionary.lang
+                lang: dictionary?.lang
             });
 
             const requestOptions = {
@@ -109,32 +109,32 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
             >
                 <div className="w-full flex flex-col justify-center items-center">
                     <Image
-                        src={IMAGES.BANNER_LOGO}
+                        src={IMAGES?.BANNER_LOGO}
                         alt="img"
                         width={50}
                         height={50}
                         className="text-center"
                     />
-                    <h1 className="text-4xl font-semibold mb-2">{dictionary.PRODUCT_breadcrumb_main}</h1>
+                    <h1 className="text-4xl font-semibold mb-2">{dictionary?.PRODUCT_breadcrumb_main}</h1>
                     <div className="flex gap-2 items-center">
                         <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            {dictionary.PRODUCT_breadcrumb_submain_1}
+                            {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">{dictionary.DETAIL_PRODUCT_breadcrumb_submain_2}</h1>
+                        <h1 className="text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</h1>
                     </div>
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col lg:flex-row justify-between mt-8 gap-8 ">
                 <div className="w-full lg:w-[22%] rounded-lg mb-6 lg:mb-0 min-h-[900px]">
-                    <h3 className="text-lg font-semibold mb-4">{dictionary.PRODUCT_filter}</h3>
+                    <h3 className="text-lg font-semibold mb-4">{dictionary?.PRODUCT_filter}</h3>
                     <ul className="space-y-2">
                         <li
                             className={`cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === "all" ? " bg-white text-gray-950 border font-medium" : "text-black"
                                 }`}
                             onClick={() => handleFilterChange("all")}
                         >
-                            {dictionary.PRODUCT_all_products}
+                            {dictionary?.PRODUCT_all_products}
                         </li>
                         {categories.map((category) => (
                             <li
@@ -187,25 +187,25 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
                                         </div>
                                     </div>
                                     <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
-                                        {dictionary.HOME_new_tag}
+                                        {dictionary?.HOME_new_tag}
                                     </div>
                                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
                                     <div className="absolute inset-0 w-full flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <Button className="w-2/3 mb-5 items-center font-bold rounded-sm bg-white opacity-100 text-[rgb(var(--quaternary-rgb))] hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
-                                            {dictionary.PRODUCT_button_detail}
+                                            {dictionary?.PRODUCT_button_detail}
                                         </Button>
                                         <div className="w-full p-3 flex flex-wrap justify-center items-center gap-2">
                                             <div className="flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer">
                                                 <Share2 size={14} />
-                                                {dictionary.PRODUCT_button_share}
+                                                {dictionary?.PRODUCT_button_share}
                                             </div>
                                             <div className="flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer">
                                                 <ArrowRightLeft size={14} />
-                                                {dictionary.PRODUCT_button_compare}
+                                                {dictionary?.PRODUCT_button_compare}
                                             </div>
                                             <div className="flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer">
                                                 <Heart size={14} />
-                                                {dictionary.PRODUCT_button_like}
+                                                {dictionary?.PRODUCT_button_like}
                                             </div>
                                         </div>
                                     </div>

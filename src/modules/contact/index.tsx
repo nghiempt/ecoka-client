@@ -85,21 +85,21 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
                 <div className="w-full flex flex-col justify-center items-center">
                     <Image
-                        src={IMAGES.BANNER_LOGO}
+                        src={IMAGES?.BANNER_LOGO}
                         alt='img'
                         width={50}
                         height={50}
                         className="text-center"
                     />
                     <h1 className="text-4xl font-semibold mb-2">
-                        {dictionary.CONTACT_breadcrumb_main}
+                        {dictionary?.CONTACT_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
                         <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            {dictionary.PRODUCT_breadcrumb_submain_1}
+                            {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">{dictionary.CONTACT_breadcrumb_submain_3}</h1>
+                        <h1 className="text-sm">{dictionary?.CONTACT_breadcrumb_submain_3}</h1>
                     </div>
                 </div>
             </div>
@@ -107,9 +107,9 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                 {loading ? <SkeletonLoader /> : (
                     <div className="w-full bg-white mt-8 md:mt-0 lg:mt-0 md:py-8 lg:py-8 flex justify-center">
                         <div className="w-full max-w-3xl text-center px-4">
-                            <h1 className="text-2xl md:text-3xl font-bold">{dictionary.CONTACT_title}</h1>
+                            <h1 className="text-2xl md:text-3xl font-bold">{dictionary?.CONTACT_title}</h1>
                             <p className="mt-2 text-gray-500 text-sm md:text-base">
-                                {dictionary.CONTACT_brief}
+                                {dictionary?.CONTACT_brief}
                             </p>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                                     <circle cx="12" cy="10" r="3" />
                                 </svg>
                                 <div>
-                                    <h3 className="font-semibold text-lg">{dictionary.CONTACT_left_section[0]}</h3>
+                                    <h3 className="font-semibold text-lg">{dictionary?.CONTACT_left_section[0]}</h3>
                                     <p className="text-gray-600">
                                         {company[0]?.address}
                                     </p>
@@ -157,8 +157,8 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                 </svg>
                                 <div>
-                                    <h3 className="font-semibold text-lg">{dictionary.CONTACT_left_section[1][0]}</h3>
-                                    <p className="text-gray-600">{dictionary.CONTACT_left_section[1][1]}: {company[0]?.phone}</p>
+                                    <h3 className="font-semibold text-lg">{dictionary?.CONTACT_left_section[1][0]}</h3>
+                                    <p className="text-gray-600">{dictionary?.CONTACT_left_section[1][1]}: {company[0]?.phone}</p>
                                 </div>
                             </div>
                             <div className="flex items-start space-x-4">
@@ -178,9 +178,9 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                                     <polyline points="12 6 12 12 8 10" />
                                 </svg>
                                 <div>
-                                    <h3 className="font-semibold text-lg">{dictionary.CONTACT_left_section[2][0]}</h3>
-                                    <p className="text-gray-600">{dictionary.CONTACT_left_section[2][1]} - {dictionary.CONTACT_left_section[2][2]}: 7:00 - 17:00</p>
-                                    <p className="text-gray-600">{dictionary.CONTACT_left_section[2][3]}: {dictionary.CONTACT_left_section[2][4]}</p>
+                                    <h3 className="font-semibold text-lg">{dictionary?.CONTACT_left_section[2][0]}</h3>
+                                    <p className="text-gray-600">{dictionary?.CONTACT_left_section[2][1]} - {dictionary?.CONTACT_left_section[2][2]}: 7:00 - 17:00</p>
+                                    <p className="text-gray-600">{dictionary?.CONTACT_left_section[2][3]}: {dictionary?.CONTACT_left_section[2][4]}</p>
                                 </div>
                             </div>
                         </div>
@@ -188,44 +188,44 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                             <form className="space-y-6">
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="text-sm font-medium text-gray-700">
-                                        {dictionary.CONTACT_right_section[0][0]}
+                                        {dictionary?.CONTACT_right_section[0][0]}
                                     </label>
                                     <Input
                                         type="text"
                                         id="name"
-                                        placeholder={dictionary.CONTACT_right_section[0][1]}
+                                        placeholder={dictionary?.CONTACT_right_section[0][1]}
                                         className="w-full border border-gray-300 p-2 rounded"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                                        {dictionary.CONTACT_right_section[1][0]}
+                                        {dictionary?.CONTACT_right_section[1][0]}
                                     </label>
                                     <Input
                                         type="email"
                                         id="email"
-                                        placeholder={dictionary.CONTACT_right_section[1][1]}
+                                        placeholder={dictionary?.CONTACT_right_section[1][1]}
                                         className="w-full border border-gray-300 p-2 rounded"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="subject" className="text-sm font-medium text-gray-700">
-                                        {dictionary.CONTACT_right_section[2][0]}
+                                        {dictionary?.CONTACT_right_section[2][0]}
                                     </label>
                                     <Input
                                         type="text"
                                         id="subject"
-                                        placeholder={dictionary.CONTACT_right_section[2][1]}
+                                        placeholder={dictionary?.CONTACT_right_section[2][1]}
                                         className="w-full border border-gray-300 p-2 rounded"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                                        {dictionary.CONTACT_right_section[3][0]}
+                                        {dictionary?.CONTACT_right_section[3][0]}
                                     </label>
                                     <Textarea
                                         id="message"
-                                        placeholder={dictionary.CONTACT_right_section[3][1]}
+                                        placeholder={dictionary?.CONTACT_right_section[3][1]}
                                         className="w-full border border-gray-300 p-2 rounded h-32"
                                     />
                                 </div>
@@ -233,7 +233,7 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                                     type="submit"
                                     className="w-full py-2 bg-[rgb(var(--primary-rgb))] hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80 text-white text-sm font-medium rounded-md focus:ring-0"
                                 >
-                                    {dictionary.CONTACT_button_send}
+                                    {dictionary?.CONTACT_button_send}
                                 </Button>
                             </form>
                         </div>

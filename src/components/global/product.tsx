@@ -55,25 +55,25 @@ export const Product: React.FC<ProductProps> = ({ products, dictionary, lang }) 
                         </div>
                     </Card>
                     <div className={`absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center`}>
-                        {dictionary.HOME_new_tag}
+                        {dictionary?.HOME_new_tag}
                     </div>
                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
                     <div className='absolute inset-0 w-full flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                         <Button className='w-2/3 mb-5 items-center font-bold rounded-sm bg-white opacity-100 text-[rgb(var(--quaternary-rgb))] hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate'>
-                            {dictionary.PRODUCT_button_detail}
+                            {dictionary?.PRODUCT_button_detail}
                         </Button>
                         <div className='w-full p-3 flex flex-wrap justify-center items-center gap-2'>
                             <div className='flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer'>
                                 <Share2 size={14} />
-                                {dictionary.PRODUCT_button_share}
+                                {dictionary?.PRODUCT_button_share}
                             </div>
                             <div className='flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer'>
                                 <ArrowRightLeft size={14} />
-                                {dictionary.PRODUCT_button_compare}
+                                {dictionary?.PRODUCT_button_compare}
                             </div>
                             <div className='flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer'>
                                 <Heart size={14} />
-                                {dictionary.PRODUCT_button_like}
+                                {dictionary?.PRODUCT_button_like}
                             </div>
                         </div>
                     </div>

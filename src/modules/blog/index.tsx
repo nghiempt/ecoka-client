@@ -81,21 +81,21 @@ export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
                 <div className="w-full flex flex-col justify-center items-center">
                     <Image
-                        src={IMAGES.BANNER_LOGO}
+                        src={IMAGES?.BANNER_LOGO}
                         alt="img"
                         width={50}
                         height={50}
                         className="text-center"
                     />
                     <h1 className="text-4xl font-semibold mb-2">
-                        {dictionary.BLOG_breadcrumb_main}
+                        {dictionary?.BLOG_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
-                        <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            {dictionary.PRODUCT_breadcrumb_submain_1}
+                        <Link href={`/${lang}`} className="font-semibold text-sm">
+                            {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">{dictionary.BLOG_breadcrumb_submain_3}</h1>
+                        <h1 className="text-sm">{dictionary?.BLOG_breadcrumb_submain_3}</h1>
                     </div>
                 </div>
             </div>
@@ -114,12 +114,12 @@ export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            {blogs.map((blog) => (
-                                <Link key={blog.row} href={`/${lang}/bai-viet/${blog.id}`}>
+                            {blogs?.map((blog) => (
+                                <Link key={blog?.row} href={`/${lang}/bai-viet/${blog?.id}`}>
                                     <div className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
                                         <div className="relative w-full h-[240px] rounded-lg">
                                             <Image
-                                                src={blog.thumbnail}
+                                                src={blog?.thumbnail}
                                                 alt="img"
                                                 fill
                                                 style={{ objectFit: 'cover' }}
@@ -127,9 +127,9 @@ export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                                                 className="rounded-lg"
                                             />
                                         </div>
-                                        <h1 className="text-[13px] font-medium mt-1">{blog.date}</h1>
-                                        <h1 className="w-full text-[16px] font-semibold max-h-[48px] line-clamp-2">{blog.title}</h1>
-                                        <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary.HOME_blog_author}: {blog.author}</h1>
+                                        <h1 className="text-[13px] font-medium mt-1">{blog?.date}</h1>
+                                        <h1 className="w-full text-[16px] font-semibold max-h-[48px] line-clamp-2">{blog?.title}</h1>
+                                        <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary?.HOME_blog_author}: {blog?.author}</h1>
                                     </div>
                                 </Link>
                             ))}

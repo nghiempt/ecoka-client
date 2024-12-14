@@ -122,7 +122,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-      <Header page={`san-pham`} lang={lang} dictionary={dictionary} />
+      <Header page={`san-pham/${currentData?.id}`} lang={lang} dictionary={dictionary} />
       {loading ? (
         <div className="w-full min-h-screen flex justify-center items-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
@@ -133,17 +133,17 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
             style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}>
             <div className="w-full flex flex-col justify-center text-white items-center">
               <Image
-                src={IMAGES.BANNER_LOGO}
+                src={IMAGES?.BANNER_LOGO}
                 alt='Meubel House'
                 width={50}
                 height={50}
                 className="text-center"
               />
-              <h1 className="text-4xl font-semibold mb-2">{dictionary.PRODUCT_breadcrumb_main}</h1>
+              <h1 className="text-4xl font-semibold mb-2">{dictionary?.PRODUCT_breadcrumb_main}</h1>
               <div className="flex gap-2 items-center">
-                <Link href={`/${lang}`} className="font-semibold text-sm">{dictionary.PRODUCT_breadcrumb_submain_1}</Link>
+                <Link href={`/${lang}`} className="font-semibold text-sm">{dictionary?.PRODUCT_breadcrumb_submain_1}</Link>
                 <ChevronRight size={20} />
-                <Link href={`/${lang}/san-pham`} className="font-semibold text-sm">{dictionary.DETAIL_PRODUCT_breadcrumb_submain_2}</Link>
+                <Link href={`/${lang}/san-pham`} className="font-semibold text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</Link>
                 <ChevronRight size={20} />
                 <h1 className="text-sm">{truncateText(currentData?.name, 12)}</h1>
               </div>
@@ -188,14 +188,14 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                       <FaStar key={i} className="text-yellow-500" />
                     ))}
                     <div className="border-l-2 h-6 mx-2 md:mx-4 border-gray-300"></div>
-                    <p className="text-sm text-gray-600">99 {dictionary.DETAIL_PRODUCT_rating}</p>
+                    <p className="text-sm text-gray-600">99 {dictionary?.DETAIL_PRODUCT_rating}</p>
                   </div>
                   <p className="text-gray-600 text-center md:text-left">
                     {currentData?.description}
                   </p>
                   <div>
                     <h3 className="text-lg font-semibold text-center md:text-left">
-                      {dictionary.DETAIL_PRODUCT_size}
+                      {dictionary?.DETAIL_PRODUCT_size}
                     </h3>
                     <div className="flex justify-center md:justify-start space-x-2 mt-2">
                       {sizes.map((size) => (
@@ -216,7 +216,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-center md:text-left">
-                      {dictionary.DETAIL_PRODUCT_color}
+                      {dictionary?.DETAIL_PRODUCT_color}
                     </h3>
                     <div className="flex justify-center md:justify-start space-x-2 mt-2">
                       {colors.map((colorObj) => (
@@ -259,32 +259,32 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                         variant="outline"
                         className="border-black border-2  px-6 py-2 w-full md:w-auto font-semibold"
                       >
-                        {dictionary.DETAIL_PRODUCT_cart}
+                        {dictionary?.DETAIL_PRODUCT_cart}
                       </Button>
                       <Button
                         variant="outline"
                         className="border-black border-2  px-6 py-2 w-full md:w-auto font-semibold"
                       >
-                        {dictionary.DETAIL_PRODUCT_get_quote}
+                        {dictionary?.DETAIL_PRODUCT_get_quote}
                       </Button>
                     </div>
                   </div>
                   <hr />
                   <div className="text-sm text-gray-600 mt-4 space-y-2">
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_1}:</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_1}:</p>
                       <p>Thời trang</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_2}:</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_2}:</p>
                       <p>Việt Nam</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_3}:</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_3}:</p>
                       <p>Da</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary.DETAIL_PRODUCT_sub_description_origin}</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_origin}</p>
                       <div className="flex space-x-2">
                         <Button variant="outline" size="sm" className="p-1 border-none">
                           <FaFacebook className="text-lg" />
@@ -302,7 +302,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
               </div>
               <div className="w-full h-1 bg-[rgb(var(--primary-rgb))] mt-16"></div>
               <div className="w-full flex flex-col justify-start items-start mt-8">
-                <div className="text-2xl font-bold text-left mb-8">{dictionary.DETAIL_PRODUCT_subtitle_1}</div>
+                <div className="text-2xl font-bold text-left mb-8">{dictionary?.DETAIL_PRODUCT_subtitle_1}</div>
                 <div className="w-full z-10">
                   <Product lang={lang} dictionary={dictionary} products={relatedProducts} />
                 </div>

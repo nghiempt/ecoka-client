@@ -107,27 +107,27 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header page={`/${lang}san-pham/${slugify(category)}`} lang={lang} dictionary={dictionary} />
+            <Header page={`san-pham/${slugify(category)}`} lang={lang} dictionary={dictionary} />
             <NavMobile lang={lang} dictionary={dictionary} />
             <div className="bg-cover bg-center h-[250px] w-full md:w-2/3 lg:w-2/3 flex justify-center items-center md:rounded-lg lg:rounded-lg"
                 style={{ backgroundImage: `url('/breadcrumb.png')` }}>
                 <div className="w-full flex flex-col justify-center items-center">
                     <Image
-                        src={IMAGES.BANNER_LOGO}
+                        src={IMAGES?.BANNER_LOGO}
                         alt='img'
                         width={50}
                         height={50}
                         className="text-center"
                     />
                     <h1 className="text-4xl font-semibold mb-2">
-                        {dictionary.PRODUCT_breadcrumb_main}
+                        {dictionary?.PRODUCT_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
                         <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            {dictionary.PRODUCT_breadcrumb_submain_1}
+                            {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">{dictionary.DETAIL_PRODUCT_breadcrumb_submain_2}</h1>
+                        <h1 className="text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</h1>
                         <ChevronRight size={20} />
                         <h1 className="text-sm">{category}</h1>
                     </div>

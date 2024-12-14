@@ -43,11 +43,11 @@ export function Slider({ dictionary }: { dictionary: any }) {
     return (
         <div className="flex flex-col md:grid md:grid-cols-5 lg:grid lg:grid-cols-5">
             <div className="col-span-2 md:p-10 lg:p-10 flex flex-col justify-center">
-                <div className="text-black text-3xl font-bold mb-2 text-clip overflow-hidden text-center md:text-start lg:text-start">{dictionary.HOME_discovery_title}</div>
-                <div className="text-sm font-medium text-gray-600 mb-5 text-clip overflow-hidden text-center md:text-start lg:text-start">{dictionary.HOME_discovery_brief}</div>
+                <div className="text-black text-3xl font-bold mb-2 text-clip overflow-hidden text-center md:text-start lg:text-start">{dictionary?.HOME_discovery_title}</div>
+                <div className="text-sm font-medium text-gray-600 mb-5 text-clip overflow-hidden text-center md:text-start lg:text-start">{dictionary?.HOME_discovery_brief}</div>
                 <Link className="w-full flex justify-center items-center md:justify-start lg:justify-start" href="/san-pham">
                     <Button className="bg-[rgb(var(--primary-rgb))] rounded-lg lg:w-1/2 hover:opacity-80 hover:bg-[rgb(var(--primary-rgb))] text-ellipsis overflow-hidden whitespace-nowrap">
-                        {dictionary.HOME_button_discovery}
+                        {dictionary?.HOME_button_discovery}
                     </Button>
                 </Link>
             </div>

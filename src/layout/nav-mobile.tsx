@@ -11,42 +11,42 @@ export const NavMobile = ({ lang, dictionary }: { lang: any, dictionary: any }) 
                     className="text-[10px] text-[rgb(var(--quaternary-rgb))] font-medium flex flex-col justify-center items-center gap-1"
                 >
                     <House size={16} />
-                    {dictionary.HEADER_title[0]}
+                    {dictionary?.HEADER_title[0]}
                 </Link>
                 <Link
                     href={`${lang}${ROUTES.PRODUCT}`}
                     className="text-[10px] text-[rgb(var(--quaternary-rgb))] font-medium flex flex-col justify-center items-center gap-1"
                 >
                     <Package size={16} />
-                    {dictionary.HEADER_title[1]}
+                    {dictionary?.HEADER_title[1]}
                 </Link>
                 <Link
                     href={`${lang}${ROUTES.ABOUT}`}
                     className="text-[10px] text-[rgb(var(--quaternary-rgb))] font-medium flex flex-col justify-center items-center gap-1"
                 >
                     <Users size={16} />
-                    {dictionary.HEADER_title[2]}
+                    {dictionary?.HEADER_title[2]}
                 </Link>
                 <Link
                     href={`${lang}${ROUTES.ESG}`}
                     className="text-[10px] text-[rgb(var(--quaternary-rgb))] font-medium flex flex-col justify-center items-center gap-1"
                 >
                     <GlobeLock size={16} />
-                    {dictionary.HEADER_title[3]}
+                    {dictionary?.HEADER_title[3]}
                 </Link>
                 <Link
                     href={`${lang}${ROUTES.BLOG}`}
                     className="text-[10px] text-[rgb(var(--quaternary-rgb))] font-medium flex flex-col justify-center items-center gap-1"
                 >
                     <FileMinus size={16} />
-                    {dictionary.HEADER_title[4]}
+                    {dictionary?.HEADER_title[4]}
                 </Link>
                 <Link
                     href={`${lang}${ROUTES.CONTACT}`}
                     className="text-[10px] text-[rgb(var(--quaternary-rgb))] font-medium flex flex-col justify-center items-center gap-1"
                 >
                     <ContactRound size={16} />
-                    {dictionary.HEADER_title[5]}
+                    {dictionary?.HEADER_title[5]}
                 </Link>
             </nav>
         </div>
