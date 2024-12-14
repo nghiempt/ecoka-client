@@ -123,11 +123,13 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
                         {dictionary?.PRODUCT_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
-                        <Link href={ROUTES.HOME} className="font-semibold text-sm">
+                        <Link href={`/${lang}${ROUTES.HOME}`} className="font-semibold text-sm">
                             {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</h1>
+                        <Link href={`/${lang}${ROUTES.PRODUCT}`}>
+                            <h1 className="text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</h1>
+                        </Link>
                         <ChevronRight size={20} />
                         <h1 className="text-sm">{category}</h1>
                     </div>

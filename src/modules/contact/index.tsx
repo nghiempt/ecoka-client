@@ -95,7 +95,7 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                         {dictionary?.CONTACT_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
-                        <Link href={ROUTES.HOME} className="font-semibold text-sm">
+                        <Link href={`/${lang}${ROUTES.HOME}`} className="font-semibold text-sm">
                             {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Footer } from "@/layout/footer"
 import { categories, URL } from "@/utils/constant"
 import { IMAGES } from "@/utils/image"
-import { ArrowUpRight, Facebook, Mail } from "lucide-react"
+import { ArrowUpRight, Facebook, LayoutGrid, Mail } from "lucide-react"
 import { ShoppingBag, Youtube } from "lucide-react"
 import Link from "next/link"
 import { Slider } from "./slider"
@@ -47,6 +47,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
 
             const raw = JSON.stringify({
                 method: "GET",
+                // lang: "en"
             });
 
             const requestOptions = {
@@ -183,7 +184,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                             </div>
                         </div>
 
-                        <Link href={`http://localhost:3000/${lang}${ROUTES.ABOUT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                        <Link href={`/${lang}${ROUTES.ABOUT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                             {dictionary?.HEADER_title[2]}
                         </Link>
                         <Link href={`/${lang}${ROUTES.ESG}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
@@ -202,7 +203,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         <h1 className='text-[14px] w-3/4 lg:text-[20px] font-medium'>{dictionary?.HOME_description}</h1>
                         {/* <h1 className='text-[14px] lg:text-[20px] font-medium'>từ các nguyên liệu 100% từ thiên nhiên như: lục bình, mây, tre, macrame.</h1> */}
                     </div>
-                    <Link href={ROUTES.PRODUCT} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
+                    <Link href={`/${lang}${ROUTES.PRODUCT}`} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
                         {dictionary?.HOME_discovery} <ArrowUpRight className="ml-2" size={18} />
                     </Link>
                 </div>
@@ -265,12 +266,12 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                     .filter(([category, items]) => items.length >= 4)
                                     .flatMap(([category, items]) =>
                                         items.map((product) => (
-                                            <Link href={`/san-pham/${product.id}`} key={product.id} className="relative group cursor-pointer rounded-lg">
+                                            <Link href={`${lang}/san-pham/${product?.id}`} key={product?.id} className="relative group cursor-pointer rounded-lg">
                                                 <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                                                     <div className="relative w-full h-[280px] rounded-lg">
                                                         <Image
-                                                            src={product.images[0]}
-                                                            alt={`${product.name} image`}
+                                                            src={product?.images[0]}
+                                                            alt={`${product?.name} image`}
                                                             fill
                                                             style={{ objectFit: "cover" }}
                                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -278,13 +279,13 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                                         />
                                                     </div>
                                                     <div className="flex flex-col justify-center p-3 text-start">
-                                                        <div className="text-lg font-bold mb-1 max-h-[28px] truncate">{product.name}</div>
+                                                        <div className="text-lg font-bold mb-1 max-h-[28px] truncate">{product?.name}</div>
                                                         <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
-                                                            {product.description}
+                                                            {product?.description}
                                                         </div>
                                                         <div className="w-full grid grid-cols-5 items-center">
                                                             <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
-                                                                {Intl.NumberFormat("de-DE").format(product.price)} VND
+                                                                {Intl.NumberFormat("de-DE").format(product?.price)} VND
                                                             </p>
                                                         </div>
                                                     </div>
@@ -298,7 +299,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                             </div>
                         )}
                     </div>
-                    <Link className="w-full flex justify-center items-center" href={ROUTES.PRODUCT}>
+                    <Link className="w-full flex justify-center items-center" href={`/${lang}${ROUTES.PRODUCT}`}>
                         <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
                             {dictionary?.HOME_button_more}
                         </Button>
@@ -306,7 +307,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 </div>
 
                 <div className="w-full py-10 bg-[rgb(var(--secondary-rgb))] px-10 lg:lx-0 md:px-0 mb-24 rounded-lg">
-                    <Slider dictionary={dictionary} />
+                    <Slider lang={lang} dictionary={dictionary} />
                 </div>
                 <div className="bg-cover bg-center h-[300px] lg:h-[600px] md:h-[600px] w-full mb-20" style={{ backgroundImage: `url(${IMAGES?.HOME_GRID})` }}>
                     <div className="flex flex-col items-center justify-center" style={{ marginTop: '-40px' }}>
@@ -341,7 +342,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                 })
                             }
                         </div>
-                        <Link className="w-full flex justify-center items-center mt-14" href={ROUTES.BLOG}>
+                        <Link className="w-full flex justify-center items-center mt-14" href={`/${lang}${ROUTES.BLOG}`}>
                             <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
                                 {dictionary?.HOME_button_more}
                             </Button>

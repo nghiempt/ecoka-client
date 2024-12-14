@@ -36,7 +36,6 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
 
             const raw = JSON.stringify({
                 method: "GET",
-                lang: dictionary?.lang
             });
 
             const requestOptions = {
