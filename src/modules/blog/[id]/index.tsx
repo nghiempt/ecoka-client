@@ -105,7 +105,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
         </div>
       ) : (
         <>
-          <div className="w-full md:w-2/3 lg:w-2/3 bg-cover bg-center h-[250px] flex justify-center items-center md:rounded-lg lg:rounded-lg z-10"
+          <div className="w-full bg-cover bg-center h-[250px] flex justify-center items-center z-10"
             style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
             <div className="w-full flex flex-col justify-center items-center text-white">
               <Image
@@ -127,7 +127,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
           </div>
           <div className="w-5/6 md:w-2/3 lg:w-2/3">
             <section className="w-full py-10">
-              <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+              <div className="w-full flex flex-col gap-5 lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2">
                   <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                     {currentData?.title}
@@ -149,7 +149,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
               </div>
             </section>
             <section className="w-full py-10">
-              <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+              <div className="w-full flex flex-col gap-5 lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-start items-center">
                   <Image
                     src={currentData?.s1_thumbnail || IMAGES?.BLOG_01_MAIN}
@@ -171,7 +171,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
               </div>
             </section>
             <section className="w-full py-10">
-              <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+              <div className="w-full flex flex-col gap-5 lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2 flex flex-col justify-center items-start">
                   <h2 className="text-2xl font-bold text-gray-800 leading-tight">
                     {currentData?.s2_title}
@@ -193,7 +193,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
               </div>
             </section>
             <section className="w-full py-10">
-              <div className="w-full flex flex-col lg:flex-row items-center justify-center">
+              <div className="w-full flex flex-col gap-5 lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-start items-center">
                   <Image
                     src={currentData?.s3_thumbnail || IMAGES?.BLOG_01_MAIN}

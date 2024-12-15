@@ -34,10 +34,28 @@ interface ESG {
     thumbnail: string;
 }
 
+interface Blog {
+    row: number;
+    id: number;
+    title: string;
+    description: string;
+    thumbnail: string;
+    author: string;
+    date: string;
+};
+
 export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }) {
     const [products, setProducts] = useState<{ [key: string]: Product[] }>({});
+    const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [esgs, setEsgs] = useState<ESG[]>([]);
+
+    const formatDateTime = (dateString: string | undefined) => {
+        const date = dateString ? new Date(dateString) : new Date();
+        const formattedDate = date.toLocaleDateString('vi-VN');
+        const formattedTime = date.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
+        return `${formattedDate} - ${formattedTime}`;
+    };
 
     const fetchProducts = async () => {
         try {
@@ -126,7 +144,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 thumbnail: item.thumbnail,
             }));
             setEsgs(transformedEsgs);
-            console.log(transformedEsgs);
+            // console.log(transformedEsgs);
         } catch (err) {
             console.log(err);
         } finally {
@@ -134,9 +152,50 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         }
     };
 
+    const fetchBlogs = async () => {
+        try {
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+                method: "GET",
+                lang: lang
+            });
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow" as RequestRedirect,
+            };
+
+            const res = await fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", requestOptions);
+            if (!res.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await res.json();
+            const transformedBlogs: Blog[] = data.map((item: any) => ({
+                row: item.row_number,
+                id: item.id,
+                title: item.title,
+                description: item.description,
+                thumbnail: item.thumbnail,
+                author: item.author,
+                date: formatDateTime(item.date),
+            }));
+            setBlogs(transformedBlogs.sort((a, b) => b.id - a.id));
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     useEffect(() => {
         fetchProducts();
         fetchEsgs();
+        fetchBlogs();
     }, []);
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
@@ -200,7 +259,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <h1 className='text-[22px] lg:text-[60px] font-black'>{dictionary?.HOME_title}</h1>
                     <div className="text-center flex flex-col items-center gap-4 px-8">
                         <h1 className='text-[14px] w-3/4 lg:text-[20px] font-medium'>{dictionary?.HOME_description}</h1>
-                        {/* <h1 className='text-[14px] lg:text-[20px] font-medium'>từ các nguyên liệu 100% từ thiên nhiên như: lục bình, mây, tre, macrame.</h1> */}
                     </div>
                     <Link href={`/${lang}${ROUTES.PRODUCT}`} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
                         {dictionary?.HOME_discovery} <ArrowUpRight className="ml-2" size={18} />
@@ -320,22 +378,26 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <div className="w-full mb-8">
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                             {
-                                []?.map((blog: any, index: any) => {
+                                blogs?.slice(0, 3)?.map((blog: any, index: any) => {
                                     return (
-                                        <div key={index} className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
-                                            <div className='relative w-full h-[240px] rounded-lg'>
-                                                <Image
-                                                    src={blog?.thumbnail}
-                                                    alt="img"
-                                                    fill
-                                                    style={{ objectFit: 'cover' }}
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                    className='rounded-lg'
-                                                />
-                                            </div>
-                                            <h1 className="text-[13px] font-medium mt-1">{blog?.date}</h1>
-                                            <h1 className="text-[16px] font-semibold max-h-[48px]">{truncateText(blog?.title, 76)}</h1>
-                                            <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary?.HOME_blog_author}: {blog?.author}</h1>
+                                        <div key={index}>
+                                            <Link href={`/${lang}/bai-viet/${blog?.id}`}>
+                                                <div className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
+                                                    <div className='relative w-full h-[220px] rounded-lg'>
+                                                        <Image
+                                                            src={blog?.thumbnail}
+                                                            alt="img"
+                                                            fill
+                                                            style={{ objectFit: 'cover' }}
+                                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                            className='rounded-lg'
+                                                        />
+                                                    </div>
+                                                    <h1 className="text-[13px] font-medium mt-1">{blog?.date}</h1>
+                                                    <h1 className="text-[16px] font-semibold max-h-[48px] line-clamp-2">{truncateText(blog?.title, 76)}</h1>
+                                                    <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary?.HOME_blog_author}: {blog?.author}</h1>
+                                                </div>
+                                            </Link>
                                         </div>
                                     )
                                 })

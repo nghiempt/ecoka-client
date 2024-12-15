@@ -35,7 +35,7 @@ export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                 thumbnail: item.thumbnail,
             }));
             setEsgs(transformedEsgs);
-            console.log(transformedEsgs);
+            // console.log(transformedEsgs);
         } catch (err) {
             console.log(err);
         } finally {

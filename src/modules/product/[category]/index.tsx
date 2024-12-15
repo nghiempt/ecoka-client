@@ -96,8 +96,8 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
                 const categoryPath = '/' + match[1];
                 const category = categories.find((cate: any) => cate.path === `${categoryPath}`);
                 const filteredProducts = allProducts?.filter((product: Product) => product.category === category?.name);
-                console.log("check cate: ", category?.name)
-                setCategory(category?.name ?? "");
+                setCategory(category?.path ?? "");
+                console.log("check path: ", category?.path)
                 setProducts(filteredProducts ?? []);
             }
             setLoading(false);
@@ -107,7 +107,7 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header page={`san-pham/${slugify(category)}`} lang={lang} dictionary={dictionary} />
+            <Header page={`san-pham${category}`} lang={lang} dictionary={dictionary} />
             <NavMobile lang={lang} dictionary={dictionary} />
             <div className="bg-cover bg-center h-[250px] w-full md:w-2/3 lg:w-2/3 flex justify-center items-center md:rounded-lg lg:rounded-lg"
                 style={{ backgroundImage: `url('/breadcrumb.png')` }}>

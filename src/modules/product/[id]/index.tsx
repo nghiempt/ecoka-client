@@ -129,7 +129,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
         </div>
       ) : (
         <>
-          <div className="w-full md:w-2/3 lg:w-2/3 bg-cover bg-center h-[250px] flex justify-center items-center md:rounded-lg lg:rounded-lg z-10"
+          <div className="w-full bg-cover bg-center h-[250px] flex justify-center items-center z-10"
             style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}>
             <div className="w-full flex flex-col justify-center text-white items-center">
               <Image
