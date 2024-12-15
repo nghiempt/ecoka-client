@@ -14,9 +14,10 @@ export const IMAGES = {
   FLAG_EN: "https://cdn-icons-png.flaticon.com/128/197/197374.png",
   FLAG_JP: "https://cdn-icons-png.flaticon.com/128/197/197604.png",
   BLOG_01_MAIN: "",
-  FACEBOOK: "https://cdn-icons-png.flaticon.com/128/15047/15047435.png",
-  YOUTUBE: "https://cdn-icons-png.flaticon.com/128/3670/3670147.png",
-  EMAIL: "https://cdn-icons-png.flaticon.com/128/6806/6806987.png",
+  FACEBOOK:
+    "https://res.cloudinary.com/farmcode/image/upload/v1734282409/ecoka/facebook_1_hkfh5z.png",
+  YOUTUBE: "https://cdn-icons-png.flaticon.com/128/15527/15527679.png",
+  EMAIL: "https://cdn-icons-png.flaticon.com/128/732/732200.png",
   SHOPEE:
-    "https://res.cloudinary.com/farmcode/image/upload/v1734257182/ecoka/lkincykzxzjszovtjbgq.png",
+    "https://res.cloudinary.com/farmcode/image/upload/v1734282544/ecoka/shopee_vyz3b0.png",
 };

@@ -53,13 +53,13 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                     <div className="hidden lg:flex items-center justify-center gap-4">
                         <Link href={URL?.FACEBOOK} target="_blank">
-                            <Image src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
+                            <Image className="rounded-sm" src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
                         </Link>
                         <Link href={URL?.YOUTUBE} target="_blank">
                             <Image src={IMAGES.YOUTUBE} alt="youtube" width={23} height={23} />
                         </Link>
                         <Link href={URL?.MAIL} target="_blank">
-                            <Image src={IMAGES.EMAIL} alt="mail" width={23} height={23} />
+                            <Image src={IMAGES.EMAIL} alt="mail" width={26} height={26} />
                         </Link>
                         <Link href={URL?.SHOPPING} target="_blank">
                             <Image src={IMAGES.SHOPEE} alt="shopee" width={23} height={23} />
@@ -76,17 +76,17 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
                         </Link> */}
 
                         <div className="relative" ref={dropdownRef}>
-                            <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-white cursor-pointer rounded-lg">
+                            <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
                                 <Image className="" src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
                                 <div className={`transition-transform duration-300  ${isOpen ? "" : "-rotate-90"} mt-1`}>
-                                    <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                    <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
                                         <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                                     </svg>
                                 </div>
                             </div>
 
                             {isOpen && (
-                                <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-opacity-80 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                                     {languages
                                         .filter(({ lang }) => lang !== currentLang.lang)
                                         .map(({ lang, label, flag }) => (

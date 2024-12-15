@@ -9,6 +9,7 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 
+
 import { categories, URL } from "@/utils/constant";
 import { ROUTES } from "@/utils/route"
 
@@ -110,54 +111,45 @@ export const Footer = ({ dictionary, lang }: { lang: string, dictionary: any }) 
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
                         <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_5[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <TooltipProvider>
-                                <Tooltip>
-                                    <TooltipTrigger asChild className="cursor-pointer">
-                                        <div>{dictionary?.FOOTER_section_5[1]}</div>
-                                    </TooltipTrigger>
-                                    <TooltipContent className="transition duration-150">
+                            <div className="flex flex-col space-y-2">
+                                <div className="relative group cursor-pointer">
+                                    <div>{dictionary?.FOOTER_section_5[1]}</div>
+                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
                                         <p>
-                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
                                         </p>
-                                    </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
-                            <TooltipProvider>
-                                <Tooltip>
-                                    <TooltipTrigger asChild className="cursor-pointer">
-                                        <div>{dictionary?.FOOTER_section_5[2]}</div>
-                                    </TooltipTrigger>
-                                    <TooltipContent className="transition duration-150">
+                                    </div>
+                                </div>
+
+                                <div className="relative group cursor-pointer">
+                                    <div>{dictionary?.FOOTER_section_5[2]}</div>
+                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
                                         <p>
-                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
                                         </p>
-                                    </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
-                            <TooltipProvider>
-                                <Tooltip>
-                                    <TooltipTrigger asChild className="cursor-pointer">
-                                        <div>{dictionary?.FOOTER_section_5[3]}</div>
-                                    </TooltipTrigger>
-                                    <TooltipContent className="transition duration-150">
+                                    </div>
+                                </div>
+
+                                <div className="relative group cursor-pointer">
+                                    <div>{dictionary?.FOOTER_section_5[3]}</div>
+                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
                                         <p>
-                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
                                         </p>
-                                    </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
-                            <TooltipProvider>
-                                <Tooltip>
-                                    <TooltipTrigger asChild className="cursor-pointer">
-                                        <div>{dictionary?.FOOTER_section_5[4]}</div>
-                                    </TooltipTrigger>
-                                    <TooltipContent className="transition duration-150">
+                                    </div>
+                                </div>
+
+                                <div className="relative group cursor-pointer">
+                                    <div>{dictionary?.FOOTER_section_5[4]}</div>
+                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
                                         <p>
-                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
                                         </p>
-                                    </TooltipContent>
-                                </Tooltip>
-                            </TooltipProvider>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
