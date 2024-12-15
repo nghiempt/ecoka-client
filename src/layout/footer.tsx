@@ -2,64 +2,162 @@ import { IMAGES } from "@/utils/image"
 import { Facebook, Youtube, Mail, ShoppingBag } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
 
-export const Footer = () => {
+import { categories, URL } from "@/utils/constant";
+import { ROUTES } from "@/utils/route"
+
+export const Footer = ({ dictionary, lang }: { lang: string, dictionary: any }) => {
     return (
         <div className="w-5/6 md:w-2/3 lg:w-2/3 pb-6">
             <div className="w-full grid grid-row-1 md:grid-cols-6 lg:grid-cols-6 gap-10 md:gap-24 lg:gap-24">
                 <div className="md:col-span-2 lg:col-span-2 flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                    <Image src={IMAGES.LOGO} width={160} height={160} alt="logo" />
-                    <div className="text-center md:text-left lg:text-left text-[14px]">Là công ty sản xuất và thương mại các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên.</div>
+                    <Image src={IMAGES?.LOGO} width={160} height={160} alt="logo" />
+                    <div className="text-center md:text-left lg:text-left text-[14px]">{dictionary?.FOOTER_section_1}</div>
                     <div className="flex justify-start items-center gap-4">
                         <div className="bg-gray-100 p-2 rounded-lg">
-                            <Facebook />
+                            <Link href={URL?.FACEBOOK} target="_blank">
+                                <Image src="https://cdn-icons-png.flaticon.com/128/15047/15047435.png" alt="fb" width={23} height={23} />
+                            </Link>
                         </div>
                         <div className="bg-gray-100 p-2 rounded-lg">
-                            <Youtube />
+                            <Link href={URL?.YOUTUBE} target="_blank">
+                                <Image src="https://cdn-icons-png.flaticon.com/128/3670/3670147.png" alt="youtube" width={23} height={23} />
+                            </Link>
                         </div>
                         <div className="bg-gray-100 p-2 rounded-lg">
-                            <Mail />
+                            <Link href={URL?.MAIL} target="_blank">
+                                <Image src="https://cdn-icons-png.flaticon.com/128/6806/6806987.png" alt="mail" width={23} height={23} />
+                            </Link>
                         </div>
                         <div className="bg-gray-100 p-2 rounded-lg">
-                            <ShoppingBag />
+                            <Link href={URL?.SHOPPING} target="_blank">
+                                <Image src="https://res.cloudinary.com/farmcode/image/upload/v1734257182/ecoka/lkincykzxzjszovtjbgq.png" alt="shopee" width={23} height={23} />
+                            </Link>
                         </div>
                     </div>
                 </div>
                 <div className="md:col-span-4 lg:col-span-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 text-[14px]">
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Trang Chủ</div>
+                        <Link href={`/${lang}/`}>
+                            <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_2[0]}</div>
+                        </Link>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Giới Thiệu</div>
-                            <div>Bài Viết</div>
-                            <div>Liên Hệ</div>
-                            <div>ESG</div>
+                            <Link href={`/${lang}${ROUTES.ABOUT}`}>
+                                <div>{dictionary?.FOOTER_section_2[1]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.BLOG}`}>
+                                <div>{dictionary?.FOOTER_section_2[2]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.CONTACT}`}>
+                                <div>{dictionary?.FOOTER_section_2[3]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.ESG}`}>
+                                <div>{dictionary?.FOOTER_section_2[4]}</div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Sản Phẩm</div>
+                        <Link href={`/${lang}${ROUTES.PRODUCT}`}>
+                            <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_3[0]}</div>
+                        </Link>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Nhà Cửa</div>
-                            <div>Nhà Bếp</div>
-                            <div>Nhà Thú Cưng</div>
-                            <div>Thời Trang</div>
+                            <Link href={`/${lang}${categories[2]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[1]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${categories[1]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[2]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${categories[3]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[3]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${categories[0]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[4]}</div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Chúng Tôi</div>
+                        <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_4[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Facebook</div>
-                            <div>Youtube</div>
-                            <div>Shopee</div>
-                            <div>Email</div>
+                            <Link href={URL?.FACEBOOK} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[1]}</div>
+                            </Link>
+
+                            <Link href={URL?.YOUTUBE} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[2]}</div>
+                            </Link>
+
+                            <Link href={URL?.SHOPPING} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[3]}</div>
+                            </Link>
+
+                            <Link href={URL?.MAIL} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[4]}</div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Hỗ Trợ</div>
+                        <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_5[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Ưu Đãi</div>
-                            <div>Nhượng Quyền</div>
-                            <div>Điều Khoản</div>
-                            <div>Chính Sách</div>
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild className="cursor-pointer">
+                                        <div>{dictionary?.FOOTER_section_5[1]}</div>
+                                    </TooltipTrigger>
+                                    <TooltipContent className="transition duration-150">
+                                        <p>
+                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                        </p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild className="cursor-pointer">
+                                        <div>{dictionary?.FOOTER_section_5[2]}</div>
+                                    </TooltipTrigger>
+                                    <TooltipContent className="transition duration-150">
+                                        <p>
+                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                        </p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild className="cursor-pointer">
+                                        <div>{dictionary?.FOOTER_section_5[3]}</div>
+                                    </TooltipTrigger>
+                                    <TooltipContent className="transition duration-150">
+                                        <p>
+                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                        </p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+                            <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild className="cursor-pointer">
+                                        <div>{dictionary?.FOOTER_section_5[4]}</div>
+                                    </TooltipTrigger>
+                                    <TooltipContent className="transition duration-150">
+                                        <p>
+                                            {`${lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""} `}
+                                        </p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
                         </div>
                     </div>
                 </div>

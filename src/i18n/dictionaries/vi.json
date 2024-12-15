@@ -1,0 +1,155 @@
+{
+    "lang": "vi",
+    "title": "ECOKA HANDICRAFTS",
+    "HOME_title": "Bring Nature to Your Life",
+    "HOME_description": "Công Ty Cổ Phần ECOKA Là công ty sản xuất và xuất khẩu các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên như: lục bình, mây, tre, macrame.",
+    "HOME_discovery": "KHÁM PHÁ",
+    "HOME_subtitle_1": "KINH DOANH BỀN VỮNG",
+    "HOME_subtitle_2": "CHỨNG NHẬN",
+    "HOME_subtitle_3": "Sản Phẩm",
+    "HOME_subtitle_4": "Bài Viết",
+    "HOME_new_tag": "Mới",
+    "HOME_button_more": "Xem Thêm",
+    "HOME_decor_tag": "Chia sẻ góc decor",
+    "HOME_hashtag": "#TrangTriNoiThat",
+    "HOME_discovery_title": "200+ Sản phẩm thân thiện với môi trường",
+    "HOME_discovery_brief": "Với mẫu mã đa dạng, họa tiết tinh tế, túi lục bình Chaneva xinh xắn, thời trang và thân thiện với môi trường này đã làm hài lòng rất nhiều khách trong và ngoài nước.",
+    "HOME_button_discovery": "Khám Phá",
+    "HOME_blog_author": "Tác giả",
+    "PRODUCT_breadcrumb_main": "SẢN PHẨM",
+    "PRODUCT_breadcrumb_submain_1": "Trang chủ",
+    "PRODUCT_filter": "Lọc theo danh mục",
+    "PRODUCT_all_products": "Tất cả sản phẩm",
+    "PRODUCT_button_detail": "Chi tiết",
+    "PRODUCT_button_share": "Chia sẻ",
+    "PRODUCT_button_compare": "So sánh",
+    "PRODUCT_button_like": "Yêu thích",
+    "DETAIL_PRODUCT_breadcrumb_submain_2": "Sản phẩm",
+    "DETAIL_PRODUCT_rating": "đánh giá",
+    "DETAIL_PRODUCT_size": "Kích cỡ",
+    "DETAIL_PRODUCT_color": "Màu sắc",
+    "DETAIL_PRODUCT_cart": "Thêm giỏ hàng",
+    "DETAIL_PRODUCT_get_quote": "Nhận báo giá",
+    "DETAIL_PRODUCT_sub_description_1": "Danh mục",
+    "DETAIL_PRODUCT_sub_description_2": "Xuất sứ",
+    "DETAIL_PRODUCT_sub_description_3": "Chất liệu",
+    "DETAIL_PRODUCT_sub_description_origin": "Nguồn",
+    "DETAIL_PRODUCT_subtitle_1": "Sản Phẩm Liên Quan",
+    "ABOUT_title": "Về chúng tôi",
+    "ABOUT_brief": "Là công ty sản xuất và thương mại các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên.",
+    "ABOUT_section_1": [
+        "Lịch Sử Hình Thành & Phát Triển",
+        "Ecoka tiền thân là 1 cơ sở sản xuất thủ công với hơn 4 năm kinh nghiệm từ 2018 trong việc sản xuất hàng thủ công mỹ nghệ thân thiện với môi trường từ các nguyên liệu thiên nhiên sẵn có ở miền Tây Việt Nam: lục bình, cói, mây, tre…cho các khách hàng quốc tế: Mỹ, Anh, Pháp.. Với đội ngũ thợ thủ công lành nghề, được huấn luyện kỹ càng về các yêu cầu chất lượng sản phẩm, Ecoka đảm bảo mang lại những thành phẩm đa dạng trong mẫu mã, tinh tế trong từng thiết kế với chất lượng mang tầm quốc tế. Đến với Ecoka, chắc chắn bạn sẽ hài lòng với phong cách phục vụ chuyên nghiệp, chất lượng sản phẩm đảm bảo và giá cả hợp lý."
+    ],
+    "ABOUT_section_2": [
+        "Tầm Nhìn & Sứ Mệnh",
+        "Trở thành một Thương hiệu Việt mang tầm quốc tế trong lĩnh vực sản xuất và xuất khẩu hàng hóa chất lượng với nguyên liệu thân thiện môi trường. Không chỉ đem những điều tốt đẹp đến cho khách hàng, Ecoka còn muốn tạo ra nhiều cơ hội việc làm cho bà con nghèo miền Tây và định hướng nghề nghiệp cho các bạn trẻ, lấy việc bảo vệ môi trường làm tâm điểm kinh doanh. Sứ mệnh của Ecoka là mang lại sản phẩm chất lượng, an toàn cho sức khỏe và môi trường, thay đổi thói quen tiêu dùng sản phẩm nhựa của nhiều người mà mục đích chính là đưa hàng Việt Nam chắp cánh trên thị trường quốc tế."
+    ],
+    "ABOUT_section_3": [
+        "Giá Trị Cốt Lõi",
+        "Trở hành biểu tượng niềm tin hàng đầu về chất lượng sản phẩm hàng tiêu dùng thân thiện môi trường cho cả thị trường Việt Nam và quốc tế."
+    ],
+    "ABOUT_section_4": [
+        "Quy Mô & Cơ Sở Vật Chất",
+        [
+            "Tổng diện tích",
+            "Đội ngũ",
+            "Công suất",
+            "Thị trường chính hiện tại"
+        ],
+        [
+            "6500 mét vuông bao gồm nhà xưởng, văn phòng, nhà sấy, phòng trưng bày, nhà kho và khu vực đóng gói.",
+            "600 công nhân lành nghề trên 20 năm kinh nghiệm làm nghề thủ công truyền thống và được đào tạo bài bản về yêu cầu chất lượng sản phẩm.",
+            "80TEUS/tháng.",
+            "Mỹ, CANADA, PHÁP. Nhà cung cấp nguyên liệu cho các nhà máy trong nước. Tùy chỉnh theo yêu cầu của khách hàng."
+        ]
+    ],
+    "ESG_section_1": [
+        "MÔI TRƯỜNG",
+        "ECOKA cam kết bảo vệ môi trường thông qua việc sử dụng các nguyên liệu 100% tự nhiên như lục bình để sản xuất túi xách thủ công. Nguyên liệu này không chỉ thân thiện với môi trường mà còn có khả năng tự phân hủy sau một thời gian dài tiếp xúc với thiên nhiên, giảm thiểu rác thải nhựa và các chất ô nhiễm. Quy trình sản xuất của ECOKA được thiết kế để tối ưu hóa tài nguyên, hạn chế tiêu thụ năng lượng và nước, góp phần vào việc bảo tồn hệ sinh thái tự nhiên."
+    ],
+    "ESG_section_2": [
+        "XÃ HỘI",
+        "ECOKA tạo việc làm ổn định cho các nghệ nhân tại miền Tây, nơi nổi tiếng với kỹ năng thủ công truyền thống. Công ty không chỉ giúp bảo tồn và phát triển nghề thủ công mỹ nghệ truyền thống mà còn nâng cao đời sống kinh tế cho người lao động địa phương. Ngoài ra, ECOKA đóng góp vào các hoạt động cộng đồng, xây dựng môi trường làm việc công bằng và hỗ trợ các sáng kiến phát triển bền vững cho cộng đồng."
+    ],
+    "ESG_section_3": [
+        "QUẢN TRỊ",
+        "ECOKA thực hiện các chính sách quản trị minh bạch và có trách nhiệm, đảm bảo sự phát triển bền vững và tuân thủ các quy định pháp luật về lao động và môi trường. Công ty luôn cam kết duy trì đạo đức kinh doanh cao, tạo ra các sản phẩm chất lượng đáp ứng tiêu chuẩn quốc tế, đồng thời không ngừng cải tiến quy trình sản xuất để tăng cường hiệu suất và giảm thiểu tác động tiêu cực đến môi trường và xã hội."
+    ],
+    "BLOG_breadcrumb_main": "BÀI VIẾT",
+    "BLOG_breadcrumb_submain_3": "Bài viết",
+    "CONTACT_breadcrumb_main": "LIÊN HỆ",
+    "CONTACT_breadcrumb_submain_3": "Liên hệ",
+    "CONTACT_title": "Liên Hệ Với Chúng Tôi",
+    "CONTACT_brief": "Để biết thêm thông tin về sản phẩm và dịch vụ của chúng tôi. Vui lòng gửi email cho chúng tôi. Đội ngũ nhân viên của chúng tôi luôn sẵn sàng hỗ trợ bạn. Đừng ngần ngại!",
+    "CONTACT_left_section": [
+        "Địa chỉ",
+        [
+            "Số điện thoại",
+            "Điện thoại"
+        ],
+        [
+            "Thời gian làm việc",
+            "Thứ hai",
+            "Thứ bảy",
+            "Chủ nhật",
+            "Đóng cửa"
+        ]
+    ],
+    "CONTACT_right_section": [
+        [
+            "Tên của bạn",
+            "Nhập tên của bạn"
+        ],
+        [
+            "Địa chỉ email",
+            "nguyenvana@gmail.com"
+        ],
+        [
+            "Tiêu đề",
+            "Đây là tiêu đề"
+        ],
+        [
+            "Nội dung",
+            "Viết nội dung vào đây"
+        ]
+    ],
+    "CONTACT_button_send": "Gửi",
+    "HEADER_title": [
+        "TRANG CHỦ",
+        "SẢN PHẨM",
+        "GIỚI THIỆU",
+        "ESG",
+        "BÀI VIẾT",
+        "LIÊN HỆ"
+    ],
+    "FOOTER_section_1": "Là công ty sản xuất và thương mại các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên.",
+    "FOOTER_section_2": [
+        "Trang chủ",
+        "Giới Thiệu",
+        "Bài Viết",
+        "Liên Hệ",
+        "ESG"
+    ],
+    "FOOTER_section_3": [
+        "Sản Phẩm",
+        "Nhà Cửa",
+        "Nhà Bếp",
+        "Nhà Thú Cưng",
+        "Thời Trang"
+    ],
+    "FOOTER_section_4": [
+        "Chúng Tôi",
+        "Facebook",
+        "Youtube",
+        "Shopee",
+        "Email"
+    ],
+    "FOOTER_section_5": [
+        "Hỗ Trợ",
+        "Ưu Đãi",
+        "Nhượng Quyền",
+        "Điều Khoản",
+        "Chính Sách"
+    ]
+}
