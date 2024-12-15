@@ -1,13 +1,12 @@
+"use client"
+
 import Link from "next/link";
-import { Facebook, Youtube, Mail, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { ROUTES } from "@/utils/route";
 import { IMAGES } from "@/utils/image";
 import { categories, URL } from "@/utils/constant";
 
 export const Header = ({ page, lang, dictionary }: { page: string; lang: string; dictionary: any }) => {
-    console.log("check lang:", lang);
-
     return (
         <div className="w-full flex flex-col justify-center items-center">
             <div className="w-full bg-[rgb(var(--quaternary-rgb))] flex items-center justify-center">
@@ -15,16 +14,16 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                     <div className="hidden lg:flex items-center justify-center gap-4">
                         <Link href={URL?.FACEBOOK} target="_blank">
-                            <Facebook className="text-white" size={19} />
+                            <Image src="https://cdn-icons-png.flaticon.com/128/15047/15047435.png" alt="fb" width={21} height={21} />
                         </Link>
                         <Link href={URL?.YOUTUBE} target="_blank">
-                            <Youtube className="text-white" />
+                        <Image src="https://cdn-icons-png.flaticon.com/128/3670/3670147.png" alt="youtube" width={21} height={21} />
                         </Link>
                         <Link href={URL?.MAIL} target="_blank">
-                            <Mail className="text-white" />
+                        <Image src="https://cdn-icons-png.flaticon.com/128/6806/6806987.png" alt="mail" width={21} height={21} />
                         </Link>
                         <Link href={URL?.SHOPPING} target="_blank">
-                            <ShoppingBag className="text-white" size={19} />
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1734257182/ecoka/lkincykzxzjszovtjbgq.png" alt="shopee" width={21} height={21} />
                         </Link>
                         <Link href={`/vi/${page}`}>
                             <Image src={IMAGES?.FLAG_VI} alt="Vietnamese" width={21} height={21} />
@@ -46,10 +45,12 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
                     <Link href={`/${lang}${ROUTES.PRODUCT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
                         {dictionary?.HEADER_title[1]}
                     </Link>
-                    <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out">
+                    <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out z-20">
                         {categories?.map((category: any) => (
                             <Link href={`/${lang}${ROUTES.PRODUCT}${category.path}`} key={category.name} className="text-lg font-semibold transform duration-300 hover:scale-110">
-                                {category?.name}
+                                {lang === "vi" && category?.name}
+                                {lang === "en" && category?.name_en}
+                                {lang === "jp" && category?.name_jp}
                             </Link>
                         ))}
                     </div>

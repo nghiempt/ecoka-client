@@ -8,7 +8,7 @@ import { IMAGES } from "@/utils/image"
 export function AboutPage({ lang, dictionary }: { lang: string; dictionary: any }) {
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header lang={lang} page={"bai-viet"} dictionary={dictionary} />
+            <Header lang={lang} page={"ve-chung-toi"} dictionary={dictionary} />
             <NavMobile lang={lang} dictionary={dictionary} />
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center gap-10 mt-10 md:mt-0 lg:mt-0">
                 <video className="w-full object-cover rounded-lg" autoPlay loop muted>

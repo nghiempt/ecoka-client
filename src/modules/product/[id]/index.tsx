@@ -51,7 +51,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const raw = JSON.stringify({ method: "GET" });
+      const raw = JSON.stringify({ method: "GET", lang: lang });
 
       const requestOptions = {
         method: "POST",
@@ -60,7 +60,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
         redirect: "follow" as RequestRedirect
       };
 
-      const res = await fetch("https://n8n.khiemfle.com/webhook/5c404ea1-4a57-4c0a-8628-3088d00abe64", requestOptions);
+      const res = await fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", requestOptions);
       if (!res.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -81,6 +81,8 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
           item.i_six,
         ].filter((url) => url !== ""),
       }));
+
+      console.log("check data: ", data)
       return transformedProducts.sort((a, b) => b.id - a.id);
     } catch (err) {
       console.log(err);
@@ -129,9 +131,10 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
         </div>
       ) : (
         <>
-          <div className="w-full md:w-2/3 lg:w-2/3 bg-cover bg-center h-[250px] flex justify-center items-center md:rounded-lg lg:rounded-lg z-10"
+          <div className="relative w-full bg-cover bg-center h-[250px] flex justify-center items-center z-10"
             style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}>
-            <div className="w-full flex flex-col justify-center text-white items-center">
+            <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+            <div className="relative w-full flex flex-col justify-center text-white items-center">
               <Image
                 src={IMAGES?.BANNER_LOGO}
                 alt='Meubel House'
