@@ -237,7 +237,11 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
 
                             <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out">
                                 {categories.map((category: any, index: number) => (
-                                    <Link href={`/${lang}${ROUTES.PRODUCT}${category.path}`} className="text-lg font-semibold transform duration-300 hover:scale-110">{category.name}</Link>
+                                    <Link href={`/${lang}${ROUTES.PRODUCT}${category.path}`} className="text-lg font-semibold transform duration-300 hover:scale-110">
+                                        {lang === "vi" && category?.name}
+                                        {lang === "en" && category?.name_en}
+                                        {lang === "jp" && category?.name_jp}
+                                    </Link>
                                 ))}
                             </div>
                         </div>

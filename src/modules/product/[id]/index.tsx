@@ -51,7 +51,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const raw = JSON.stringify({ method: "GET" });
+      const raw = JSON.stringify({ method: "GET", lang: lang });
 
       const requestOptions = {
         method: "POST",
@@ -60,7 +60,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
         redirect: "follow" as RequestRedirect
       };
 
-      const res = await fetch("https://n8n.khiemfle.com/webhook/5c404ea1-4a57-4c0a-8628-3088d00abe64", requestOptions);
+      const res = await fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", requestOptions);
       if (!res.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -81,6 +81,8 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
           item.i_six,
         ].filter((url) => url !== ""),
       }));
+
+      console.log("check data: ", data)
       return transformedProducts.sort((a, b) => b.id - a.id);
     } catch (err) {
       console.log(err);

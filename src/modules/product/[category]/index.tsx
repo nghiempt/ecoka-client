@@ -39,6 +39,7 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [category, setCategory] = useState<string>("");
+    const [breadscumbCategory, setBreadscumbCategory] = useState<string>("");
 
     const fetchProducts = async () => {
         try {
@@ -46,7 +47,8 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
             myHeaders.append("Content-Type", "application/json");
 
             const raw = JSON.stringify({
-                method: "GET"
+                method: "GET",
+                lang: lang
             });
 
             const requestOptions = {
@@ -56,7 +58,7 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
                 redirect: "follow" as RequestRedirect
             };
 
-            const res = await fetch("https://n8n.khiemfle.com/webhook/5c404ea1-4a57-4c0a-8628-3088d00abe64", requestOptions);
+            const res = await fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", requestOptions);
             if (!res.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -95,9 +97,16 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
             if (match && match[1]) {
                 const categoryPath = '/' + match[1];
                 const category = categories.find((cate: any) => cate.path === `${categoryPath}`);
-                const filteredProducts = allProducts?.filter((product: Product) => product.category === category?.name);
+                const filteredProducts = allProducts?.filter((product: Product) => lang === "vi" ? (product.category === category?.name) : lang === "en" ? (product.category === category?.name_en) : lang === "jp" ? (product.category === category?.name_jp) : (product.category === category?.name));
                 setCategory(category?.path ?? "");
-                console.log("check path: ", category?.path)
+                if (lang === "vi") {
+                    setBreadscumbCategory(category.name);
+                } else if (lang === "en") {
+                    setBreadscumbCategory(category.name_en);
+                }
+                else if (lang === "jp") {
+                    setBreadscumbCategory(category.name_jp);
+                }
                 setProducts(filteredProducts ?? []);
             }
             setLoading(false);
@@ -131,7 +140,7 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
                             <h1 className="text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</h1>
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">{category}</h1>
+                        <h1 className="text-sm">{breadscumbCategory}</h1>
                     </div>
                 </div>
             </div>

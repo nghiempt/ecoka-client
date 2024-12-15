@@ -23,7 +23,7 @@ export const categories: any = [
   {
     id: 3,
     name: "Trang Trí Nhà Cửa",
-    name_en: "Home Decor",
+    name_en: "Home Decoration",
     name_jp: "ホームデコレーション",
     path: "/trang-tri-nha-cua",
   },
