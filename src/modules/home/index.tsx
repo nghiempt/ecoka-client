@@ -197,6 +197,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         fetchBlogs();
     }, []);
 
+
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -264,10 +265,9 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         </Link> */}
 
                         <div className="relative" ref={dropdownRef}>
-                            <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1">
+                            <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-white cursor-pointer rounded-lg">
                                 <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
-                                <div className={`transition-transform duration-300 ${isOpen ? "" : "-rotate-90"
-                                    } mt-1`}>
+                                <div className={`transition-transform duration-300 ${isOpen ? "" : "-rotate-90"} mt-1`}>
                                     <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                                         <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                                     </svg>
@@ -275,7 +275,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                             </div>
 
                             {isOpen && (
-                                <ul className="absolute right-2 z-10 mt-2 w-14 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                                     {languages
                                         .filter(({ lang }) => lang !== currentLang.lang)
                                         .map(({ lang, label, flag }) => (
@@ -358,7 +358,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         ) : (
 
                             esgs.map((esg, index) => (
-                                <Link href="/vi/esg" key={index}>
+                                <Link href={`/${lang}${ROUTES.ESG}`} key={index}>
                                     <div
                                         className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer"
                                     >

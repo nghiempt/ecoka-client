@@ -38,7 +38,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const raw = JSON.stringify({ method: "GET" });
+      const raw = JSON.stringify({ method: "GET", lang: lang });
 
       const requestOptions = {
         method: "POST",
@@ -47,7 +47,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
         redirect: "follow" as RequestRedirect,
       };
 
-      const res = await fetch("https://n8n.khiemfle.com/webhook/ff9f5835-275b-4ecb-a4be-0392ae325ca6", requestOptions);
+      const res = await fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", requestOptions);
       if (!res.ok) {
         throw new Error("Failed to fetch data");
       }

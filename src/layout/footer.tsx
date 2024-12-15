@@ -20,26 +20,26 @@ export const Footer = ({ dictionary, lang }: { lang: string, dictionary: any }) 
                     <Image src={IMAGES?.LOGO} width={160} height={160} alt="logo" />
                     <div className="text-center md:text-left lg:text-left text-[14px]">{dictionary?.FOOTER_section_1}</div>
                     <div className="flex justify-start items-center gap-4">
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <Link href={URL?.FACEBOOK} target="_blank">
+                        <Link href={URL?.FACEBOOK} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
                                 <Image src="https://cdn-icons-png.flaticon.com/128/15047/15047435.png" alt="fb" width={23} height={23} />
-                            </Link>
-                        </div>
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <Link href={URL?.YOUTUBE} target="_blank">
+                            </div>
+                        </Link>
+                        <Link href={URL?.YOUTUBE} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
                                 <Image src="https://cdn-icons-png.flaticon.com/128/3670/3670147.png" alt="youtube" width={23} height={23} />
-                            </Link>
-                        </div>
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <Link href={URL?.MAIL} target="_blank">
+                            </div>
+                        </Link>
+                        <Link href={URL?.MAIL} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
                                 <Image src="https://cdn-icons-png.flaticon.com/128/6806/6806987.png" alt="mail" width={23} height={23} />
-                            </Link>
-                        </div>
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <Link href={URL?.SHOPPING} target="_blank">
+                            </div>
+                        </Link>
+                        <Link href={URL?.SHOPPING} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
                                 <Image src="https://res.cloudinary.com/farmcode/image/upload/v1734257182/ecoka/lkincykzxzjszovtjbgq.png" alt="shopee" width={23} height={23} />
-                            </Link>
-                        </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <div className="md:col-span-4 lg:col-span-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 text-[14px]">
