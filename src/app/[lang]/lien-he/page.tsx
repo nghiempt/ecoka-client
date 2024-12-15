@@ -8,10 +8,9 @@ export default async function Contact({
 }: {
   params: { lang: string }
 }) {
-  const dictionary = await getDictionary(lang as any)
+  const dictionary: any = await getDictionary(lang as any)
   return (
     <>
-      <h1>{dictionary?.title}</h1>
       <ContactPage lang={lang} dictionary={dictionary} />
     </>
   );

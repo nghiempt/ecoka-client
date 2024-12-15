@@ -36,6 +36,7 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
 
             const raw = JSON.stringify({
                 method: "GET",
+                lang: lang
             });
 
             const requestOptions = {
@@ -45,7 +46,7 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
                 redirect: "follow" as RequestRedirect,
             };
 
-            const res = await fetch("https://n8n.khiemfle.com/webhook/5c404ea1-4a57-4c0a-8628-3088d00abe64", requestOptions);
+            const res = await fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", requestOptions);
             if (!res.ok) {
                 throw new Error("Failed to fetch data");
             }
@@ -103,10 +104,11 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
             <Header lang={lang} page="san-pham" dictionary={dictionary} />
             <NavMobile lang={lang} dictionary={dictionary} />
             <div
-                className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
+                className="relative bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}
             >
-                <div className="w-full flex flex-col justify-center items-center">
+                <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+                <div className="relative w-full flex flex-col justify-center items-center">
                     <Image
                         src={IMAGES?.BANNER_LOGO}
                         alt="img"

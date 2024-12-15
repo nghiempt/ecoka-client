@@ -38,6 +38,7 @@ export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
 
             const raw = JSON.stringify({
                 method: "GET",
+                lang: lang
             });
 
             const requestOptions = {
@@ -47,7 +48,7 @@ export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                 redirect: "follow" as RequestRedirect,
             };
 
-            const res = await fetch("https://n8n.khiemfle.com/webhook/ff9f5835-275b-4ecb-a4be-0392ae325ca6", requestOptions);
+            const res = await fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", requestOptions);
             if (!res.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -77,9 +78,10 @@ export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
             <Header lang={lang} page={"bai-viet"} dictionary={dictionary} />
             <NavMobile lang={lang} dictionary={dictionary} />
-            <div className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
+            <div className="relative bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
-                <div className="w-full flex flex-col justify-center items-center">
+                <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+                <div className="relative w-full flex flex-col justify-center items-center">
                     <Image
                         src={IMAGES?.BANNER_LOGO}
                         alt="img"

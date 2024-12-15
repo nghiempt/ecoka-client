@@ -1,8 +1,9 @@
-export const getAll = async (url: string) => {
+export const getAll = async (url: string, lang: string) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
-        method: "GET"
+        method: "GET",
+        lang: lang
     });
     const requestOptions = {
         method: "POST",

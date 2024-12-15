@@ -47,7 +47,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
 
             const raw = JSON.stringify({
                 method: "GET",
-                // lang: "en"
+                lang: lang
             });
 
             const requestOptions = {
@@ -58,7 +58,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
             };
 
             const res = await fetch(
-                "https://n8n.khiemfle.com/webhook/5c404ea1-4a57-4c0a-8628-3088d00abe64",
+                "https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb",
                 requestOptions
             );
 
@@ -118,7 +118,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
 
     const fetchEsgs = async () => {
         try {
-            const data = await getAll('https://n8n.khiemfle.com/webhook/aa7f04f4-7833-49c2-8c86-7a043f4a8a5a');
+            const data = await getAll('https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648', lang);
             const transformedEsgs: ESG[] = data.map((item: any) => ({
                 id: item.id,
                 row: item.row_number,

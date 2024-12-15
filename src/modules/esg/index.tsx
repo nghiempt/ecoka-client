@@ -22,11 +22,11 @@ interface ESG {
 export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
     const [esgs, setEsgs] = useState<ESG[]>([]);
     const [loading, setLoading] = useState(true);
-    const apiUrl = "https://n8n.khiemfle.com/webhook/aa7f04f4-7833-49c2-8c86-7a043f4a8a5a";
+    const apiUrl = "https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648";
 
     const fetchEsgs = async () => {
         try {
-            const data = await getAll(apiUrl);
+            const data = await getAll(apiUrl, lang);
             const transformedEsgs: ESG[] = data.map((item: any) => ({
                 id: item.id,
                 row: item.row_number,
@@ -91,9 +91,10 @@ export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
             <Header lang={lang} page={"esg"} dictionary={dictionary} />
             <NavMobile lang={lang} dictionary={dictionary} />
-            <div className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
+            <div className="relative bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
-                <div className="w-full flex flex-col justify-center items-center">
+                <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+                <div className="relative w-full flex flex-col justify-center items-center">
                     <Image
                         src={IMAGES?.BANNER_LOGO}
                         alt='img'
