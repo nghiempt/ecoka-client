@@ -139,7 +139,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
                 </div>
                 <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-end items-center">
                   <Image
-                    src={currentData?.thumbnail || IMAGES?.BLOG_01_MAIN}
+                    src={currentData?.thumbnail || "https://res.cloudinary.com/farmcode/image/upload/v1729695322/ecoka/ecoka-esg-manage_fagyf9.jpg"}
                     alt="Main Image"
                     width={500}
                     height={300}
@@ -152,7 +152,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
               <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-start items-center">
                   <Image
-                    src={currentData?.s1_thumbnail || IMAGES?.BLOG_01_MAIN}
+                    src={currentData?.s1_thumbnail || "https://res.cloudinary.com/farmcode/image/upload/v1729695322/ecoka/ecoka-esg-manage_fagyf9.jpg"}
                     alt="Section 1 Image"
                     width={500}
                     height={300}
@@ -183,7 +183,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
                 </div>
                 <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-end items-center">
                   <Image
-                    src={currentData?.s2_thumbnail || IMAGES?.BLOG_01_MAIN}
+                    src={currentData?.s2_thumbnail || "https://res.cloudinary.com/farmcode/image/upload/v1729695322/ecoka/ecoka-esg-manage_fagyf9.jpg"}
                     alt="Section 2 Image"
                     width={500}
                     height={300}
@@ -196,7 +196,7 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
               <div className="w-full flex flex-col lg:flex-row items-center justify-center">
                 <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-start items-center">
                   <Image
-                    src={currentData?.s3_thumbnail || IMAGES?.BLOG_01_MAIN}
+                    src={currentData?.s3_thumbnail || "https://res.cloudinary.com/farmcode/image/upload/v1729695322/ecoka/ecoka-esg-manage_fagyf9.jpg"}
                     alt="Section 3 Image"
                     width={500}
                     height={300}
