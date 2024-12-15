@@ -36,7 +36,6 @@ interface ESG {
 
 export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }) {
     const [products, setProducts] = useState<{ [key: string]: Product[] }>({});
-
     const [loading, setLoading] = useState<boolean>(true);
     const [esgs, setEsgs] = useState<ESG[]>([]);
 
