@@ -207,7 +207,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         <Link href={URL.YOUTUBE} target="_blank"><Youtube className="text-white" /></Link>
                         <Link href={URL.MAIL} target="_blank"><Mail className="text-white" /></Link>
                         <Link href={URL.SHOPPING} target="_blank"><ShoppingBag className="text-white" size={19} /></Link>
-                        <Link href="/">
+                        <Link href="/vi">
                             <Image src={IMAGES?.FLAG_VI} alt="img" width={21} height={21} />
                         </Link>
                         <Link href="/en">
