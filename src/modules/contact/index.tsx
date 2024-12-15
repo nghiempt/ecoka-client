@@ -15,6 +15,7 @@ import { ROUTES } from "@/utils/route"
 import { useEffect, useState } from "react"
 import { getAll } from "@/utils/api"
 
+
 interface Company {
     id: number;
     row: number;
@@ -25,11 +26,11 @@ interface Company {
     email: string;
 }
 
-export function ContactPage() {
+export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }) {
     const [company, setCompany] = useState<Company[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const apiUrl = "https://n8n.khiemfle.com/webhook/e984f33a-ffd7-48b7-bea7-3899a97e284e";
+    const apiUrl = "https://n8n.khiemfle.com/webhook/51f585dd-2f58-45cf-8bb8-4cc762a65737";
 
     const mapContainerStyle = {
         width: "100%",
@@ -43,7 +44,7 @@ export function ContactPage() {
 
     const fetchCompany = async () => {
         try {
-            const data = await getAll(apiUrl);
+            const data = await getAll(apiUrl, lang);
             const transformedCompany: Company[] = data.map((item: any) => ({
                 id: item.id,
                 row: item.row_number,
@@ -78,27 +79,28 @@ export function ContactPage() {
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header />
-            <NavMobile />
-            <div className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
+            <Header lang={lang} page={"lien-he"} dictionary={dictionary} />
+            <NavMobile lang={lang} dictionary={dictionary} />
+            <div className="relative bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
-                <div className="w-full flex flex-col justify-center items-center">
+                <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+                <div className="relative w-full flex flex-col justify-center items-center">
                     <Image
-                        src={IMAGES.BANNER_LOGO}
+                        src={IMAGES?.BANNER_LOGO}
                         alt='img'
                         width={50}
                         height={50}
                         className="text-center"
                     />
                     <h1 className="text-4xl font-semibold mb-2">
-                        LIÊN HỆ
+                        {dictionary?.CONTACT_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
-                        <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            Trang chủ
+                        <Link href={`/${lang}${ROUTES.HOME}`} className="font-semibold text-sm">
+                            {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">Liên hệ</h1>
+                        <h1 className="text-sm">{dictionary?.CONTACT_breadcrumb_submain_3}</h1>
                     </div>
                 </div>
             </div>
@@ -106,9 +108,9 @@ export function ContactPage() {
                 {loading ? <SkeletonLoader /> : (
                     <div className="w-full bg-white mt-8 md:mt-0 lg:mt-0 md:py-8 lg:py-8 flex justify-center">
                         <div className="w-full max-w-3xl text-center px-4">
-                            <h1 className="text-2xl md:text-3xl font-bold">Liên Hệ Với Chúng Tôi</h1>
+                            <h1 className="text-2xl md:text-3xl font-bold">{dictionary?.CONTACT_title}</h1>
                             <p className="mt-2 text-gray-500 text-sm md:text-base">
-                                Để biết thêm thông tin về sản phẩm và dịch vụ của chúng tôi. Vui lòng gửi email cho chúng tôi. Đội ngũ nhân viên của chúng tôi luôn sẵn sàng hỗ trợ bạn. Đừng ngần ngại!
+                                {dictionary?.CONTACT_brief}
                             </p>
                         </div>
                     </div>
@@ -134,9 +136,9 @@ export function ContactPage() {
                                     <circle cx="12" cy="10" r="3" />
                                 </svg>
                                 <div>
-                                    <h3 className="font-semibold text-lg">Địa chỉ</h3>
+                                    <h3 className="font-semibold text-lg">{dictionary?.CONTACT_left_section[0]}</h3>
                                     <p className="text-gray-600">
-                                        {company[0].address}
+                                        {company[0]?.address}
                                     </p>
                                 </div>
                             </div>
@@ -156,8 +158,8 @@ export function ContactPage() {
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                                 </svg>
                                 <div>
-                                    <h3 className="font-semibold text-lg">Số điện thoại</h3>
-                                    <p className="text-gray-600">Mobile: {company[0].phone}</p>
+                                    <h3 className="font-semibold text-lg">{dictionary?.CONTACT_left_section[1][0]}</h3>
+                                    <p className="text-gray-600">{dictionary?.CONTACT_left_section[1][1]}: {company[0]?.phone}</p>
                                 </div>
                             </div>
                             <div className="flex items-start space-x-4">
@@ -177,9 +179,9 @@ export function ContactPage() {
                                     <polyline points="12 6 12 12 8 10" />
                                 </svg>
                                 <div>
-                                    <h3 className="font-semibold text-lg">Thời gian làm việc</h3>
-                                    <p className="text-gray-600">Thứ hai - Thứ bảy: 7:00 - 17:00</p>
-                                    <p className="text-gray-600">Chủ nhật: Đóng cửa</p>
+                                    <h3 className="font-semibold text-lg">{dictionary?.CONTACT_left_section[2][0]}</h3>
+                                    <p className="text-gray-600">{dictionary?.CONTACT_left_section[2][1]} - {dictionary?.CONTACT_left_section[2][2]}: 7:00 - 17:00</p>
+                                    <p className="text-gray-600">{dictionary?.CONTACT_left_section[2][3]}: {dictionary?.CONTACT_left_section[2][4]}</p>
                                 </div>
                             </div>
                         </div>
@@ -187,44 +189,44 @@ export function ContactPage() {
                             <form className="space-y-6">
                                 <div className="space-y-2">
                                     <label htmlFor="name" className="text-sm font-medium text-gray-700">
-                                        Tên của bạn
+                                        {dictionary?.CONTACT_right_section[0][0]}
                                     </label>
                                     <Input
                                         type="text"
                                         id="name"
-                                        placeholder="Nhập tên của bạn"
+                                        placeholder={dictionary?.CONTACT_right_section[0][1]}
                                         className="w-full border border-gray-300 p-2 rounded"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                                        Địa chỉ email
+                                        {dictionary?.CONTACT_right_section[1][0]}
                                     </label>
                                     <Input
                                         type="email"
                                         id="email"
-                                        placeholder="nguyenvana@gmail.com"
+                                        placeholder={dictionary?.CONTACT_right_section[1][1]}
                                         className="w-full border border-gray-300 p-2 rounded"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="subject" className="text-sm font-medium text-gray-700">
-                                        Tiêu đề
+                                        {dictionary?.CONTACT_right_section[2][0]}
                                     </label>
                                     <Input
                                         type="text"
                                         id="subject"
-                                        placeholder="Đây là tiêu đề"
+                                        placeholder={dictionary?.CONTACT_right_section[2][1]}
                                         className="w-full border border-gray-300 p-2 rounded"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                                        Nội dung
+                                        {dictionary?.CONTACT_right_section[3][0]}
                                     </label>
                                     <Textarea
                                         id="message"
-                                        placeholder="Viết nội dung vào đây"
+                                        placeholder={dictionary?.CONTACT_right_section[3][1]}
                                         className="w-full border border-gray-300 p-2 rounded h-32"
                                     />
                                 </div>
@@ -232,7 +234,7 @@ export function ContactPage() {
                                     type="submit"
                                     className="w-full py-2 bg-[rgb(var(--primary-rgb))] hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80 text-white text-sm font-medium rounded-md focus:ring-0"
                                 >
-                                    Gửi
+                                    {dictionary?.CONTACT_button_send}
                                 </Button>
                             </form>
                         </div>
@@ -259,7 +261,7 @@ export function ContactPage() {
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer />
+            <Footer dictionary={dictionary} />
         </div>
     )
 }

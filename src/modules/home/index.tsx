@@ -3,9 +3,9 @@
 import { Product } from "@/components/global/product"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/layout/footer"
-import { categories, home_blogs, home_products, URL } from "@/utils/constant"
+import { categories, URL } from "@/utils/constant"
 import { IMAGES } from "@/utils/image"
-import { ArrowUpRight, Facebook, Mail } from "lucide-react"
+import { ArrowUpRight, Facebook, LayoutGrid, Mail } from "lucide-react"
 import { ShoppingBag, Youtube } from "lucide-react"
 import Link from "next/link"
 import { Slider } from "./slider"
@@ -34,7 +34,7 @@ interface ESG {
     thumbnail: string;
 }
 
-export function HomePage() {
+export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }) {
     const [products, setProducts] = useState<{ [key: string]: Product[] }>({});
 
     const [loading, setLoading] = useState<boolean>(true);
@@ -47,6 +47,7 @@ export function HomePage() {
 
             const raw = JSON.stringify({
                 method: "GET",
+                lang: lang
             });
 
             const requestOptions = {
@@ -57,7 +58,7 @@ export function HomePage() {
             };
 
             const res = await fetch(
-                "https://n8n.khiemfle.com/webhook/5c404ea1-4a57-4c0a-8628-3088d00abe64",
+                "https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb",
                 requestOptions
             );
 
@@ -117,7 +118,7 @@ export function HomePage() {
 
     const fetchEsgs = async () => {
         try {
-            const data = await getAll('https://n8n.khiemfle.com/webhook/aa7f04f4-7833-49c2-8c86-7a043f4a8a5a');
+            const data = await getAll('https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648', lang);
             const transformedEsgs: ESG[] = data.map((item: any) => ({
                 id: item.id,
                 row: item.row_number,
@@ -140,7 +141,7 @@ export function HomePage() {
     }, []);
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <NavMobile />
+            <NavMobile lang={lang} dictionary={dictionary} />
             <div className="w-full bg-[rgb(var(--quaternary-rgb))] flex items-center justify-center">
                 <div className="w-2/3 py-6 flex flex-col lg:flex-row items-center justify-end gap-4">
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
@@ -150,63 +151,67 @@ export function HomePage() {
                         <Link href={URL.MAIL} target="_blank"><Mail className="text-white" /></Link>
                         <Link href={URL.SHOPPING} target="_blank"><ShoppingBag className="text-white" size={19} /></Link>
                         <Link href="/">
-                            <Image src={IMAGES.FLAG_VI} alt="img" width={21} height={21} />
+                            <Image src={IMAGES?.FLAG_VI} alt="img" width={21} height={21} />
                         </Link>
                         <Link href="/en">
-                            <Image src={IMAGES.FLAG_EN} alt="img" width={21} height={21} />
+                            <Image src={IMAGES?.FLAG_EN} alt="img" width={21} height={21} />
                         </Link>
                         <Link href="/jp">
-                            <Image src={IMAGES.FLAG_JP} alt="img" width={21} height={21} />
+                            <Image src={IMAGES?.FLAG_JP} alt="img" width={21} height={21} />
                         </Link>
                     </div>
                 </div>
             </div>
             <div className="w-full relative">
                 <video className="w-full h-[680px] md:h-[1000px] lg:h-[1000px] object-cover" autoPlay loop muted>
-                    <source src={IMAGES.VIDEO_HOME} type="video/mp4" />
+                    <source src={IMAGES?.VIDEO_HOME} type="video/mp4" />
                 </video>
                 <div className='w-full absolute top-0 pt-6 flex flex-col justify-center items-center gap-10 text-white'>
                     <nav className="w-full hidden lg:flex flex-row justify-center items-center gap-4 py-6 uppercase">
-                        <Link href={ROUTES.HOME} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Trang Chủ</Link>
+                        <Link href={`/${lang}/`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                            {dictionary?.HEADER_title[0]}
+                        </Link>
 
                         <div className="relative group h-full">
-                            <Link href={ROUTES.PRODUCT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
-                                Sản Phẩm
+                            <Link href={`/${lang}${ROUTES.PRODUCT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                                {dictionary?.HEADER_title[1]}
                             </Link>
 
                             <div className="absolute top-full left-0 flex flex-col gap-3 mt-2 w-64 p-5 pl-7 bg-white opacity-80 text-black shadow-lg rounded-lg transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out">
                                 {categories.map((category: any, index: number) => (
-                                    <Link href={ROUTES.PRODUCT + `${category.path}`} className="text-lg font-semibold transform duration-300 hover:scale-110">{category.name}</Link>
+                                    <Link href={`/${lang}${ROUTES.PRODUCT}${category.path}`} className="text-lg font-semibold transform duration-300 hover:scale-110">{category.name}</Link>
                                 ))}
                             </div>
                         </div>
 
-                        <Link href={ROUTES.ABOUT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Giới Thiệu</Link>
-                        <Link href={ROUTES.ESG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">ESG</Link>
-                        <Link href={ROUTES.BLOG} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Bài Viết</Link>
-                        <Link href={ROUTES.CONTACT} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">Liên Hệ</Link>
+                        <Link href={`/${lang}${ROUTES.ABOUT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                            {dictionary?.HEADER_title[2]}
+                        </Link>
+                        <Link href={`/${lang}${ROUTES.ESG}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                            {dictionary?.HEADER_title[3]}
+                        </Link>
+                        <Link href={`/${lang}${ROUTES.BLOG}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                            {dictionary?.HEADER_title[4]}
+                        </Link>
+                        <Link href={`/${lang}${ROUTES.CONTACT}`} className="bg-gray-50 bg-opacity-60 text-[20px] text-[rgb(var(--quaternary-rgb))] font-bold px-4 py-2 rounded-lg h-full flex items-center justify-center hover:bg-[rgb(var(--quaternary-rgb))] hover:opacity-70 hover:text-white">
+                            {dictionary?.HEADER_title[5]}
+                        </Link>
                     </nav>
-                    <img className="w-28 h-28 lg:w-44 lg:h-44 object-cover mt-10 md:mt-0 lg:mt-0" src={IMAGES.LOGO_CIRCLE} alt="logo" />
-                    <h1 className='text-[22px] lg:text-[60px] font-black'>Bring Nature To Your Life</h1>
-                    <div className="text-center flex flex-col gap-4 px-8">
-                        <h1 className='text-[14px] lg:text-[20px] font-medium'>Công Ty Cổ Phần ECOKA Là công ty sản xuất và xuất khẩu các sản phẩm thủ công mỹ nghệ truyền thống</h1>
-                        <h1 className='text-[14px] lg:text-[20px] font-medium'>từ các nguyên liệu 100% từ thiên nhiên như: lục bình, mây, tre, macrame.</h1>
+                    <img className="w-28 h-28 lg:w-44 lg:h-44 object-cover mt-10 md:mt-0 lg:mt-0" src={IMAGES?.LOGO_CIRCLE} alt="logo" />
+                    <h1 className='text-[22px] lg:text-[60px] font-black'>{dictionary?.HOME_title}</h1>
+                    <div className="text-center flex flex-col items-center gap-4 px-8">
+                        <h1 className='text-[14px] w-3/4 lg:text-[20px] font-medium'>{dictionary?.HOME_description}</h1>
+                        {/* <h1 className='text-[14px] lg:text-[20px] font-medium'>từ các nguyên liệu 100% từ thiên nhiên như: lục bình, mây, tre, macrame.</h1> */}
                     </div>
-                    <Link href={ROUTES.PRODUCT} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
-                        KHÁM PHÁ <ArrowUpRight className="ml-2" size={18} />
+                    <Link href={`/${lang}${ROUTES.PRODUCT}`} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
+                        {dictionary?.HOME_discovery} <ArrowUpRight className="ml-2" size={18} />
                     </Link>
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
                 <div className="px-20 py-14 flex flex-col justify-start items-center">
-                    <div className="text-3xl font-bold mb-14">KINH DOANH BỀN VỮNG</div>
+                    <div className="text-3xl font-bold mb-14">{dictionary?.HOME_subtitle_1}</div>
                     <div className="flex flex-col lg:flex-row gap-10">
-                        {/* {esgs.map((esg, index) => (
-                            <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
-                                <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">{esg.title}</div>
-                                <div className="hidden md:flex lg:flex font-medium text-md text-center">{esg.description}</div>
-                            </div>
-                        ))} */}
                         {esgs.map((esg, index) => (
                             <Link href="/esg" key={index}>
                                 <div
@@ -233,7 +238,7 @@ export function HomePage() {
                     </div>
                 </div>
                 <div className="w-full pb-14 mt-10 flex flex-col justify-center items-center">
-                    <div className="w-full text-3xl font-bold mb-14 text-center">CHỨNG NHẬN</div>
+                    <div className="w-full text-3xl font-bold mb-8 text-center">{dictionary?.HOME_subtitle_2}</div>
                     <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-4">
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/hhzrcqlvmhrylzwwqqi5.jpg" alt="img" width={200} height={0} />
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732782449/ecoka/kypqpxwuqlrzivuqulfd.png" alt="img" width={280} height={0} />
@@ -242,31 +247,8 @@ export function HomePage() {
                     </div>
                 </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
-                {/* <div className="w-full flex flex-col justify-start items-center mb-14 mt-8">
-                    <div className="text-3xl font-bold text-center mb-8">Sản Phẩm</div>
-                    <div className="w-full mb-8">
-                        {loading ? (
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {Array.from({ length: 8 }).map((_, index) => (
-                                    <div key={index} className="animate-pulse flex flex-col items-center">
-                                        <div className="w-32 h-32 bg-gray-300 rounded-md mb-4"></div>
-                                        <div className="w-24 h-4 bg-gray-300 rounded-md mb-2"></div>
-                                        <div className="w-16 h-4 bg-gray-300 rounded-md"></div>
-                                    </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <Product products={Object.values(products).flat()} />
-                        )}
-                    </div>
-                    <Link className="w-full flex justify-center items-center" href={ROUTES.PRODUCT}>
-                        <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
-                            Xem thêm
-                        </Button>
-                    </Link>
-                </div> */}
                 <div className="w-full flex flex-col justify-start items-center mb-14 mt-8">
-                    <div className="text-3xl font-bold text-center mb-8">Sản Phẩm</div>
+                    <div className="text-3xl font-bold text-center mb-8">{dictionary?.HOME_subtitle_3}</div>
                     <div className="w-full mb-8">
                         {loading ? (
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -284,12 +266,12 @@ export function HomePage() {
                                     .filter(([category, items]) => items.length >= 4)
                                     .flatMap(([category, items]) =>
                                         items.map((product) => (
-                                            <Link href={`/san-pham/${product.id}`} key={product.id} className="relative group cursor-pointer rounded-lg">
+                                            <Link href={`${lang}/san-pham/${product?.id}`} key={product?.id} className="relative group cursor-pointer rounded-lg">
                                                 <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                                                     <div className="relative w-full h-[280px] rounded-lg">
                                                         <Image
-                                                            src={product.images[0]}
-                                                            alt={`${product.name} image`}
+                                                            src={product?.images[0]}
+                                                            alt={`${product?.name} image`}
                                                             fill
                                                             style={{ objectFit: "cover" }}
                                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -297,19 +279,19 @@ export function HomePage() {
                                                         />
                                                     </div>
                                                     <div className="flex flex-col justify-center p-3 text-start">
-                                                        <div className="text-lg font-bold mb-1 max-h-[28px] truncate">{product.name}</div>
+                                                        <div className="text-lg font-bold mb-1 max-h-[28px] truncate">{product?.name}</div>
                                                         <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
-                                                            {product.description}
+                                                            {product?.description}
                                                         </div>
                                                         <div className="w-full grid grid-cols-5 items-center">
                                                             <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
-                                                                {Intl.NumberFormat("de-DE").format(product.price)} VND
+                                                                {Intl.NumberFormat("de-DE").format(product?.price)} VND
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
-                                                    New
+                                                    {dictionary?.HOME_new_tag}
                                                 </div>
                                             </Link>
                                         ))
@@ -317,29 +299,29 @@ export function HomePage() {
                             </div>
                         )}
                     </div>
-                    <Link className="w-full flex justify-center items-center" href={ROUTES.PRODUCT}>
+                    <Link className="w-full flex justify-center items-center" href={`/${lang}${ROUTES.PRODUCT}`}>
                         <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
-                            Xem thêm
+                            {dictionary?.HOME_button_more}
                         </Button>
                     </Link>
                 </div>
 
                 <div className="w-full py-10 bg-[rgb(var(--secondary-rgb))] px-10 lg:lx-0 md:px-0 mb-24 rounded-lg">
-                    <Slider />
+                    <Slider lang={lang} dictionary={dictionary} />
                 </div>
-                <div className="bg-cover bg-center h-[300px] lg:h-[600px] md:h-[600px] w-full mb-20" style={{ backgroundImage: `url(${IMAGES.HOME_GRID})` }}>
+                <div className="bg-cover bg-center h-[300px] lg:h-[600px] md:h-[600px] w-full mb-20" style={{ backgroundImage: `url(${IMAGES?.HOME_GRID})` }}>
                     <div className="flex flex-col items-center justify-center" style={{ marginTop: '-40px' }}>
-                        <div className="text-sm text-gray-500 font-semibold">Chia sẽ góc decor</div>
-                        <div className="text-2xl text-gray-700 font-extrabold">#TrangTriNoiThat</div>
+                        <div className="text-sm text-gray-500 font-semibold">{dictionary?.HOME_decor_tag}</div>
+                        <div className="text-2xl text-gray-700 font-extrabold">{dictionary?.HOME_hashtag}</div>
                     </div>
                 </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
                 <div className="w-full flex flex-col justify-start items-center mt-8">
-                    <div className="text-3xl font-bold text-center mb-8">Bài Viết</div>
+                    <div className="text-3xl font-bold text-center mb-8">{dictionary?.HOME_subtitle_4}</div>
                     <div className="w-full mb-8">
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                             {
-                                home_blogs?.map((blog: any, index: any) => {
+                                []?.map((blog: any, index: any) => {
                                     return (
                                         <div key={index} className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
                                             <div className='relative w-full h-[240px] rounded-lg'>
@@ -354,22 +336,22 @@ export function HomePage() {
                                             </div>
                                             <h1 className="text-[13px] font-medium mt-1">{blog?.date}</h1>
                                             <h1 className="text-[16px] font-semibold max-h-[48px]">{truncateText(blog?.title, 76)}</h1>
-                                            <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">Tác giả: {blog?.author}</h1>
+                                            <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary?.HOME_blog_author}: {blog?.author}</h1>
                                         </div>
                                     )
                                 })
                             }
                         </div>
-                        <Link className="w-full flex justify-center items-center mt-14" href={ROUTES.BLOG}>
+                        <Link className="w-full flex justify-center items-center mt-14" href={`/${lang}${ROUTES.BLOG}`}>
                             <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
-                                Xem thêm
+                                {dictionary?.HOME_button_more}
                             </Button>
                         </Link>
                     </div>
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer />
+            <Footer dictionary={dictionary} />
         </div>
     )
 }

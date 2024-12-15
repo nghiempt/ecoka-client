@@ -29,7 +29,7 @@ interface Product {
   images: string[];
 };
 
-const ProductDetailPage: React.FC = () => {
+const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string }) => {
   const pathname = usePathname();
   const [currentData, setCurrentData] = useState<Product>({} as Product);
   const [quantity, setQuantity] = useState<number>(1);
@@ -122,7 +122,7 @@ const ProductDetailPage: React.FC = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-      <Header />
+      <Header page={`san-pham/${currentData?.id}`} lang={lang} dictionary={dictionary} />
       {loading ? (
         <div className="w-full min-h-screen flex justify-center items-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
@@ -130,20 +130,20 @@ const ProductDetailPage: React.FC = () => {
       ) : (
         <>
           <div className="w-full md:w-2/3 lg:w-2/3 bg-cover bg-center h-[250px] flex justify-center items-center md:rounded-lg lg:rounded-lg z-10"
-            style={{ backgroundImage: `url('/breadcrumb.png')` }}>
-            <div className="w-full flex flex-col justify-center items-center">
+            style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}>
+            <div className="w-full flex flex-col justify-center text-white items-center">
               <Image
-                src={IMAGES.BANNER_LOGO}
+                src={IMAGES?.BANNER_LOGO}
                 alt='Meubel House'
                 width={50}
                 height={50}
                 className="text-center"
               />
-              <h1 className="text-4xl font-semibold mb-2">SẢN PHẨM</h1>
+              <h1 className="text-4xl font-semibold mb-2">{dictionary?.PRODUCT_breadcrumb_main}</h1>
               <div className="flex gap-2 items-center">
-                <Link href="/" className="font-semibold text-sm">Trang chủ</Link>
+                <Link href={`/${lang}`} className="font-semibold text-sm">{dictionary?.PRODUCT_breadcrumb_submain_1}</Link>
                 <ChevronRight size={20} />
-                <Link href="/product" className="font-semibold text-sm">Sản phẩm</Link>
+                <Link href={`/${lang}/san-pham`} className="font-semibold text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</Link>
                 <ChevronRight size={20} />
                 <h1 className="text-sm">{truncateText(currentData?.name, 12)}</h1>
               </div>
@@ -188,14 +188,14 @@ const ProductDetailPage: React.FC = () => {
                       <FaStar key={i} className="text-yellow-500" />
                     ))}
                     <div className="border-l-2 h-6 mx-2 md:mx-4 border-gray-300"></div>
-                    <p className="text-sm text-gray-600">99 đánh giá</p>
+                    <p className="text-sm text-gray-600">99 {dictionary?.DETAIL_PRODUCT_rating}</p>
                   </div>
                   <p className="text-gray-600 text-center md:text-left">
                     {currentData?.description}
                   </p>
                   <div>
                     <h3 className="text-lg font-semibold text-center md:text-left">
-                      Size
+                      {dictionary?.DETAIL_PRODUCT_size}
                     </h3>
                     <div className="flex justify-center md:justify-start space-x-2 mt-2">
                       {sizes.map((size) => (
@@ -216,7 +216,7 @@ const ProductDetailPage: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-center md:text-left">
-                      Color
+                      {dictionary?.DETAIL_PRODUCT_color}
                     </h3>
                     <div className="flex justify-center md:justify-start space-x-2 mt-2">
                       {colors.map((colorObj) => (
@@ -259,32 +259,32 @@ const ProductDetailPage: React.FC = () => {
                         variant="outline"
                         className="border-black border-2  px-6 py-2 w-full md:w-auto font-semibold"
                       >
-                        Add To Cart
+                        {dictionary?.DETAIL_PRODUCT_cart}
                       </Button>
                       <Button
                         variant="outline"
                         className="border-black border-2  px-6 py-2 w-full md:w-auto font-semibold"
                       >
-                        Get Quote
+                        {dictionary?.DETAIL_PRODUCT_get_quote}
                       </Button>
                     </div>
                   </div>
                   <hr />
                   <div className="text-sm text-gray-600 mt-4 space-y-2">
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Danh mục:</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_1}:</p>
                       <p>Thời trang</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Xuất xứ:</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_2}:</p>
                       <p>Việt Nam</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Chất liệu:</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_3}:</p>
                       <p>Da</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">Nguồn</p>
+                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_origin}</p>
                       <div className="flex space-x-2">
                         <Button variant="outline" size="sm" className="p-1 border-none">
                           <FaFacebook className="text-lg" />
@@ -302,15 +302,15 @@ const ProductDetailPage: React.FC = () => {
               </div>
               <div className="w-full h-1 bg-[rgb(var(--primary-rgb))] mt-16"></div>
               <div className="w-full flex flex-col justify-start items-start mt-8">
-                <div className="text-2xl font-bold text-left mb-8">Sản Phẩm Liên Quan</div>
+                <div className="text-2xl font-bold text-left mb-8">{dictionary?.DETAIL_PRODUCT_subtitle_1}</div>
                 <div className="w-full z-10">
-                  <Product products={relatedProducts} />
+                  <Product lang={lang} dictionary={dictionary} products={relatedProducts} />
                 </div>
               </div>
             </div>
           </div>
           <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-          <Footer />
+          <Footer dictionary={dictionary} />
         </>
       )}
     </div>

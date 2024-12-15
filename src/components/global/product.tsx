@@ -19,14 +19,16 @@ interface Product {
 }
 
 interface ProductProps {
-    products: Product[]
+    products: Product[];
+    dictionary: any;
+    lang: string;
 }
 
-export const Product: React.FC<ProductProps> = ({ products }) => {
+export const Product: React.FC<ProductProps> = ({ products, dictionary, lang }) => {
     return (
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products?.map((product: Product, index: any) => (
-                <Link href={ROUTES.PRODUCT + `/${product?.id}`} key={index} className='relative group cursor-pointer rounded-lg'>
+                <Link href={`/${lang}/san-pham/${product.id}`} key={index} className='relative group cursor-pointer rounded-lg'>
                     <Card className="rounded-lg bg-gray-50 flex flex-col border-none">
                         <div className='relative w-full h-[280px] rounded-lg'>
                             <Image
@@ -53,25 +55,25 @@ export const Product: React.FC<ProductProps> = ({ products }) => {
                         </div>
                     </Card>
                     <div className={`absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center`}>
-                        New
+                        {dictionary?.HOME_new_tag}
                     </div>
                     <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
                     <div className='absolute inset-0 w-full flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
                         <Button className='w-2/3 mb-5 items-center font-bold rounded-sm bg-white opacity-100 text-[rgb(var(--quaternary-rgb))] hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate'>
-                            Chi tiết
+                            {dictionary?.PRODUCT_button_detail}
                         </Button>
                         <div className='w-full p-3 flex flex-wrap justify-center items-center gap-2'>
                             <div className='flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer'>
                                 <Share2 size={14} />
-                                Share
+                                {dictionary?.PRODUCT_button_share}
                             </div>
                             <div className='flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer'>
                                 <ArrowRightLeft size={14} />
-                                Compare
+                                {dictionary?.PRODUCT_button_compare}
                             </div>
                             <div className='flex justify-center items-center text-white text-sm font-semibold gap-1 hover:cursor-pointer'>
                                 <Heart size={14} />
-                                Like
+                                {dictionary?.PRODUCT_button_like}
                             </div>
                         </div>
                     </div>

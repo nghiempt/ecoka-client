@@ -20,7 +20,7 @@ interface Blog {
     date: string;
 };
 
-export function BlogPage() {
+export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -38,6 +38,7 @@ export function BlogPage() {
 
             const raw = JSON.stringify({
                 method: "GET",
+                lang: lang
             });
 
             const requestOptions = {
@@ -47,7 +48,7 @@ export function BlogPage() {
                 redirect: "follow" as RequestRedirect,
             };
 
-            const res = await fetch("https://n8n.khiemfle.com/webhook/ff9f5835-275b-4ecb-a4be-0392ae325ca6", requestOptions);
+            const res = await fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", requestOptions);
             if (!res.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -75,27 +76,28 @@ export function BlogPage() {
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-            <Header />
-            <NavMobile />
-            <div className="bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
+            <Header lang={lang} page={"bai-viet"} dictionary={dictionary} />
+            <NavMobile lang={lang} dictionary={dictionary} />
+            <div className="relative bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
                 style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
-                <div className="w-full flex flex-col justify-center items-center">
+                <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+                <div className="relative w-full flex flex-col justify-center items-center">
                     <Image
-                        src={IMAGES.BANNER_LOGO}
+                        src={IMAGES?.BANNER_LOGO}
                         alt="img"
                         width={50}
                         height={50}
                         className="text-center"
                     />
                     <h1 className="text-4xl font-semibold mb-2">
-                        BÀI VIẾT
+                        {dictionary?.BLOG_breadcrumb_main}
                     </h1>
                     <div className="flex gap-2 items-center">
-                        <Link href={ROUTES.HOME} className="font-semibold text-sm">
-                            Trang chủ
+                        <Link href={`/${lang}`} className="font-semibold text-sm">
+                            {dictionary?.PRODUCT_breadcrumb_submain_1}
                         </Link>
                         <ChevronRight size={20} />
-                        <h1 className="text-sm">Bài viết</h1>
+                        <h1 className="text-sm">{dictionary?.BLOG_breadcrumb_submain_3}</h1>
                     </div>
                 </div>
             </div>
@@ -114,12 +116,12 @@ export function BlogPage() {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                            {blogs.map((blog) => (
-                                <Link key={blog.row} href={`/bai-viet/${blog.id}`}>
+                            {blogs?.map((blog) => (
+                                <Link key={blog?.row} href={`/${lang}/bai-viet/${blog?.id}`}>
                                     <div className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
                                         <div className="relative w-full h-[240px] rounded-lg">
                                             <Image
-                                                src={blog.thumbnail}
+                                                src={blog?.thumbnail}
                                                 alt="img"
                                                 fill
                                                 style={{ objectFit: 'cover' }}
@@ -127,9 +129,9 @@ export function BlogPage() {
                                                 className="rounded-lg"
                                             />
                                         </div>
-                                        <h1 className="text-[13px] font-medium mt-1">{blog.date}</h1>
-                                        <h1 className="text-[16px] font-semibold max-h-[48px]">{blog.title}</h1>
-                                        <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">Tác giả: {blog.author}</h1>
+                                        <h1 className="text-[13px] font-medium mt-1">{blog?.date}</h1>
+                                        <h1 className="w-full text-[16px] font-semibold max-h-[48px] line-clamp-2">{blog?.title}</h1>
+                                        <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary?.HOME_blog_author}: {blog?.author}</h1>
                                     </div>
                                 </Link>
                             ))}
@@ -138,7 +140,7 @@ export function BlogPage() {
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer />
+            <Footer dictionary={dictionary} />
         </div>
     );
 }
