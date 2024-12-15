@@ -140,7 +140,7 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
                         {categories.map((category) => (
                             <li
                                 key={category}
-                                className={`uppercase cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === category ? " bg-white text-gray-950 border font-medium " : "text-black"
+                                className={`hover:border-2 hover:bg-gray-100 uppercase cursor-pointer py-2.5 px-4 rounded-md ${selectedCategory === category ? " bg-white text-gray-950 border font-medium " : "text-black"
                                     }`}
                                 onClick={() => handleFilterChange(category)}
                             >

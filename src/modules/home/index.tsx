@@ -191,7 +191,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         }
     };
 
-
     useEffect(() => {
         fetchProducts();
         fetchEsgs();
@@ -262,7 +261,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <img className="w-28 h-28 lg:w-44 lg:h-44 object-cover mt-10 md:mt-0 lg:mt-0" src={IMAGES?.LOGO_CIRCLE} alt="logo" />
                     <h1 className='text-[22px] lg:text-[60px] font-black'>{dictionary?.HOME_title}</h1>
                     <div className="text-center flex flex-col items-center gap-4 px-8">
-                        <h1 className='text-[14px] w-3/4 lg:text-[20px] font-medium'>{dictionary?.HOME_description}</h1>
+                        <h1 className='text-[14px] w-3/4 lg:text-[20px] font-light'>{dictionary?.HOME_description}</h1>
                     </div>
                     <Link href={`/${lang}${ROUTES.PRODUCT}`} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
                         {dictionary?.HOME_discovery} <ArrowUpRight className="ml-2" size={18} />
@@ -271,14 +270,14 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
                 <div className="px-20 py-14 flex flex-col justify-start items-center">
-                    <div className="text-3xl font-bold mb-14">{dictionary?.HOME_subtitle_1}</div>
+                    <div className="text-3xl text-gray-800 font-bold mb-14">{dictionary?.HOME_subtitle_1}</div>
                     <div className="flex flex-col lg:flex-row gap-10">
                         {esgs.map((esg, index) => (
-                            <Link href="/esg" key={index}>
+                            <Link href="/vi/esg" key={index}>
                                 <div
                                     className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer"
                                 >
-                                    <div className="font-bold text-xl lg:text-2xl md:text-2xl text-center">
+                                    <div className="font-bold text-gray-800 text-xl lg:text-2xl md:text-2xl text-center">
                                         {esg.title}
                                     </div>
                                     <div
@@ -298,8 +297,9 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         ))}
                     </div>
                 </div>
+                <div className="w-full h-1 bg-[rgb(var(--primary-rgb))] mb-10"></div>
                 <div className="w-full pb-14 mt-10 flex flex-col justify-center items-center">
-                    <div className="w-full text-3xl font-bold mb-8 text-center">{dictionary?.HOME_subtitle_2}</div>
+                    <div className="w-full text-gray-800 text-3xl font-bold mb-8 text-center">{dictionary?.HOME_subtitle_2}</div>
                     <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-4">
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/hhzrcqlvmhrylzwwqqi5.jpg" alt="img" width={200} height={0} />
                         <Image src="https://res.cloudinary.com/farmcode/image/upload/v1732782449/ecoka/kypqpxwuqlrzivuqulfd.png" alt="img" width={280} height={0} />
@@ -309,7 +309,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
                 <div className="w-full flex flex-col justify-start items-center mb-14 mt-8">
-                    <div className="text-3xl font-bold text-center mb-8">{dictionary?.HOME_subtitle_3}</div>
+                    <div className="text-3xl text-gray-800 font-bold text-center mb-8">{dictionary?.HOME_subtitle_3}</div>
                     <div className="w-full mb-8">
                         {loading ? (
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -366,7 +366,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         </Button>
                     </Link>
                 </div>
-
                 <div className="w-full py-10 bg-[rgb(var(--secondary-rgb))] px-10 lg:lx-0 md:px-0 mb-24 rounded-lg">
                     <Slider lang={lang} dictionary={dictionary} />
                 </div>

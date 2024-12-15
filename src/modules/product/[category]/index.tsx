@@ -118,19 +118,20 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
             <Header page={`san-pham${category}`} lang={lang} dictionary={dictionary} />
             <NavMobile lang={lang} dictionary={dictionary} />
-            <div className="bg-cover bg-center h-[250px] w-full md:w-2/3 lg:w-2/3 flex justify-center items-center md:rounded-lg lg:rounded-lg"
-                style={{ backgroundImage: `url('/breadcrumb.png')` }}>
-                <div className="w-full flex flex-col justify-center items-center">
+            <div
+                className="relative bg-cover bg-center h-[250px] w-full flex justify-center items-center text-white"
+                style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}
+            >
+                <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+                <div className="relative w-full flex flex-col justify-center items-center">
                     <Image
                         src={IMAGES?.BANNER_LOGO}
-                        alt='img'
+                        alt="img"
                         width={50}
                         height={50}
                         className="text-center"
                     />
-                    <h1 className="text-4xl font-semibold mb-2">
-                        {dictionary?.PRODUCT_breadcrumb_main}
-                    </h1>
+                    <h1 className="text-4xl font-semibold mb-2">{dictionary?.PRODUCT_breadcrumb_main}</h1>
                     <div className="flex gap-2 items-center">
                         <Link href={`/${lang}${ROUTES.HOME}`} className="font-semibold text-sm">
                             {dictionary?.PRODUCT_breadcrumb_submain_1}

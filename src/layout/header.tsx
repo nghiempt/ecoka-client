@@ -1,5 +1,6 @@
+"use client"
+
 import Link from "next/link";
-import { Facebook, Youtube, Mail, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { ROUTES } from "@/utils/route";
 import { IMAGES } from "@/utils/image";
@@ -13,16 +14,16 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                     <div className="hidden lg:flex items-center justify-center gap-4">
                         <Link href={URL?.FACEBOOK} target="_blank">
-                            <Facebook className="text-white" size={19} />
+                            <Image src="https://cdn-icons-png.flaticon.com/128/15047/15047435.png" alt="fb" width={21} height={21} />
                         </Link>
                         <Link href={URL?.YOUTUBE} target="_blank">
-                            <Youtube className="text-white" />
+                        <Image src="https://cdn-icons-png.flaticon.com/128/3670/3670147.png" alt="youtube" width={21} height={21} />
                         </Link>
                         <Link href={URL?.MAIL} target="_blank">
-                            <Mail className="text-white" />
+                        <Image src="https://cdn-icons-png.flaticon.com/128/6806/6806987.png" alt="mail" width={21} height={21} />
                         </Link>
                         <Link href={URL?.SHOPPING} target="_blank">
-                            <ShoppingBag className="text-white" size={19} />
+                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1734257182/ecoka/lkincykzxzjszovtjbgq.png" alt="shopee" width={21} height={21} />
                         </Link>
                         <Link href={`/vi/${page}`}>
                             <Image src={IMAGES?.FLAG_VI} alt="Vietnamese" width={21} height={21} />

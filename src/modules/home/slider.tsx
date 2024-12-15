@@ -16,10 +16,22 @@ export function Slider({ dictionary, lang }: { lang: string, dictionary: any }) 
         { id: "03", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000296/ecoka/ecoka-product-14-main_ng8hln.webp", title: 'Lồng Mèo Handmade', roomType: 'Nhà Thú Cưng' },
         { id: "04", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000394/ecoka/ecoka-product-19-main_rvl1ul.webp", title: 'Giỏ Xách Đẹp', roomType: 'Thời Trang' }
     ]);
+    const [slidesDataEn, setSlidesDataEn] = useState([
+        { id: "01", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000454/ecoka/ecoka-product-22-main_sjbc4d.webp", title: 'Rug Mat', roomType: 'Home' },
+        { id: "02", image: 'https://res.cloudinary.com/farmcode/image/upload/v1729000247/ecoka/ecoka-product-12-main_jlmsvh.webp', title: 'Hyacinth Plate', roomType: 'Kitchen' },
+        { id: "03", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000296/ecoka/ecoka-product-14-main_ng8hln.webp", title: 'Handmade Cat Cage', roomType: 'Pet House' },
+        { id: "04", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000394/ecoka/ecoka-product-19-main_rvl1ul.webp", title: 'Beautiful Handbag', roomType: 'Fashion' }
+    ]);
+    const [slidesDataJp, setSlidesDataJp] = useState([
+        { id: "01", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000454/ecoka/ecoka-product-22-main_sjbc4d.webp", title: 'スゲフロアマット', roomType: '家' },
+        { id: "02", image: 'https://res.cloudinary.com/farmcode/image/upload/v1729000247/ecoka/ecoka-product-12-main_jlmsvh.webp', title: 'ウォーターボトルプレート', roomType: '台所' },
+        { id: "03", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000296/ecoka/ecoka-product-14-main_ng8hln.webp", title: '手作り猫ケージ', roomType: 'ペットハウス' },
+        { id: "04", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000394/ecoka/ecoka-product-19-main_rvl1ul.webp", title: '美しいハンドバッグ', roomType: 'ファッション' }
+    ]);
 
     const totalSlides = slidesData.length;
 
-    const handleNext = () => {
+    const handleNext = (slidesData: any) => {
         if (containerRef.current) {
             const updatedSlides = [...slidesData];
             const firstSlide = updatedSlides.shift();
@@ -35,6 +47,17 @@ export function Slider({ dictionary, lang }: { lang: string, dictionary: any }) 
             });
         }
     };
+
+    const renderSlides = () => {
+        switch (lang) {
+            case 'en':
+                return slidesDataEn;
+            case 'jp':
+                return slidesDataJp;
+            default:
+                return slidesData;
+        }
+    }
 
     useEffect(() => {
         const container = containerRef.current;
@@ -58,7 +81,7 @@ export function Slider({ dictionary, lang }: { lang: string, dictionary: any }) 
                         className="w-full h-full carousel flex snap-x snap-mandatory gap-4 scroll-smooth items-center"
                         ref={containerRef}
                     >
-                        {slidesData?.map((slide: any, index: any) => (
+                        {renderSlides()?.map((slide: any, index: any) => (
                             <div
                                 key={index}
                                 className={`relative shrink-0 snap-start rounded-xl transition-all duration-300 ease-in-out transform ${currentIndex === index ? 'scale-110' : 'scale-100'}`}
@@ -91,13 +114,13 @@ export function Slider({ dictionary, lang }: { lang: string, dictionary: any }) 
                 <div className="absolute top-1/2 right-10">
                     <button
                         className="bg-white p-2 rounded-full shadow-md"
-                        onClick={handleNext}
+                        onClick={() => handleNext(renderSlides())}
                     >
                         <ChevronRight color='rgb(236,152,55)' />
                     </button>
                 </div>
                 <div className="absolute md:left-1/2 lg:left-1/2 bottom-5 flex gap-2 items-center">
-                    {slidesData?.map((_, index) => (
+                    {renderSlides()?.map((_, index) => (
                         <span
                             key={index}
                             className={`relative h-3 w-3 flex items-center justify-center 

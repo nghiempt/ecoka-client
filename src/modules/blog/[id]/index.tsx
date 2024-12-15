@@ -105,9 +105,10 @@ const BlogDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string })
         </div>
       ) : (
         <>
-          <div className="w-full bg-cover bg-center h-[250px] flex justify-center items-center z-10"
+          <div className="relative w-full bg-cover bg-center h-[250px] flex justify-center items-center z-10"
             style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725270/ecoka/xzv2x6cxsflrtzwojc4j.png')` }}>
-            <div className="w-full flex flex-col justify-center items-center text-white">
+            <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
+            <div className="relative w-full flex flex-col justify-center items-center text-white">
               <Image
                 src={IMAGES?.BANNER_LOGO}
                 alt="Meubel House"
