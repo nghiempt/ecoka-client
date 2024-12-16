@@ -333,7 +333,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <img className="w-28 h-28 lg:w-44 lg:h-44 object-cover mt-10 md:mt-0 lg:mt-0" src={IMAGES?.LOGO_CIRCLE} alt="logo" />
                     <h1 className='text-[22px] lg:text-[60px] font-black'>{dictionary?.HOME_title}</h1>
                     <div className="text-center flex flex-col items-center gap-4 px-8">
-                        <h1 className='text-[14px] w-3/4 lg:text-[20px] font-light'>{dictionary?.HOME_description}</h1>
+                        <h1 className='text-[14px] w-full md:w-3/4 lg:w-3/4 lg:text-[20px] font-light'>{dictionary?.HOME_description}</h1>
                     </div>
                     <Link href={`/${lang}${ROUTES.PRODUCT}`} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
                         {dictionary?.HOME_discovery} <ArrowUpRight className="ml-2" size={18} />
@@ -341,8 +341,8 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
-                <div className="px-20 py-14 flex flex-col justify-start items-center">
-                    <div className="text-3xl text-gray-800 font-bold mb-14">{dictionary?.HOME_subtitle_1}</div>
+                <div className="md:px-20 lg:px-20 py-14 flex flex-col justify-start items-center">
+                    <div className="text-center text-3xl text-gray-800 font-bold mb-14">{dictionary?.HOME_subtitle_1}</div>
                     <div className="flex flex-col lg:flex-row gap-10">
                         {loading ? (
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
@@ -416,7 +416,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                         items.map((product) => (
                                             <Link href={`${lang}/san-pham/${product?.id}`} key={product?.id} className="relative group cursor-pointer rounded-lg">
                                                 <div className="rounded-lg bg-gray-50 flex flex-col border-none">
-                                                    <div className="relative w-full h-[280px] rounded-lg">
+                                                    <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
                                                         <Image
                                                             src={product?.images[0]}
                                                             alt={`${product?.name} image`}

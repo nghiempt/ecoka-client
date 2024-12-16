@@ -127,7 +127,7 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col lg:flex-row justify-between mt-8 gap-8 ">
-                <div className="w-full lg:w-[22%] rounded-lg mb-6 lg:mb-0 min-h-[900px]">
+                <div className="w-full lg:w-[22%] rounded-lg mb-6 lg:mb-0 md:min-h-[900px] lg:min-h-[900px]">
                     <h3 className="text-lg font-semibold mb-4">{dictionary?.PRODUCT_filter}</h3>
                     <ul className="space-y-2">
                         <li
@@ -161,11 +161,11 @@ export function ProductPage({ dictionary, lang }: { dictionary: any; lang: strin
                             ))}
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {filteredProducts.map((product) => (
                                 <Link href={`/${lang}/san-pham/${product.id}`} key={product.id} className="relative group cursor-pointer rounded-lg">
                                     <div className="rounded-lg bg-gray-50 flex flex-col border-none">
-                                        <div className="relative w-full h-[280px] rounded-lg">
+                                        <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
                                             <Image
                                                 src={product.images[0]}
                                                 alt={`${product.name} image`}
