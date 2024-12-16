@@ -88,7 +88,7 @@ export default function PrivacyPolicyPage({ lang, dictionary }: {
         <div className="relative" ref={dropdownRef}>
           <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
             <Image className="" src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
-            <div className={`transition-transform duration-300  ${isOpen ? "" : "-rotate-90"} mt-1`}>
+            <div className={`transition-transform duration-300  ${isOpen ? "-translate-y-0.5" : "-rotate-90"} mt-1`}>
               <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
                 <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
               </svg>
