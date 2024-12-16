@@ -2,64 +2,156 @@ import { IMAGES } from "@/utils/image"
 import { Facebook, Youtube, Mail, ShoppingBag } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip"
 
-export const Footer = () => {
+
+import { categories, URL } from "@/utils/constant";
+import { ROUTES } from "@/utils/route"
+
+export const Footer = ({ dictionary, lang }: { lang: string, dictionary: any }) => {
     return (
         <div className="w-5/6 md:w-2/3 lg:w-2/3 pb-6">
             <div className="w-full grid grid-row-1 md:grid-cols-6 lg:grid-cols-6 gap-10 md:gap-24 lg:gap-24">
                 <div className="md:col-span-2 lg:col-span-2 flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                    <Image src={IMAGES.LOGO} width={160} height={160} alt="logo" />
-                    <div className="text-center md:text-left lg:text-left text-[14px]">Là công ty sản xuất và thương mại các sản phẩm thủ công mỹ nghệ truyền thống từ các nguyên liệu 100% từ thiên nhiên.</div>
+                    <Image src={IMAGES?.LOGO} width={160} height={160} alt="logo" />
+                    <div className="text-center md:text-left lg:text-left text-[14px]">{dictionary?.FOOTER_section_1}</div>
                     <div className="flex justify-start items-center gap-4">
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <Facebook />
-                        </div>
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <Youtube />
-                        </div>
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <Mail />
-                        </div>
-                        <div className="bg-gray-100 p-2 rounded-lg">
-                            <ShoppingBag />
-                        </div>
+                        <Link href={URL?.FACEBOOK} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
+                                <Image className="rounded-sm" src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
+                            </div>
+                        </Link>
+                        <Link href={URL?.TIKTOK} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
+                                <Image src={IMAGES.TIKTOK} alt="fb" width={23} height={23} />
+                            </div>
+                        </Link>
+                        <Link href={URL?.YOUTUBE} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
+                                <Image src={IMAGES.YOUTUBE} alt="youtube" width={23} height={23} />
+                            </div>
+                        </Link>
+                        <Link href={URL?.MAIL} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
+                                <Image src={IMAGES.EMAIL} alt="mail" width={23} height={23} />
+                            </div>
+                        </Link>
+                        <Link href={URL?.SHOPPING} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
+                                <Image src={IMAGES.SHOPEE} alt="shopee" width={23} height={23} />
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <div className="md:col-span-4 lg:col-span-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 text-[14px]">
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Trang Chủ</div>
+                        <Link href={`/${lang}/`}>
+                            <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_2[0]}</div>
+                        </Link>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Giới Thiệu</div>
-                            <div>Bài Viết</div>
-                            <div>Liên Hệ</div>
-                            <div>ESG</div>
+                            <Link href={`/${lang}${ROUTES.ABOUT}`}>
+                                <div>{dictionary?.FOOTER_section_2[1]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.BLOG}`}>
+                                <div>{dictionary?.FOOTER_section_2[2]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.CONTACT}`}>
+                                <div>{dictionary?.FOOTER_section_2[3]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.ESG}`}>
+                                <div>{dictionary?.FOOTER_section_2[4]}</div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Sản Phẩm</div>
+                        <Link href={`/${lang}${ROUTES.PRODUCT}`}>
+                            <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_3[0]}</div>
+                        </Link>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Nhà Cửa</div>
-                            <div>Nhà Bếp</div>
-                            <div>Nhà Thú Cưng</div>
-                            <div>Thời Trang</div>
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[2]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[1]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[1]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[2]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[3]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[3]}</div>
+                            </Link>
+
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[0]?.path}`}>
+                                <div>{dictionary?.FOOTER_section_3[4]}</div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Chúng Tôi</div>
+                        <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_4[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Facebook</div>
-                            <div>Youtube</div>
-                            <div>Shopee</div>
-                            <div>Email</div>
+                            <Link href={URL?.FACEBOOK} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[1]}</div>
+                            </Link>
+
+                            <Link href={URL?.YOUTUBE} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[2]}</div>
+                            </Link>
+
+                            <Link href={URL?.SHOPPING} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[3]}</div>
+                            </Link>
+
+                            <Link href={URL?.MAIL} target="_blank">
+                                <div>{dictionary?.FOOTER_section_4[4]}</div>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center md:items-start lg:items-start gap-4">
-                        <div className="text-gray-700 font-semibold">Hỗ Trợ</div>
+                        <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_5[0]}</div>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <div>Ưu Đãi</div>
-                            <div>Nhượng Quyền</div>
-                            <div>Điều Khoản</div>
-                            <div>Chính Sách</div>
+                            <div className="flex flex-col space-y-2">
+                                <div className="relative group cursor-pointer">
+                                    <div>{dictionary?.FOOTER_section_5[1]}</div>
+                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
+                                        <p>
+                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="relative group cursor-pointer">
+                                    <div>{dictionary?.FOOTER_section_5[2]}</div>
+                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
+                                        <p>
+                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="relative group cursor-pointer">
+                                    <div>{dictionary?.FOOTER_section_5[3]}</div>
+                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
+                                        <p>
+                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <Link href={`/${lang}${ROUTES?.PRIVACY_POLICY}`}>
+                                        <div>{dictionary?.FOOTER_section_5[4]}</div>
+                                    </Link>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

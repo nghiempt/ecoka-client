@@ -4,21 +4,34 @@ import { Button } from '@/components/ui/button';
 import { IMAGES } from '@/utils/image';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ROUTES } from '@/utils/route';
 
-export function Slider() {
+export function Slider({ dictionary, lang }: { lang: string, dictionary: any }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [paginationIndex, setPaginationIndex] = useState(0)
     const [slidesData, setSlidesData] = useState([
-        { id: "01", image: IMAGES.PRODUCT_22_MAIN, title: 'Thảm Cói Trải Sàn', roomType: 'Nhà Cửa' },
-        { id: "02", image: IMAGES.PRODUCT_12_MAIN, title: 'Dĩa Lục Bình', roomType: 'Nhà Bếp' },
-        { id: "03", image: IMAGES.PRODUCT_14_MAIN, title: 'Lồng Mèo Handmade', roomType: 'Nhà Thú Cưng' },
-        { id: "04", image: IMAGES.PRODUCT_19_MAIN, title: 'Giỏ Xách Đẹp', roomType: 'Thời Trang' }
+        { id: "01", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000454/ecoka/ecoka-product-22-main_sjbc4d.webp", title: 'Thảm Cói Trải Sàn', roomType: 'Nhà Cửa' },
+        { id: "02", image: 'https://res.cloudinary.com/farmcode/image/upload/v1729000247/ecoka/ecoka-product-12-main_jlmsvh.webp', title: 'Dĩa Lục Bình', roomType: 'Nhà Bếp' },
+        { id: "03", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000296/ecoka/ecoka-product-14-main_ng8hln.webp", title: 'Lồng Mèo Handmade', roomType: 'Nhà Thú Cưng' },
+        { id: "04", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000394/ecoka/ecoka-product-19-main_rvl1ul.webp", title: 'Giỏ Xách Đẹp', roomType: 'Thời Trang' }
+    ]);
+    const [slidesDataEn, setSlidesDataEn] = useState([
+        { id: "01", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000454/ecoka/ecoka-product-22-main_sjbc4d.webp", title: 'Rug Mat', roomType: 'Home' },
+        { id: "02", image: 'https://res.cloudinary.com/farmcode/image/upload/v1729000247/ecoka/ecoka-product-12-main_jlmsvh.webp', title: 'Hyacinth Plate', roomType: 'Kitchen' },
+        { id: "03", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000296/ecoka/ecoka-product-14-main_ng8hln.webp", title: 'Handmade Cat Cage', roomType: 'Pet House' },
+        { id: "04", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000394/ecoka/ecoka-product-19-main_rvl1ul.webp", title: 'Beautiful Handbag', roomType: 'Fashion' }
+    ]);
+    const [slidesDataJp, setSlidesDataJp] = useState([
+        { id: "01", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000454/ecoka/ecoka-product-22-main_sjbc4d.webp", title: 'スゲフロアマット', roomType: '家' },
+        { id: "02", image: 'https://res.cloudinary.com/farmcode/image/upload/v1729000247/ecoka/ecoka-product-12-main_jlmsvh.webp', title: 'ウォーターボトルプレート', roomType: '台所' },
+        { id: "03", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000296/ecoka/ecoka-product-14-main_ng8hln.webp", title: '手作り猫ケージ', roomType: 'ペットハウス' },
+        { id: "04", image: "https://res.cloudinary.com/farmcode/image/upload/v1729000394/ecoka/ecoka-product-19-main_rvl1ul.webp", title: '美しいハンドバッグ', roomType: 'ファッション' }
     ]);
 
     const totalSlides = slidesData.length;
 
-    const handleNext = () => {
+    const handleNext = (slidesData: any) => {
         if (containerRef.current) {
             const updatedSlides = [...slidesData];
             const firstSlide = updatedSlides.shift();
@@ -26,6 +39,8 @@ export function Slider() {
                 updatedSlides.push(firstSlide);
             }
             setSlidesData(updatedSlides);
+            setSlidesDataEn(updatedSlides);
+            setSlidesDataJp(updatedSlides);
             setCurrentIndex(0);
             setPaginationIndex((prevIndex) => (prevIndex + 1) % totalSlides);
             containerRef.current.scrollTo({
@@ -35,6 +50,17 @@ export function Slider() {
         }
     };
 
+    const renderSlides = () => {
+        switch (lang) {
+            case 'en':
+                return slidesDataEn;
+            case 'jp':
+                return slidesDataJp;
+            default:
+                return slidesData;
+        }
+    }
+
     useEffect(() => {
         const container = containerRef.current;
         if (!container) return;
@@ -43,11 +69,11 @@ export function Slider() {
     return (
         <div className="flex flex-col md:grid md:grid-cols-5 lg:grid lg:grid-cols-5">
             <div className="col-span-2 md:p-10 lg:p-10 flex flex-col justify-center">
-                <div className="text-black text-3xl font-bold mb-2 text-clip overflow-hidden text-center md:text-start lg:text-start">200+ Sản phẩm thân thiện với môi trường</div>
-                <div className="text-sm font-medium text-gray-600 mb-5 text-clip overflow-hidden text-center md:text-start lg:text-start">Với mẫu mã đa dạng, họa tiết tinh tế, túi lục bình Chaneva xinh xắn, thời trang và thân thiện với môi trường này đã làm hài lòng rất nhiều khách trong và ngoài nước.</div>
-                <Link className="w-full flex justify-center items-center md:justify-start lg:justify-start" href="/san-pham">
+                <div className="text-black text-3xl font-bold mb-2 text-clip overflow-hidden text-center md:text-start lg:text-start">{dictionary?.HOME_discovery_title}</div>
+                <div className="text-sm font-medium text-gray-600 mb-5 text-clip overflow-hidden text-center md:text-start lg:text-start">{dictionary?.HOME_discovery_brief}</div>
+                <Link className="w-full flex justify-center items-center md:justify-start lg:justify-start" href={`/${lang}${ROUTES.PRODUCT}`}>
                     <Button className="bg-[rgb(var(--primary-rgb))] rounded-lg lg:w-1/2 hover:opacity-80 hover:bg-[rgb(var(--primary-rgb))] text-ellipsis overflow-hidden whitespace-nowrap">
-                        Khám Phá
+                        {dictionary?.HOME_button_discovery}
                     </Button>
                 </Link>
             </div>
@@ -57,7 +83,7 @@ export function Slider() {
                         className="w-full h-full carousel flex snap-x snap-mandatory gap-4 scroll-smooth items-center"
                         ref={containerRef}
                     >
-                        {slidesData?.map((slide: any, index: any) => (
+                        {renderSlides()?.map((slide: any, index: any) => (
                             <div
                                 key={index}
                                 className={`relative shrink-0 snap-start rounded-xl transition-all duration-300 ease-in-out transform ${currentIndex === index ? 'scale-110' : 'scale-100'}`}
@@ -90,13 +116,13 @@ export function Slider() {
                 <div className="absolute top-1/2 right-10">
                     <button
                         className="bg-white p-2 rounded-full shadow-md"
-                        onClick={handleNext}
+                        onClick={() => handleNext(renderSlides())}
                     >
                         <ChevronRight color='rgb(236,152,55)' />
                     </button>
                 </div>
                 <div className="absolute md:left-1/2 lg:left-1/2 bottom-5 flex gap-2 items-center">
-                    {slidesData?.map((_, index) => (
+                    {renderSlides()?.map((_, index) => (
                         <span
                             key={index}
                             className={`relative h-3 w-3 flex items-center justify-center 
