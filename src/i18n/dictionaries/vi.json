@@ -151,5 +151,26 @@
         "Nhượng Quyền",
         "Điều Khoản",
         "Chính Sách"
+    ],
+    "PRIVACY_POLICY_title": "CHÍNH SÁCH BẢO MẬT",
+    "PRIVACY_POLICY_subtitle": [
+        "1. Giới thiệu",
+        "2. Chúng Tôi Thu Thập Gì",
+        "3. Phân Tích Dữ Liệu",
+        "4. Quảng Cáo",
+        "5. Sản Phẩm Tự Nhiên",
+        "6. Quy Trình Sản Xuất Bền Vững",
+        "7. Dành Cho Trẻ Em",
+        "8. Liên Hệ"
+    ],
+    "PRIVACY_POLICY_content": [
+        "Chào mừng bạn đến với ECOKA! Chúng tôi cam kết bảo vệ quyền riêng tư của bạn khi sử dụng website. Các thông tin được thu thập nhằm mục đích nâng cao trải nghiệm người dùng và không chia sẻ cho bên thứ ba trừ khi cần thiết để cung cấp dịch vụ.",
+        "Chúng tôi thu thập thông tin bạn cung cấp, như email khi bạn đăng ký, và thông tin sử dụng như địa chỉ IP, trình duyệt, hoặc hệ điều hành. Dữ liệu này giúp chúng tôi cải thiện hiệu quả dịch vụ.",
+        "Website sử dụng Google Analytics để đo lường lưu lượng truy cập và hành vi người dùng. Dữ liệu được thu thập hoàn toàn ẩn danh, nhằm tối ưu hóa giao diện và hiệu suất website. Bạn có thể tắt theo dõi này tại Ads Settings.",
+        "Chúng tôi không chia sẻ dữ liệu cá nhân với các nhà quảng cáo. Bên thứ ba như Google có thể sử dụng cookie để hiển thị quảng cáo dựa trên lịch sử truy cập. Bạn có thể điều chỉnh cài đặt cookie trên trình duyệt của mình hoặc thông qua các công cụ quản lý quảng cáo.",
+        "Các sản phẩm của ECOKA được làm từ nguyên liệu 100% tự nhiên như lục bình, mây, tre, và macrame. Chúng tôi không thu thập hay lưu trữ bất kỳ dữ liệu cá nhân nào trong quá trình sản xuất hoặc giao dịch.",
+        "ECOKA cam kết duy trì quy trình sản xuất thân thiện với môi trường. Nguyên liệu từ thiên nhiên được khai thác và xử lý tại địa phương, giúp giảm thiểu tác động tiêu cực đến môi trường và hỗ trợ cộng đồng địa phương.",
+        "Dịch vụ của chúng tôi không dành cho trẻ em dưới 13 tuổi và không thu thập thông tin từ đối tượng này. Các phụ huynh hoặc giáo viên có thể đại diện cho trẻ sử dụng dịch vụ vì mục đích giáo dục, đảm bảo không cung cấp thông tin cá nhân.",
+        "Nếu bạn có thắc mắc, hãy liên hệ với chúng tôi qua email:"
     ]
 }

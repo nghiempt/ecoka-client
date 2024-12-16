@@ -5,6 +5,7 @@ export const URL = {
   YOUTUBE: "https://www.youtube.com/@JessicaQuangVN",
   MAIL: "mailto:info@ecoka.vn",
   SHOPPING: "https://shopee.vn/quangchanchan",
+  TIKTOK: "https://www.tiktok.com/@ecokajsc?_t=ZS-8sFo2GhzEN0&_r=1",
 };
 
 export const categories: any = [

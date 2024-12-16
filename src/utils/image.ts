@@ -16,6 +16,7 @@ export const IMAGES = {
   BLOG_01_MAIN: "",
   FACEBOOK:
     "https://res.cloudinary.com/farmcode/image/upload/v1734282409/ecoka/facebook_1_hkfh5z.png",
+  TIKTOK: "https://cdn-icons-png.flaticon.com/128/15713/15713399.png",
   YOUTUBE: "https://cdn-icons-png.flaticon.com/128/15527/15527679.png",
   EMAIL: "https://cdn-icons-png.flaticon.com/128/732/732200.png",
   SHOPEE:

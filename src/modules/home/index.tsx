@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Footer } from "@/layout/footer"
 import { categories, languages, URL } from "@/utils/constant"
 import { IMAGES } from "@/utils/image"
-import { ArrowUpRight, Facebook, LayoutGrid, Mail } from "lucide-react"
-import { ShoppingBag, Youtube } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { Slider } from "./slider"
 import { ROUTES } from "@/utils/route"
@@ -243,7 +242,10 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                     <div className="hidden lg:flex items-center justify-center gap-4">
                         <Link href={URL?.FACEBOOK} target="_blank">
-                            <Image src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
+                            <Image className="rounded-sm" src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
+                        </Link>
+                        <Link href={URL?.TIKTOK} target="_blank">
+                            <Image src={IMAGES.TIKTOK} alt="fb" width={27} height={27} />
                         </Link>
                         <Link href={URL?.YOUTUBE} target="_blank">
                             <Image src={IMAGES.YOUTUBE} alt="youtube" width={23} height={23} />
@@ -267,7 +269,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         <div className="relative" ref={dropdownRef}>
                             <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
                                 <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
-                                <div className={`transition-transform duration-300 ${isOpen ? "" : "-rotate-90"} mt-1`}>
+                                <div className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"} mt-1`}>
                                     <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
                                         <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                                     </svg>

@@ -159,5 +159,26 @@
         "Franchise",
         "Terms",
         "Policies"
+    ],
+    "PRIVACY_POLICY_title": "PRIVACY POLICY",
+    "PRIVACY_POLICY_subtitle": [
+        "1. Introduction",
+        "2. What We Collect",
+        "3. Data Analysis",
+        "4. Advertising",
+        "5. Natural Products",
+        "6. Sustainable Production Process",
+        "7. For Children",
+        "8. Contact"
+    ],
+    "PRIVACY_POLICY_content": [
+        "Welcome to ECOKA! We are committed to protecting your privacy when using our website. Information collected is intended to enhance the user experience and is not shared with third parties unless necessary to provide services.",
+        "We collect the information you provide, such as your email when you register, and usage information like IP addresses, browsers, or operating systems. This data helps us improve service efficiency.",
+        "The website uses Google Analytics to measure traffic and user behavior. The data is collected completely anonymously, to optimize the website's interface and performance. You can disable this tracking in Ads Settings.",
+        "We do not share personal data with advertisers. Third parties such as Google may use cookies to display ads based on browsing history. You can adjust cookie settings in your browser or through ad management tools.",
+        "ECOKA's products are made from 100% natural materials such as water hyacinth, rattan, bamboo, and macrame. We do not collect or store any personal data during the production or transaction process.",
+        "ECOKA is committed to maintaining an environmentally friendly production process. Natural materials are sourced and processed locally, minimizing negative environmental impacts and supporting local communities.",
+        "Our services are not intended for children under the age of 13 and do not collect information from this demographic. Parents or teachers may represent children in using the service for educational purposes, ensuring no personal information is provided.",
+        "If you have any questions, please contact us via email:"
     ]
 }

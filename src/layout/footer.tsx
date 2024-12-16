@@ -23,22 +23,27 @@ export const Footer = ({ dictionary, lang }: { lang: string, dictionary: any }) 
                     <div className="flex justify-start items-center gap-4">
                         <Link href={URL?.FACEBOOK} target="_blank">
                             <div className="bg-gray-100 p-2 rounded-lg">
-                                <Image src="https://cdn-icons-png.flaticon.com/128/15047/15047435.png" alt="fb" width={23} height={23} />
+                                <Image className="rounded-sm" src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
+                            </div>
+                        </Link>
+                        <Link href={URL?.TIKTOK} target="_blank">
+                            <div className="bg-gray-100 p-2 rounded-lg">
+                                <Image src={IMAGES.TIKTOK} alt="fb" width={23} height={23} />
                             </div>
                         </Link>
                         <Link href={URL?.YOUTUBE} target="_blank">
                             <div className="bg-gray-100 p-2 rounded-lg">
-                                <Image src="https://cdn-icons-png.flaticon.com/128/3670/3670147.png" alt="youtube" width={23} height={23} />
+                                <Image src={IMAGES.YOUTUBE} alt="youtube" width={23} height={23} />
                             </div>
                         </Link>
                         <Link href={URL?.MAIL} target="_blank">
                             <div className="bg-gray-100 p-2 rounded-lg">
-                                <Image src="https://cdn-icons-png.flaticon.com/128/6806/6806987.png" alt="mail" width={23} height={23} />
+                                <Image src={IMAGES.EMAIL} alt="mail" width={23} height={23} />
                             </div>
                         </Link>
                         <Link href={URL?.SHOPPING} target="_blank">
                             <div className="bg-gray-100 p-2 rounded-lg">
-                                <Image src="https://res.cloudinary.com/farmcode/image/upload/v1734257182/ecoka/lkincykzxzjszovtjbgq.png" alt="shopee" width={23} height={23} />
+                                <Image src={IMAGES.SHOPEE} alt="shopee" width={23} height={23} />
                             </div>
                         </Link>
                     </div>
@@ -71,19 +76,19 @@ export const Footer = ({ dictionary, lang }: { lang: string, dictionary: any }) 
                             <div className="text-gray-700 font-semibold">{dictionary?.FOOTER_section_3[0]}</div>
                         </Link>
                         <div className="flex flex-col justify-center items-center md:items-start lg:items-start text-gray-400 gap-2">
-                            <Link href={`/${lang}${categories[2]?.path}`}>
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[2]?.path}`}>
                                 <div>{dictionary?.FOOTER_section_3[1]}</div>
                             </Link>
 
-                            <Link href={`/${lang}${categories[1]?.path}`}>
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[1]?.path}`}>
                                 <div>{dictionary?.FOOTER_section_3[2]}</div>
                             </Link>
 
-                            <Link href={`/${lang}${categories[3]?.path}`}>
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[3]?.path}`}>
                                 <div>{dictionary?.FOOTER_section_3[3]}</div>
                             </Link>
 
-                            <Link href={`/${lang}${categories[0]?.path}`}>
+                            <Link href={`/${lang}${ROUTES.PRODUCT}${categories[0]?.path}`}>
                                 <div>{dictionary?.FOOTER_section_3[4]}</div>
                             </Link>
                         </div>
@@ -139,13 +144,10 @@ export const Footer = ({ dictionary, lang }: { lang: string, dictionary: any }) 
                                     </div>
                                 </div>
 
-                                <div className="relative group cursor-pointer">
-                                    <div>{dictionary?.FOOTER_section_5[4]}</div>
-                                    <div className="absolute left-0 -top-10 mt-1 hidden w-max rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md group-hover:block z-30">
-                                        <p>
-                                            {lang === "vi" ? "Đang phát triển" : lang === "en" ? "Developing" : lang === "jp" ? "現像" : ""}
-                                        </p>
-                                    </div>
+                                <div>
+                                    <Link href={`/${lang}${ROUTES?.PRIVACY_POLICY}`}>
+                                        <div>{dictionary?.FOOTER_section_5[4]}</div>
+                                    </Link>
                                 </div>
                             </div>
 
