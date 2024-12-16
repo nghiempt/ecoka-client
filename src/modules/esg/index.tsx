@@ -209,7 +209,7 @@ export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                     </section>
                 </div>)}
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer dictionary={dictionary} />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     )
 }

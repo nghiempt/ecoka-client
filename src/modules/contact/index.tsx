@@ -105,7 +105,7 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
-                {!loading ? <SkeletonLoader /> : (
+                {loading ? <SkeletonLoader /> : (
                     <div className="w-full bg-white mt-8 md:mt-0 lg:mt-0 md:py-8 lg:py-8 flex justify-center">
                         <div className="w-full max-w-3xl text-center px-4">
                             <h1 className="text-2xl md:text-3xl font-bold">{dictionary?.CONTACT_title}</h1>
@@ -261,7 +261,7 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer dictionary={dictionary} />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     )
 }

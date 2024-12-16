@@ -3,7 +3,7 @@
 import { Product } from "@/components/global/product"
 import { Button } from "@/components/ui/button"
 import { Footer } from "@/layout/footer"
-import { categories, URL } from "@/utils/constant"
+import { categories, languages, URL } from "@/utils/constant"
 import { IMAGES } from "@/utils/image"
 import { ArrowUpRight, Facebook, LayoutGrid, Mail } from "lucide-react"
 import { ShoppingBag, Youtube } from "lucide-react"
@@ -13,7 +13,7 @@ import { ROUTES } from "@/utils/route"
 import Image from "next/image"
 import { NavMobile } from "@/layout/nav-mobile"
 import { truncateText } from "@/utils/helper"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { getAll } from "@/utils/api"
 
 interface Product {
@@ -196,6 +196,45 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         fetchEsgs();
         fetchBlogs();
     }, []);
+
+
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const [currentLang, setCurrentLang] = useState(() =>
+        languages.find((l) => l.lang === lang) || languages[0]
+    );
+
+    const handleLanguageChange = (lang: string) => {
+        const selectedLang = languages.find((l) => l.lang === lang);
+        if (selectedLang) {
+            setCurrentLang(selectedLang);
+        }
+        setIsOpen(false);
+    };
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
+
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
             <NavMobile lang={lang} dictionary={dictionary} />
@@ -203,11 +242,19 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 <div className="w-2/3 py-6 flex flex-col lg:flex-row items-center justify-end gap-4">
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                     <div className="hidden lg:flex items-center justify-center gap-4">
-                        <Link href={URL.FACEBOOK} target="_blank"><Facebook className="text-white" size={19} /></Link>
-                        <Link href={URL.YOUTUBE} target="_blank"><Youtube className="text-white" /></Link>
-                        <Link href={URL.MAIL} target="_blank"><Mail className="text-white" /></Link>
-                        <Link href={URL.SHOPPING} target="_blank"><ShoppingBag className="text-white" size={19} /></Link>
-                        <Link href="/vi">
+                        <Link href={URL?.FACEBOOK} target="_blank">
+                            <Image src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
+                        </Link>
+                        <Link href={URL?.YOUTUBE} target="_blank">
+                            <Image src={IMAGES.YOUTUBE} alt="youtube" width={23} height={23} />
+                        </Link>
+                        <Link href={URL?.MAIL} target="_blank">
+                            <Image src={IMAGES.EMAIL} alt="mail" width={26} height={26} />
+                        </Link>
+                        <Link href={URL?.SHOPPING} target="_blank">
+                            <Image src={IMAGES.SHOPEE} alt="shopee" width={23} height={23} />
+                        </Link>
+                        {/* <Link href="/">
                             <Image src={IMAGES?.FLAG_VI} alt="img" width={21} height={21} />
                         </Link>
                         <Link href="/en">
@@ -215,7 +262,32 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                         </Link>
                         <Link href="/jp">
                             <Image src={IMAGES?.FLAG_JP} alt="img" width={21} height={21} />
-                        </Link>
+                        </Link> */}
+
+                        <div className="relative" ref={dropdownRef}>
+                            <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
+                                <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
+                                <div className={`transition-transform duration-300 ${isOpen ? "" : "-rotate-90"} mt-1`}>
+                                    <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            {isOpen && (
+                                <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-opacity-80 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                    {languages
+                                        .filter(({ lang }) => lang !== currentLang.lang)
+                                        .map(({ lang, label, flag }) => (
+                                            <Link href={`/${lang}`}>
+                                                <li key={lang} className="flex justify-center m-3" onClick={() => handleLanguageChange(lang)}>
+                                                    <Image src={flag} alt={label} width={23} height={23} />
+                                                </li>
+                                            </Link>
+                                        ))}
+                                </ul>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -261,7 +333,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <img className="w-28 h-28 lg:w-44 lg:h-44 object-cover mt-10 md:mt-0 lg:mt-0" src={IMAGES?.LOGO_CIRCLE} alt="logo" />
                     <h1 className='text-[22px] lg:text-[60px] font-black'>{dictionary?.HOME_title}</h1>
                     <div className="text-center flex flex-col items-center gap-4 px-8">
-                        <h1 className='text-[14px] w-3/4 lg:text-[20px] font-light'>{dictionary?.HOME_description}</h1>
+                        <h1 className='text-[14px] w-full md:w-3/4 lg:w-3/4 lg:text-[20px] font-light'>{dictionary?.HOME_description}</h1>
                     </div>
                     <Link href={`/${lang}${ROUTES.PRODUCT}`} className="flex flex-row justify-center items-center py-2 bg-[rgb(var(--primary-rgb))] rounded-lg text-[12px] md:text-[14px] lg:text-[14px] font-medium px-6 hover:bg-[rgb(var(--primary-rgb))] hover:opacity-80">
                         {dictionary?.HOME_discovery} <ArrowUpRight className="ml-2" size={18} />
@@ -269,32 +341,47 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
-                <div className="px-20 py-14 flex flex-col justify-start items-center">
-                    <div className="text-3xl text-gray-800 font-bold mb-14">{dictionary?.HOME_subtitle_1}</div>
+                <div className="md:px-20 lg:px-20 py-14 flex flex-col justify-start items-center">
+                    <div className="text-center text-3xl text-gray-800 font-bold mb-14">{dictionary?.HOME_subtitle_1}</div>
                     <div className="flex flex-col lg:flex-row gap-10">
-                        {esgs.map((esg, index) => (
-                            <Link href="/vi/esg" key={index}>
-                                <div
-                                    className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer"
-                                >
-                                    <div className="font-bold text-gray-800 text-xl lg:text-2xl md:text-2xl text-center">
-                                        {esg.title}
+                        {loading ? (
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+                                {Array.from({ length: 3 }).map((_, index) => (
+                                    <div key={index} className="animate-pulse flex flex-col items-center">
+                                        <div className="w-40 h-4 bg-gray-300 rounded-md mb-8 mr-10"></div>
+                                        <div className="w-60 h-4 bg-gray-300 rounded-md mb-3 mr-10"></div>
+                                        <div className="w-16 h-4 bg-gray-300 rounded-md mb-4 mr-10"></div>
+                                        <div className="w-24 h-4 bg-gray-300 rounded-md mr-10"></div>
                                     </div>
+                                ))}
+                            </div>
+                        ) : (
+
+                            esgs.map((esg, index) => (
+                                <Link href={`/${lang}${ROUTES.ESG}`} key={index}>
                                     <div
-                                        className="hidden md:flex lg:flex font-light text-md text-center line-clamp-3"
-                                        style={{
-                                            display: '-webkit-box',
-                                            WebkitLineClamp: 3,
-                                            WebkitBoxOrient: 'vertical',
-                                            overflow: 'hidden',
-                                            textOverflow: 'ellipsis',
-                                        }}
+                                        className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer"
                                     >
-                                        {esg.description}
+                                        <div className="font-bold text-gray-800 text-xl lg:text-2xl md:text-2xl text-center">
+                                            {esg.title}
+                                        </div>
+                                        <div
+                                            className="hidden md:flex lg:flex font-light text-md text-center line-clamp-3"
+                                            style={{
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 3,
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis',
+                                            }}
+                                        >
+                                            {esg.description}
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            ))
+
+                        )}
                     </div>
                 </div>
                 <div className="w-full h-1 bg-[rgb(var(--primary-rgb))] mb-10"></div>
@@ -315,7 +402,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                 {Array.from({ length: 8 }).map((_, index) => (
                                     <div key={index} className="animate-pulse flex flex-col items-center">
-                                        <div className="w-32 h-32 bg-gray-300 rounded-md mb-4"></div>
+                                        <div className="w-56 h-60 bg-gray-300 rounded-md mb-4"></div>
                                         <div className="w-24 h-4 bg-gray-300 rounded-md mb-2"></div>
                                         <div className="w-16 h-4 bg-gray-300 rounded-md"></div>
                                     </div>
@@ -329,7 +416,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                         items.map((product) => (
                                             <Link href={`${lang}/san-pham/${product?.id}`} key={product?.id} className="relative group cursor-pointer rounded-lg">
                                                 <div className="rounded-lg bg-gray-50 flex flex-col border-none">
-                                                    <div className="relative w-full h-[280px] rounded-lg">
+                                                    <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
                                                         <Image
                                                             src={product?.images[0]}
                                                             alt={`${product?.name} image`}
@@ -379,33 +466,45 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 <div className="w-full flex flex-col justify-start items-center mt-8">
                     <div className="text-3xl font-bold text-center mb-8">{dictionary?.HOME_subtitle_4}</div>
                     <div className="w-full mb-8">
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                            {
-                                blogs?.slice(0, 3)?.map((blog: any, index: any) => {
-                                    return (
-                                        <div key={index}>
-                                            <Link href={`/${lang}/bai-viet/${blog?.id}`}>
-                                                <div className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
-                                                    <div className='relative w-full h-[220px] rounded-lg'>
-                                                        <Image
-                                                            src={blog?.thumbnail}
-                                                            alt="img"
-                                                            fill
-                                                            style={{ objectFit: 'cover' }}
-                                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                            className='rounded-lg'
-                                                        />
+                        {loading ? (
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                {Array.from({ length: 3 }).map((_, index) => (
+                                    <div key={index} className="animate-pulse flex flex-col items-start">
+                                        <div className="w-full h-[240px] bg-gray-300 rounded-md mb-4"></div>
+                                        <div className="w-3/4 h-4 bg-gray-300 rounded-md mb-2"></div>
+                                        <div className="w-1/2 h-4 bg-gray-300 rounded-md"></div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                                {
+                                    blogs?.slice(0, 3)?.map((blog: any, index: any) => {
+                                        return (
+                                            <div key={index}>
+                                                <Link href={`/${lang}/bai-viet/${blog?.id}`}>
+                                                    <div className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
+                                                        <div className='relative w-full h-[220px] rounded-lg'>
+                                                            <Image
+                                                                src={blog?.thumbnail}
+                                                                alt="img"
+                                                                fill
+                                                                style={{ objectFit: 'cover' }}
+                                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                                className='rounded-lg'
+                                                            />
+                                                        </div>
+                                                        <h1 className="text-[13px] font-medium mt-1">{blog?.date}</h1>
+                                                        <h1 className="text-[16px] font-semibold max-h-[48px] line-clamp-2">{truncateText(blog?.title, 76)}</h1>
+                                                        <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary?.HOME_blog_author}: {blog?.author}</h1>
                                                     </div>
-                                                    <h1 className="text-[13px] font-medium mt-1">{blog?.date}</h1>
-                                                    <h1 className="text-[16px] font-semibold max-h-[48px] line-clamp-2">{truncateText(blog?.title, 76)}</h1>
-                                                    <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">{dictionary?.HOME_blog_author}: {blog?.author}</h1>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        )}
                         <Link className="w-full flex justify-center items-center mt-14" href={`/${lang}${ROUTES.BLOG}`}>
                             <Button className="w-full md:w-1/5 lg:w-1/5 rounded-sm bg-white border border-[rgb(var(--primary-rgb))] text-[rgb(var(--primary-rgb))] font-bold hover:bg-[rgb(var(--primary-rgb))] hover:text-white truncate">
                                 {dictionary?.HOME_button_more}
@@ -415,7 +514,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer dictionary={dictionary} />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     )
 }

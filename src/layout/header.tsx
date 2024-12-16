@@ -4,9 +4,48 @@ import Link from "next/link";
 import Image from "next/image";
 import { ROUTES } from "@/utils/route";
 import { IMAGES } from "@/utils/image";
-import { categories, URL } from "@/utils/constant";
+import { categories, languages, URL } from "@/utils/constant";
+import { useEffect, useRef, useState } from "react";
 
 export const Header = ({ page, lang, dictionary }: { page: string; lang: string; dictionary: any }) => {
+
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const [currentLang, setCurrentLang] = useState(() =>
+        languages.find((l) => l.lang === lang) || languages[0]
+    );
+
+    const handleLanguageChange = (lang: string) => {
+        const selectedLang = languages.find((l) => l.lang === lang);
+        if (selectedLang) {
+            setCurrentLang(selectedLang);
+        }
+        setIsOpen(false);
+    };
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
+
     return (
         <div className="w-full flex flex-col justify-center items-center">
             <div className="w-full bg-[rgb(var(--quaternary-rgb))] flex items-center justify-center">
@@ -14,18 +53,19 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
                     <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                     <div className="hidden lg:flex items-center justify-center gap-4">
                         <Link href={URL?.FACEBOOK} target="_blank">
-                            <Image src="https://cdn-icons-png.flaticon.com/128/15047/15047435.png" alt="fb" width={21} height={21} />
+                            <Image className="rounded-sm" src={IMAGES.FACEBOOK} alt="fb" width={23} height={23} />
                         </Link>
                         <Link href={URL?.YOUTUBE} target="_blank">
-                        <Image src="https://cdn-icons-png.flaticon.com/128/3670/3670147.png" alt="youtube" width={21} height={21} />
+                            <Image src={IMAGES.YOUTUBE} alt="youtube" width={23} height={23} />
                         </Link>
                         <Link href={URL?.MAIL} target="_blank">
-                        <Image src="https://cdn-icons-png.flaticon.com/128/6806/6806987.png" alt="mail" width={21} height={21} />
+                            <Image src={IMAGES.EMAIL} alt="mail" width={26} height={26} />
                         </Link>
                         <Link href={URL?.SHOPPING} target="_blank">
-                        <Image src="https://res.cloudinary.com/farmcode/image/upload/v1734257182/ecoka/lkincykzxzjszovtjbgq.png" alt="shopee" width={21} height={21} />
+                            <Image src={IMAGES.SHOPEE} alt="shopee" width={23} height={23} />
                         </Link>
-                        <Link href={`/vi/${page}`}>
+
+                        {/* <Link href={`/vi/${page}`}>
                             <Image src={IMAGES?.FLAG_VI} alt="Vietnamese" width={21} height={21} />
                         </Link>
                         <Link href={`/en/${page}`}>
@@ -33,7 +73,32 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
                         </Link>
                         <Link href={`/jp/${page}`}>
                             <Image src={IMAGES?.FLAG_JP} alt="Japanese" width={21} height={21} />
-                        </Link>
+                        </Link> */}
+
+                        <div className="relative" ref={dropdownRef}>
+                            <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
+                                <Image className="" src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
+                                <div className={`transition-transform duration-300  ${isOpen ? "" : "-rotate-90"} mt-1`}>
+                                    <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
+                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            {isOpen && (
+                                <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-opacity-80 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                    {languages
+                                        .filter(({ lang }) => lang !== currentLang.lang)
+                                        .map(({ lang, label, flag }) => (
+                                            <Link href={`/${lang}/${page}`}>
+                                                <li key={lang} className="flex justify-center m-3" onClick={() => handleLanguageChange(lang)}>
+                                                    <Image src={flag} alt={label} width={23} height={23} />
+                                                </li>
+                                            </Link>
+                                        ))}
+                                </ul>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

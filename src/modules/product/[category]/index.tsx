@@ -152,7 +152,7 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {Array.from({ length: 8 }).map((_, index) => (
                                 <div key={index} className="animate-pulse flex flex-col items-center">
-                                    <div className="w-32 h-32 bg-gray-300 rounded-md mb-4"></div>
+                                    <div className="w-56 h-60 bg-gray-300 rounded-md mb-4"></div>
                                     <div className="w-24 h-4 bg-gray-300 rounded-md mb-2"></div>
                                     <div className="w-16 h-4 bg-gray-300 rounded-md"></div>
                                 </div>
@@ -164,7 +164,7 @@ export function ProductByCategoryPage({ dictionary, lang }: { dictionary: any; l
                 </div>
             </div>
             <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-            <Footer dictionary={dictionary} />
+            <Footer lang={lang} dictionary={dictionary} />
         </div>
     )
 }

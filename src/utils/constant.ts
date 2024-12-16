@@ -1,3 +1,5 @@
+import { IMAGES } from "./image";
+
 export const URL = {
   FACEBOOK: "https://www.facebook.com/ecoka.vn/",
   YOUTUBE: "https://www.youtube.com/@JessicaQuangVN",
@@ -34,4 +36,10 @@ export const categories: any = [
     name_jp: "ペットハウス",
     path: "/nha-thu-cung",
   },
+];
+
+export const languages = [
+  { lang: "vi", label: "Vietnamese", flag: IMAGES?.FLAG_VI },
+  { lang: "en", label: "English", flag: IMAGES?.FLAG_EN },
+  { lang: "jp", label: "Japanese", flag: IMAGES?.FLAG_JP },
 ];

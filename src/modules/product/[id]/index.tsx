@@ -313,7 +313,7 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
             </div>
           </div>
           <div className="w-5/6 md:w-2/3 lg:w-2/3 h-[3px] bg-[rgb(var(--quaternary-rgb))] my-10"></div>
-          <Footer dictionary={dictionary} />
+          <Footer lang={lang} dictionary={dictionary} />
         </>
       )}
     </div>

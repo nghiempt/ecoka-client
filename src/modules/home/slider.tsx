@@ -39,6 +39,8 @@ export function Slider({ dictionary, lang }: { lang: string, dictionary: any }) 
                 updatedSlides.push(firstSlide);
             }
             setSlidesData(updatedSlides);
+            setSlidesDataEn(updatedSlides);
+            setSlidesDataJp(updatedSlides);
             setCurrentIndex(0);
             setPaginationIndex((prevIndex) => (prevIndex + 1) % totalSlides);
             containerRef.current.scrollTo({
