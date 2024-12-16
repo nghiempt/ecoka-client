@@ -50,9 +50,10 @@ export const Header = ({ page, lang, dictionary }: { page: string; lang: string;
         <div className="w-full flex flex-col justify-center items-center">
             <div className="w-full bg-[rgb(var(--quaternary-rgb))] flex items-center justify-center">
                 <div className="w-2/3 py-6 flex flex-col lg:flex-row items-center justify-end gap-4">
-                    <div className="w-full flex justify-between items-center">
+                    <h1 className="hidden lg:flex text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
+                    <div className="md:hidden lg:hidden w-full flex justify-between items-center">
                         <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
-                        <div className="relative md:hidden lg:hidden" ref={dropdownRef}>
+                        <div className="relative" ref={dropdownRef}>
                             <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
                                 <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
                                 <div className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"} mt-1`}>
