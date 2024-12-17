@@ -14,6 +14,7 @@ import { NavMobile } from "@/layout/nav-mobile"
 import { truncateText } from "@/utils/helper"
 import { useEffect, useRef, useState } from "react"
 import { getAll } from "@/utils/api"
+import { useMediaQuery } from "@/utils/media"
 
 interface Product {
     row: number;
@@ -197,6 +198,8 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
     }, []);
 
 
+    const isMobile = useMediaQuery("(max-width: 768px)");
+
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -212,27 +215,48 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         setIsOpen(false);
     };
 
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
+    // const toggleDropdown = () => {
+    //     setIsOpen(!isOpen);
+    // };
 
-    const handleClickOutside = (event: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-            setIsOpen(false);
-        }
-    };
+    const toggleDropdown = () => setIsOpen((prev) => !prev);
 
-    useEffect(() => {
-        if (isOpen) {
+    if (isMobile) {
+        useEffect(() => {
+            const handleClickOutside = (event: MouseEvent) => {
+                const target = event.target as HTMLElement;
+
+                if (!target.closest(".dropdown-container")) {
+                    setIsOpen(false);
+                }
+            };
+
             document.addEventListener("mousedown", handleClickOutside);
-        } else {
-            document.removeEventListener("mousedown", handleClickOutside);
-        }
 
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, []);
+    } else {
+
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
         };
-    }, [isOpen]);
+
+        useEffect(() => {
+            if (isOpen) {
+                document.addEventListener("mousedown", handleClickOutside);
+            } else {
+                document.removeEventListener("mousedown", handleClickOutside);
+            }
+
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
+            };
+        }, [isOpen]);
+    }
 
     return (
         <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
@@ -242,29 +266,59 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <h1 className="hidden lg:flex text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                     <div className="md:hidden lg:hidden w-full flex justify-between items-center">
                         <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
-                        <div className="relative" ref={dropdownRef}>
-                            <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
-                                <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
-                                <div className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"} mt-1`}>
-                                    <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
-                                        <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                                    </svg>
+                        {isMobile ? (
+                            <div className="dropdown-container relative">
+                                <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
+                                    <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
+                                    <div className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"} mt-1`}>
+                                        <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
+                                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
                                 </div>
-                            </div>
-                            {isOpen && (
-                                <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-opacity-80 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-                                    {languages
-                                        .filter(({ lang }) => lang !== currentLang.lang)
-                                        .map(({ lang, label, flag }) => (
-                                            <Link href={`/${lang}`}>
-                                                <li key={lang} className="flex justify-center m-3" onClick={() => handleLanguageChange(lang)}>
-                                                    <Image src={flag} alt={label} width={23} height={23} />
+                                {isOpen && (
+                                    <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-opacity-80 bg-white shadow-lg ring-1 ring-black/5">
+                                        {languages
+                                            .filter(({ lang }) => lang !== currentLang.lang)
+                                            .map(({ lang, label, flag }) => (
+                                                <li
+                                                    key={lang}
+                                                    className="flex justify-center m-3 cursor-pointer"
+                                                    onClick={() => handleLanguageChange(lang)}
+                                                >
+                                                    <Link href={`/${lang}`}>
+                                                        <Image src={flag} alt={label} width={23} height={23} />
+                                                    </Link>
                                                 </li>
-                                            </Link>
-                                        ))}
-                                </ul>
-                            )}
-                        </div>
+                                            ))}
+                                    </ul>
+                                )}
+                            </div>
+                        ) : (
+                            <div className="relative" ref={dropdownRef}>
+                                <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
+                                    <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
+                                    <div className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"} mt-1`}>
+                                        <svg className="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="black" aria-hidden="true" data-slot="icon">
+                                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                {isOpen && (
+                                    <ul className="absolute right-0 z-10 mt-2 w-[58px] origin-top-right rounded-md bg-opacity-80 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                                        {languages
+                                            .filter(({ lang }) => lang !== currentLang.lang)
+                                            .map(({ lang, label, flag }) => (
+                                                <Link href={`/${lang}`}>
+                                                    <li key={lang} className="flex justify-center m-3" onClick={() => handleLanguageChange(lang)}>
+                                                        <Image src={flag} alt={label} width={23} height={23} />
+                                                    </li>
+                                                </Link>
+                                            ))}
+                                    </ul>
+                                )}
+                            </div>
+                        )}
                     </div>
                     <div className="hidden lg:flex items-center justify-center gap-4">
                         <Link href={URL?.FACEBOOK} target="_blank">
