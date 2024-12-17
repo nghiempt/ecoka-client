@@ -15,6 +15,7 @@ import { truncateText } from "@/utils/helper"
 import { useEffect, useRef, useState } from "react"
 import { getAll } from "@/utils/api"
 import { useMediaQuery } from "@/utils/media"
+import Head from "next/head"
 
 interface Product {
     row: number;
