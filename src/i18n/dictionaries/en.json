@@ -1,0 +1,184 @@
+{
+    "lang": "en",
+    "title": "ECOKA HANDICRAFTS",
+    "HOME_header": [
+        "HOME",
+        "PRODUCTS",
+        "ABOUT US",
+        "ESG",
+        "BLOG",
+        "CONTACT"
+    ],
+    "HOME_title": "Bring Nature to Your Life",
+    "HOME_description": "ECOKA Joint Stock Company specializes in manufacturing and exporting traditional handicraft products made from 100% natural materials such as water hyacinth, rattan, bamboo, and macrame.",
+    "HOME_discovery": "Discover",
+    "HOME_subtitle_1": "SUSTAINABLE BUSINESS",
+    "HOME_subtitle_2": "CERTIFICATIONS",
+    "HOME_subtitle_3": "Products",
+    "HOME_subtitle_4": "Blogs",
+    "HOME_new_tag": "New",
+    "HOME_button_more": "View More",
+    "HOME_decor_tag": "Share decor corner",
+    "HOME_hashtag": "#TrangTriNoiThat",
+    "HOME_discovery_title": "200+ Eco-friendly Products",
+    "HOME_discovery_brief": "With diverse designs and delicate motifs, this lovely, fashionable and eco-friendly Chaneva water hyacinth bag has satisfied many domestic and foreign customers.",
+    "HOME_button_discovery": "Discover",
+    "HOME_blog_author": "Author",
+    "PRODUCT_breadcrumb_main": "PRODUCTS",
+    "PRODUCT_breadcrumb_submain_1": "Home",
+    "PRODUCT_filter": "Filter by category",
+    "PRODUCT_all_products": "All Products",
+    "PRODUCT_button_detail": "Details",
+    "PRODUCT_button_share": "Share",
+    "PRODUCT_button_compare": "Compare",
+    "PRODUCT_button_like": "Favorite",
+    "DETAIL_PRODUCT_breadcrumb_submain_2": "Products",
+    "DETAIL_PRODUCT_rating": "Rating",
+    "DETAIL_PRODUCT_size": "Size",
+    "DETAIL_PRODUCT_color": "Color",
+    "DETAIL_PRODUCT_cart": "Add to Cart",
+    "DETAIL_PRODUCT_get_quote": "Request a Quote",
+    "DETAIL_PRODUCT_sub_description_1": "Category",
+    "DETAIL_PRODUCT_sub_description_2": "Origin",
+    "DETAIL_PRODUCT_sub_description_3": "Material",
+    "DETAIL_PRODUCT_sub_description_origin": "Source",
+    "DETAIL_PRODUCT_subtitle_1": "Related Products",
+    "ABOUT_title": "About Us",
+    "ABOUT_brief": "A company specializing in manufacturing and trading traditional handicraft products made from 100% natural materials.",
+    "ABOUT_section_1": [
+        "History & Development",
+        "Ecoka originated as a small handicraft workshop with over 4 years of experience since 2018, producing eco-friendly handicraft products from readily available natural materials in the Mekong Delta region of Vietnam: water hyacinth, sedge, rattan, bamboo... for international customers in the US, UK, France, etc. With a team of skilled craftsmen meticulously trained in product quality requirements, Ecoka ensures diverse designs, refined craftsmanship, and international-quality products. Choosing Ecoka, you will be satisfied with professional service, guaranteed product quality, and reasonable prices."
+    ],
+    "ABOUT_section_2": [
+        "Vision & Mission",
+        "To become a Vietnamese brand of international standing in the production and export of quality products made from eco-friendly materials. Beyond delivering excellence to customers, Ecoka aims to create job opportunities for impoverished communities in the Mekong Delta and guide young people in career development, centering on environmental protection as a business core. Ecoka's mission is to offer quality, health-safe, and eco-friendly products, altering consumer habits of using plastic products, with the ultimate goal of propelling Vietnamese goods onto the international stage."
+    ],
+    "ABOUT_section_3": [
+        "Core Values",
+        "To become a symbol of trust in quality eco-friendly consumer goods for both Vietnamese and international markets."
+    ],
+    "ABOUT_section_4": [
+        "Scale & Facilities",
+        [
+            "Total Area",
+            "Team",
+            "Capacity",
+            "Main Markets"
+        ],
+        [
+            "6500 square meters including workshops, offices, drying rooms, showrooms, warehouses, and packaging areas.",
+            "600 skilled workers with over 20 years of traditional handicraft experience, trained thoroughly on product quality requirements.",
+            "80 TEUS/month.",
+            "USA, CANADA, FRANCE. Supplier of materials for domestic factories. Customizable as per client requests."
+        ]
+    ],
+    "ESG_section_1": [
+        "ENVIRONMENT",
+        "ECOKA is committed to environmental protection through the use of 100% natural materials like water hyacinth to produce handcrafted bags. This material is not only eco-friendly but also biodegradable after prolonged exposure to nature, minimizing plastic waste and pollutants. ECOKA's production process is designed to optimize resources, reduce energy and water consumption, and contribute to preserving the natural ecosystem."
+    ],
+    "ESG_section_2": [
+        "SOCIAL",
+        "ECOKA provides stable employment for artisans in the Mekong Delta, renowned for their traditional handicraft skills. The company not only helps preserve and develop traditional handicrafts but also improves the economic well-being of local workers. Additionally, ECOKA contributes to community activities, builds a fair working environment, and supports sustainable development initiatives for the community."
+    ],
+    "ESG_section_3": [
+        "GOVERNANCE",
+        "ECOKA implements transparent and responsible governance policies, ensuring sustainable development and compliance with labor and environmental regulations. The company is committed to maintaining high business ethics, creating quality products that meet international standards, and continuously improving production processes to enhance efficiency while minimizing negative impacts on the environment and society."
+    ],
+    "BLOG_breadcrumb_main": "BLOG",
+    "BLOG_breadcrumb_submain_3": "Blog",
+    "CONTACT_breadcrumb_main": "CONTACT",
+    "CONTACT_breadcrumb_submain_3": "Contact",
+    "CONTACT_title": "Contact Us",
+    "CONTACT_brief": "For more information about our products and services, please email us. Our team is always ready to assist you. Don’t hesitate!",
+    "CONTACT_left_section": [
+        "Address",
+        [
+            "Phone Number",
+            "Phone"
+        ],
+        [
+            "Working Hours",
+            "Monday",
+            "Saturday",
+            "Sunday",
+            "Closed"
+        ]
+    ],
+    "CONTACT_right_section": [
+        [
+            "Your Name",
+            "Enter your name"
+        ],
+        [
+            "Email Address",
+            "nguyenvana@gmail.com"
+        ],
+        [
+            "Subject",
+            "This is a subject"
+        ],
+        [
+            "Message",
+            "Write your message here"
+        ]
+    ],
+    "CONTACT_button_send": "Send",
+    "HEADER_title": [
+        "HOME",
+        "PRODUCTS",
+        "ABOUT US",
+        "ESG",
+        "BLOG",
+        "CONTACT"
+    ],
+    "FOOTER_section_1": "A company specializing in manufacturing and trading traditional handicraft products made from 100% natural materials.",
+    "FOOTER_section_2": [
+        "Home",
+        "About Us",
+        "Blog",
+        "Contact",
+        "ESG"
+    ],
+    "FOOTER_section_3": [
+        "Products",
+        "Home Decor",
+        "Kitchenware",
+        "Pet Supplies",
+        "Fashion"
+    ],
+    "FOOTER_section_4": [
+        "About Us",
+        "Facebook",
+        "YouTube",
+        "Shopee",
+        "Email"
+    ],
+    "FOOTER_section_5": [
+        "Support",
+        "Offers",
+        "Franchise",
+        "Terms",
+        "Policies"
+    ],
+    "PRIVACY_POLICY_title": "PRIVACY POLICY",
+    "PRIVACY_POLICY_subtitle": [
+        "1. Introduction",
+        "2. What We Collect",
+        "3. Data Analysis",
+        "4. Advertising",
+        "5. Natural Products",
+        "6. Sustainable Production Process",
+        "7. For Children",
+        "8. Contact"
+    ],
+    "PRIVACY_POLICY_content": [
+        "Welcome to ECOKA! We are committed to protecting your privacy when using our website. Information collected is intended to enhance the user experience and is not shared with third parties unless necessary to provide services.",
+        "We collect the information you provide, such as your email when you register, and usage information like IP addresses, browsers, or operating systems. This data helps us improve service efficiency.",
+        "The website uses Google Analytics to measure traffic and user behavior. The data is collected completely anonymously, to optimize the website's interface and performance. You can disable this tracking in Ads Settings.",
+        "We do not share personal data with advertisers. Third parties such as Google may use cookies to display ads based on browsing history. You can adjust cookie settings in your browser or through ad management tools.",
+        "ECOKA's products are made from 100% natural materials such as water hyacinth, rattan, bamboo, and macrame. We do not collect or store any personal data during the production or transaction process.",
+        "ECOKA is committed to maintaining an environmentally friendly production process. Natural materials are sourced and processed locally, minimizing negative environmental impacts and supporting local communities.",
+        "Our services are not intended for children under the age of 13 and do not collect information from this demographic. Parents or teachers may represent children in using the service for educational purposes, ensuring no personal information is provided.",
+        "If you have any questions, please contact us via email:"
+    ]
+}
