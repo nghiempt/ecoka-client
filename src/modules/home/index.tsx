@@ -25,7 +25,6 @@ interface Product {
     description: string;
     images: string[];
 };
-
 interface ESG {
     id: number;
     row: number;
@@ -33,7 +32,6 @@ interface ESG {
     description: string;
     thumbnail: string;
 }
-
 interface Blog {
     row: number;
     id: number;
@@ -49,7 +47,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [esgs, setEsgs] = useState<ESG[]>([]);
-
     const [filterProducts, setFilterProducts] = useState<any>([]);
 
     const formatDateTime = (dateString: string | undefined) => {
@@ -191,7 +188,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
             .catch((error) => console.error(error));
     }
 
-
     const fetchEsgs = async () => {
         try {
             const data = await getAll('https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648', lang);
@@ -258,10 +254,8 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
 
 
     const isMobile = useMediaQuery("(max-width: 768px)");
-
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
-
     const [currentLang, setCurrentLang] = useState(() =>
         languages.find((l) => l.lang === lang) || languages[0]
     );
@@ -486,7 +480,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                 ))}
                             </div>
                         ) : (
-
                             esgs.map((esg, index) => (
                                 <Link href={`/${lang}${ROUTES.ESG}`} key={index}>
                                     <div
@@ -510,7 +503,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                     </div>
                                 </Link>
                             ))
-
                         )}
                     </div>
                 </div>
