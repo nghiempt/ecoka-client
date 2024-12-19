@@ -51,6 +51,8 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
     const [loading, setLoading] = useState<boolean>(true);
     const [esgs, setEsgs] = useState<ESG[]>([]);
 
+    const [filterProducts, setFilterProducts] = useState<any>([]);
+
     const formatDateTime = (dateString: string | undefined) => {
         const date = dateString ? new Date(dateString) : new Date();
         const formattedDate = date.toLocaleDateString('vi-VN');
@@ -126,12 +128,46 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
             });
 
             setProducts(limitedProducts);
+            getProductsHomePage(data, limitedProducts)
         } catch (err) {
             console.log(err);
         } finally {
             setLoading(false);
         }
     };
+
+    const getProductsHomePage = async (productOrigin: any, productShow: any) => {
+        console.log("=====================");
+        console.log(productShow);
+        
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const raw = JSON.stringify({
+            "method": "GET"
+        });
+        const requestOptions: any = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow"
+        };
+        fetch("https://n8n.khiemfle.com/webhook/7a9b383f-1381-4e46-82a6-800e6fb2f122", requestOptions)
+            .then((response) => response.json())
+            .then((result: any) => {
+                productShow["Fashion"] = []
+                result.forEach((item: any) => {
+                    if (item?.category === "Thời Trang") {
+                        productOrigin?.forEach((pro: any) => {
+                            if (pro?.id.toString() === item?.product_id.toString()) {
+                                productShow["Fashion"].push(pro)
+                            }
+                        })
+                    }
+                })
+                setFilterProducts(productShow)
+            })
+            .catch((error) => console.error(error));
+    }
 
 
     const fetchEsgs = async () => {
@@ -482,21 +518,21 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                             </div>
                         ) : (
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {Object.entries(products)
-                                    .filter(([category, items]) => items.length >= 4)
-                                    .flatMap(([category, items]) =>
-                                        items.map((product) => (
+                                {Object.entries(filterProducts)
+                                    .filter(([category, items]: [category: any, items: any]) => items.length >= 4)
+                                    .flatMap(([category, items]: [category: any, items: any]) =>
+                                        items?.map((product: any) => (
                                             <Link href={`${lang}/san-pham/${product?.id}`} key={product?.id} className="relative group cursor-pointer rounded-lg">
                                                 <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                                                     <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
-                                                        <Image
+                                                        {/* <Image
                                                             src={product?.images[0]}
                                                             alt={`${product?.name} image`}
                                                             fill
                                                             style={{ objectFit: "cover" }}
                                                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                             className="rounded-lg"
-                                                        />
+                                                        /> */}
                                                     </div>
                                                     <div className="flex flex-col justify-center p-3 text-start">
                                                         <div className="text-lg font-bold mb-1 max-h-[28px] truncate">{product?.name}</div>
