@@ -15,7 +15,6 @@ import { truncateText } from "@/utils/helper"
 import { useEffect, useRef, useState } from "react"
 import { getAll } from "@/utils/api"
 import { useMediaQuery } from "@/utils/media"
-import Head from "next/head"
 
 interface Product {
     row: number;
@@ -114,21 +113,22 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
             Object.keys(groupedProducts).forEach((category) => {
                 groupedProducts[category] = groupedProducts[category]
                     .sort((a, b) => b.id - a.id)
-                    .slice(0, 4);
+                // .slice(0, 4);
             });
 
             const filteredCategories = Object.keys(groupedProducts)
-                .filter((category) => groupedProducts[category].length >= 4);
+            // .filter((category) => groupedProducts[category].length >= 4);
 
-            const limitedCategories = filteredCategories.slice(0, 4);
+            const limitedCategories = filteredCategories
+            // .slice(0, 4);
 
             const limitedProducts: { [key: string]: Product[] } = {};
             limitedCategories.forEach((category) => {
                 limitedProducts[category] = groupedProducts[category];
             });
 
-            setProducts(limitedProducts);
-            getProductsHomePage(data, limitedProducts)
+            setProducts(groupedProducts);
+            getProductsHomePage(data);
         } catch (err) {
             console.log(err);
         } finally {
@@ -136,10 +136,10 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         }
     };
 
-    const getProductsHomePage = async (productOrigin: any, productShow: any) => {
-        console.log("=====================");
-        console.log(productShow);
-        
+    const getProductsHomePage = async (productOrigin: any) => {
+        // console.log("=====================");
+        // console.log(productShow);
+
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         const raw = JSON.stringify({
@@ -154,17 +154,39 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         fetch("https://n8n.khiemfle.com/webhook/7a9b383f-1381-4e46-82a6-800e6fb2f122", requestOptions)
             .then((response) => response.json())
             .then((result: any) => {
-                productShow["Fashion"] = []
+                const groupedProducts: { [key: string]: any[] } = {};
                 result.forEach((item: any) => {
-                    if (item?.category === "Thời Trang") {
-                        productOrigin?.forEach((pro: any) => {
-                            if (pro?.id.toString() === item?.product_id.toString()) {
-                                productShow["Fashion"].push(pro)
-                            }
-                        })
+                    const pros = productOrigin.find(
+                        (pro: any) => pro?.id.toString() === item?.product_id.toString()
+                    );
+
+                    if (pros) {
+                        const category = pros.category;
+                        if (!groupedProducts[category]) {
+                            groupedProducts[category] = [];
+                        }
+
+                        groupedProducts[category].push({
+                            row: pros.row,
+                            id: pros.id,
+                            name: pros.name,
+                            category: pros.category,
+                            price: pros.price,
+                            description: pros.description,
+                            images: [
+                                pros.i_one,
+                                pros.i_two,
+                                pros.i_three,
+                                pros.i_four,
+                                pros.i_five,
+                                pros.i_six,
+                            ].filter((url) => url !== ""),
+                        });
                     }
-                })
-                setFilterProducts(productShow)
+                });
+
+                console.log("check products:", groupedProducts);
+                setFilterProducts(groupedProducts);
             })
             .catch((error) => console.error(error));
     }
@@ -518,21 +540,27 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                             </div>
                         ) : (
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                {Object.entries(filterProducts)
-                                    .filter(([category, items]: [category: any, items: any]) => items.length >= 4)
-                                    .flatMap(([category, items]: [category: any, items: any]) =>
-                                        items?.map((product: any) => (
+                                {
+                                    Object.entries(filterProducts)
+                                        // .filter(([category, items]: [category: any, items: any]) => items.length >= 4)
+                                        .flatMap(([category, items]: [category: any, items: any]) => items?.map((product: any) => (
                                             <Link href={`${lang}/san-pham/${product?.id}`} key={product?.id} className="relative group cursor-pointer rounded-lg">
                                                 <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                                                     <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
-                                                        {/* <Image
-                                                            src={product?.images[0]}
-                                                            alt={`${product?.name} image`}
-                                                            fill
-                                                            style={{ objectFit: "cover" }}
-                                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                            className="rounded-lg"
-                                                        /> */}
+                                                        {product?.images?.[0] ? (
+                                                            <Image
+                                                                src={product?.images[0]}
+                                                                alt={`${product?.name} image`}
+                                                                fill
+                                                                style={{ objectFit: "cover" }}
+                                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                                className="rounded-lg"
+                                                            />
+                                                        ) : (
+                                                            <div className="w-full h-full flex items-center justify-center bg-gray-200 rounded-lg">
+                                                                <span>No Image</span>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                     <div className="flex flex-col justify-center p-3 text-start">
                                                         <div className="text-lg font-bold mb-1 max-h-[28px] truncate">{product?.name}</div>
@@ -550,8 +578,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                                                     {dictionary?.HOME_new_tag}
                                                 </div>
                                             </Link>
-                                        ))
-                                    )}
+                                        )))}
                             </div>
                         )}
                     </div>
