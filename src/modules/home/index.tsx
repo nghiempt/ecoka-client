@@ -320,7 +320,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     <div className="md:hidden lg:hidden w-full flex justify-between items-center">
                         <h1 className="text-[16px] text-white font-semibold">ECOKA HANDICRAFTS</h1>
                         {isMobile ? (
-                            <div className="dropdown-container relative">
+                            <div className="dropdown-container relative ">
                                 <div onClick={toggleDropdown} className="px-2 py-1 flex flex-row justify-center items-center gap-1 bg-opacity-60 bg-white cursor-pointer rounded-lg">
                                     <Image src={currentLang.flag} alt={currentLang.label} width={23} height={23} />
                                     <div className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"} mt-1`}>
