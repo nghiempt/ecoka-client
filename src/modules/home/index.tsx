@@ -45,50 +45,39 @@ interface Blog {
 export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }) {
     const [products, setProducts] = useState<{ [key: string]: Product[] }>({});
     const [blogs, setBlogs] = useState<Blog[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
     const [esgs, setEsgs] = useState<ESG[]>([]);
     const [filterProducts, setFilterProducts] = useState<any>([]);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    const formatDateTime = (dateString: string | undefined) => {
-        const date = dateString ? new Date(dateString) : new Date();
-        const formattedDate = date.toLocaleDateString('vi-VN');
-        const formattedTime = date.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
-        return `${formattedDate} - ${formattedTime}`;
-    };
-
-    const fetchProducts = async () => {
+    const fetchData = async () => {
         try {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
+            setLoading(true);
 
-            const raw = JSON.stringify({
-                method: "GET",
-                lang: lang
-            });
-
-            const requestOptions = {
+            const fetchProducts = fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", {
                 method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow" as RequestRedirect,
-            };
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ method: "GET", lang }),
+            }).then(res => res.json());
 
-            const res = await fetch(
-                "https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb",
-                requestOptions
-            );
+            const fetchEsgs = fetch("https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ method: "GET", lang }),
+            }).then(res => res.json());
 
-            if (!res.ok) {
-                throw new Error("Failed to fetch data");
-            }
+            const fetchBlogs = fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ method: "GET", lang }),
+            }).then(res => res.json());
 
-            const data = await res.json();
+            const [productsData, esgsData, blogsData] = await Promise.all([fetchProducts, fetchEsgs, fetchBlogs]);
+
+            // Xử lý dữ liệu products
             const groupedProducts: { [key: string]: Product[] } = {};
-            data.forEach((item: any) => {
+            productsData.forEach((item: any) => {
                 const category = item.category;
-                if (!groupedProducts[category]) {
-                    groupedProducts[category] = [];
-                }
+                if (!groupedProducts[category]) groupedProducts[category] = [];
                 groupedProducts[category].push({
                     row: item.row_number,
                     id: item.id,
@@ -96,102 +85,16 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                     category: item.category,
                     price: item.price,
                     description: item.description,
-                    images: [
-                        item.i_one,
-                        item.i_two,
-                        item.i_three,
-                        item.i_four,
-                        item.i_five,
-                        item.i_six,
-                    ].filter((url) => url !== ""),
+                    images: [item.i_one, item.i_two, item.i_three, item.i_four, item.i_five, item.i_six].filter(url => url !== ""),
                 });
             });
-
-            Object.keys(groupedProducts).forEach((category) => {
-                groupedProducts[category] = groupedProducts[category]
-                    .sort((a, b) => b.id - a.id)
-                // .slice(0, 4);
-            });
-
-            const filteredCategories = Object.keys(groupedProducts)
-            // .filter((category) => groupedProducts[category].length >= 4);
-
-            const limitedCategories = filteredCategories
-            // .slice(0, 4);
-
-            const limitedProducts: { [key: string]: Product[] } = {};
-            limitedCategories.forEach((category) => {
-                limitedProducts[category] = groupedProducts[category];
-            });
-
             setProducts(groupedProducts);
-            getProductsHomePage(data);
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setLoading(false);
-        }
-    };
 
-    const getProductsHomePage = async (productOrigin: any) => {
-        // console.log("=====================");
-        // console.log(productShow);
+            // Lấy thông tin filtered products
+            await getProductsHomePage(productsData);
 
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        const raw = JSON.stringify({
-            "method": "GET"
-        });
-        const requestOptions: any = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow"
-        };
-        fetch("https://n8n.khiemfle.com/webhook/7a9b383f-1381-4e46-82a6-800e6fb2f122", requestOptions)
-            .then((response) => response.json())
-            .then((result: any) => {
-                const groupedProducts: { [key: string]: any[] } = {};
-                result.forEach((item: any) => {
-                    const pros = productOrigin.find(
-                        (pro: any) => pro?.id.toString() === item?.product_id.toString()
-                    );
-
-                    if (pros) {
-                        const category = pros.category;
-                        if (!groupedProducts[category]) {
-                            groupedProducts[category] = [];
-                        }
-
-                        groupedProducts[category].push({
-                            row: pros.row,
-                            id: pros.id,
-                            name: pros.name,
-                            category: pros.category,
-                            price: pros.price,
-                            description: pros.description,
-                            images: [
-                                pros.i_one,
-                                pros.i_two,
-                                pros.i_three,
-                                pros.i_four,
-                                pros.i_five,
-                                pros.i_six,
-                            ].filter((url) => url !== ""),
-                        });
-                    }
-                });
-
-                console.log("check products:", groupedProducts);
-                setFilterProducts(groupedProducts);
-            })
-            .catch((error) => console.error(error));
-    }
-
-    const fetchEsgs = async () => {
-        try {
-            const data = await getAll('https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648', lang);
-            const transformedEsgs: ESG[] = data.map((item: any) => ({
+            // Xử lý dữ liệu esgs
+            const transformedEsgs: ESG[] = esgsData.map((item: any) => ({
                 id: item.id,
                 row: item.row_number,
                 title: item.title,
@@ -199,59 +102,61 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
                 thumbnail: item.thumbnail,
             }));
             setEsgs(transformedEsgs);
-            // console.log(transformedEsgs);
-        } catch (err) {
-            console.log(err);
-        } finally {
-            setLoading(false);
-        }
-    };
 
-    const fetchBlogs = async () => {
-        try {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-
-            const raw = JSON.stringify({
-                method: "GET",
-                lang: lang
-            });
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow" as RequestRedirect,
-            };
-
-            const res = await fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", requestOptions);
-            if (!res.ok) {
-                throw new Error('Failed to fetch data');
-            }
-            const data = await res.json();
-            const transformedBlogs: Blog[] = data.map((item: any) => ({
+            // Xử lý dữ liệu blogs
+            const transformedBlogs: Blog[] = blogsData.map((item: any) => ({
                 row: item.row_number,
                 id: item.id,
                 title: item.title,
                 description: item.description,
                 thumbnail: item.thumbnail,
                 author: item.author,
-                date: formatDateTime(item.date),
+                date: new Date(item.date).toLocaleString("vi-VN"),
             }));
-            setBlogs(transformedBlogs.sort((a, b) => b.id - a.id));
-        } catch (err) {
-            console.log(err);
+            setBlogs(transformedBlogs);
+        } catch (error) {
+            console.error("Failed to fetch data:", error);
         } finally {
             setLoading(false);
         }
     };
 
-    useEffect(() => {
-        fetchProducts();
-        fetchEsgs();
-        fetchBlogs();
-    }, []);
+    const getProductsHomePage = async (productOrigin: any) => {
+        try {
+            const response = await fetch("https://n8n.khiemfle.com/webhook/7a9b383f-1381-4e46-82a6-800e6fb2f122", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ method: "GET" }),
+            });
+            const result = await response.json();
 
+            const groupedProducts: { [key: string]: any[] } = {};
+            result.forEach((item: any) => {
+                const product = productOrigin.find((pro: any) => pro.id.toString() === item.product_id.toString());
+                if (product) {
+                    const category = product.category;
+                    if (!groupedProducts[category]) groupedProducts[category] = [];
+                    groupedProducts[category].push({
+                        row: product.row,
+                        id: product.id,
+                        name: product.name,
+                        category: product.category,
+                        price: product.price,
+                        description: product.description,
+                        images: [product.i_one, product.i_two, product.i_three, product.i_four, product.i_five, product.i_six].filter(url => url !== ""),
+                    });
+                }
+            });
+
+            setFilterProducts(groupedProducts);
+        } catch (error) {
+            console.error("Error fetching homepage products:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const isMobile = useMediaQuery("(max-width: 768px)");
     const [isOpen, setIsOpen] = useState(false);
@@ -267,10 +172,6 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
         }
         setIsOpen(false);
     };
-
-    // const toggleDropdown = () => {
-    //     setIsOpen(!isOpen);
-    // };
 
     const toggleDropdown = () => setIsOpen((prev) => !prev);
 
