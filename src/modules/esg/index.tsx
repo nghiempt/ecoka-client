@@ -4,6 +4,7 @@ import { Footer } from "@/layout/footer"
 import { Header } from "@/layout/header"
 import { NavMobile } from "@/layout/nav-mobile"
 import { getAll } from "@/utils/api"
+import { DATA } from "@/utils/data.bk"
 import { IMAGES } from "@/utils/image"
 import { ROUTES } from "@/utils/route"
 import { ChevronRight } from "lucide-react"
@@ -26,8 +27,9 @@ export function ESGPage({ lang, dictionary }: { lang: any, dictionary: any }) {
 
     const fetchEsgs = async () => {
         try {
-            const data = await getAll(apiUrl, lang);
-            const transformedEsgs: ESG[] = data.map((item: any) => ({
+            const esgsData: any = lang === "vi" ? DATA.ESG : lang === "en" ? DATA.ESG_EN : DATA.ESG_JP
+            // const data = await getAll(apiUrl, lang);
+            const transformedEsgs: ESG[] = esgsData.map((item: any) => ({
                 id: item.id,
                 row: item.row_number,
                 title: item.title,

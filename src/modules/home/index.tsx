@@ -15,6 +15,7 @@ import { truncateText } from "@/utils/helper"
 import { useEffect, useRef, useState } from "react"
 import { getAll } from "@/utils/api"
 import { useMediaQuery } from "@/utils/media"
+import { DATA } from "@/utils/data.bk"
 
 interface Product {
     row: number;
@@ -51,27 +52,31 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
 
     const fetchData = async () => {
         try {
-            setLoading(true);
+            // setLoading(true);
 
-            const fetchProducts = fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ method: "GET", lang }),
-            }).then(res => res.json());
+            // const fetchProducts = fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify({ method: "GET", lang }),
+            // }).then(res => res.json());
 
-            const fetchEsgs = fetch("https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ method: "GET", lang }),
-            }).then(res => res.json());
+            // const fetchEsgs = fetch("https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648", {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify({ method: "GET", lang }),
+            // }).then(res => res.json());
 
-            const fetchBlogs = fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ method: "GET", lang }),
-            }).then(res => res.json());
+            // const fetchBlogs = fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify({ method: "GET", lang }),
+            // }).then(res => res.json());
 
-            const [productsData, esgsData, blogsData] = await Promise.all([fetchProducts, fetchEsgs, fetchBlogs]);
+            // const [productsData, esgsData, blogsData] = await Promise.all([fetchProducts, fetchEsgs, fetchBlogs]);
+
+            const productsData: any = []
+            const esgsData: any = lang === "vi" ? DATA.ESG : lang === "en" ? DATA.ESG_EN : DATA.ESG_JP
+            const blogsData: any = lang === "vi" ? DATA.BLOG : lang === "en" ? DATA.BLOG_EN : DATA.BLOG_JP
 
             // Xử lý dữ liệu products
             const groupedProducts: { [key: string]: Product[] } = {};
@@ -91,7 +96,7 @@ export function HomePage({ lang, dictionary }: { lang: string; dictionary: any }
             setProducts(groupedProducts);
 
             // Lấy thông tin filtered products
-            await getProductsHomePage(productsData);
+            // await getProductsHomePage(productsData);
 
             // Xử lý dữ liệu esgs
             const transformedEsgs: ESG[] = esgsData.map((item: any) => ({

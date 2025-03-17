@@ -3,6 +3,7 @@
 import { Footer } from "@/layout/footer";
 import { Header } from "@/layout/header";
 import { NavMobile } from "@/layout/nav-mobile";
+import { DATA } from "@/utils/data.bk";
 import { IMAGES } from "@/utils/image";
 import { ROUTES } from "@/utils/route";
 import { ChevronRight } from "lucide-react";
@@ -48,12 +49,13 @@ export function BlogPage({ lang, dictionary }: { lang: any, dictionary: any }) {
                 redirect: "follow" as RequestRedirect,
             };
 
-            const res = await fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", requestOptions);
-            if (!res.ok) {
-                throw new Error('Failed to fetch data');
-            }
-            const data = await res.json();
-            const transformedBlogs: Blog[] = data.map((item: any) => ({
+            // const res = await fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", requestOptions);
+            // if (!res.ok) {
+            //     throw new Error('Failed to fetch data');
+            // }
+            // const data = await res.json();
+            const blogsData: any = lang === "vi" ? DATA.BLOG : lang === "en" ? DATA.BLOG_EN : DATA.BLOG_JP
+            const transformedBlogs: Blog[] = blogsData.map((item: any) => ({
                 row: item.row_number,
                 id: item.id,
                 title: item.title,

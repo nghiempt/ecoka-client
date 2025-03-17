@@ -14,6 +14,7 @@ import { NavMobile } from "@/layout/nav-mobile"
 import { ROUTES } from "@/utils/route"
 import { useEffect, useState } from "react"
 import { getAll } from "@/utils/api"
+import { DATA } from "@/utils/data.bk"
 
 
 interface Company {
@@ -44,8 +45,9 @@ export function ContactPage({ lang, dictionary }: { lang: any, dictionary: any }
 
     const fetchCompany = async () => {
         try {
-            const data = await getAll(apiUrl, lang);
-            const transformedCompany: Company[] = data.map((item: any) => ({
+            // const data = await getAll(apiUrl, lang);
+            const companyData: any = lang === "vi" ? DATA.COMPANY : lang === "en" ? DATA.COMPANY_EN : DATA.COMPANY_JP
+            const transformedCompany: Company[] = companyData.map((item: any) => ({
                 id: item.id,
                 row: item.row_number,
                 name: item.name,
