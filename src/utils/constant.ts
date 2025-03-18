@@ -14,28 +14,28 @@ export const categories: any = [
     name: "Thời Trang",
     name_en: "Fashion",
     name_jp: "ファッション",
-    path: "/thoi-trang",
+    path: "/fashion",
   },
   {
     id: 2,
     name: "Nhà Bếp",
     name_en: "Kitchen",
     name_jp: "台所",
-    path: "/nha-bep",
+    path: "/kitchen",
   },
   {
     id: 3,
     name: "Trang Trí Nhà Cửa",
     name_en: "Home Decoration",
     name_jp: "ホームデコレーション",
-    path: "/trang-tri-nha-cua",
+    path: "/home-decor",
   },
   {
     id: 4,
     name: "Nhà Thú Cưng",
     name_en: "Pet Houses",
     name_jp: "ペットハウス",
-    path: "/nha-thu-cung",
+    path: "/pet-house",
   },
 ];
 

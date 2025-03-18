@@ -15,21 +15,31 @@ import { truncateText } from "@/utils/helper";
 import { Product } from "@/components/global/product";
 
 export interface Color {
-  color: string,
-  bg: string
+  color: string;
+  bg: string;
 }
 
 interface Product {
-  row: number;
-  id: number;
-  name: string;
+  _id: string;
+  main_image: string;
+  side_images: string[];
+  vietnam_name: string;
+  english_name: string;
+  japan_name: string;
+  vietnam_description: string;
+  english_description: string;
+  japan_description: string;
   category: string;
   price: number;
-  description: string;
-  images: string[];
-};
+}
 
-const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string }) => {
+const ProductDetailPage = ({
+  dictionary,
+  lang,
+}: {
+  dictionary: any;
+  lang: string;
+}) => {
   const pathname = usePathname();
   const [currentData, setCurrentData] = useState<Product>({} as Product);
   const [quantity, setQuantity] = useState<number>(1);
@@ -46,47 +56,182 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
     { color: "yellow-500", bg: "bg-yellow-500" },
   ];
 
-  const fetchProducts = async () => {
-    try {
-      const myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
+  // const fetchProducts = async () => {
+  //   try {
+  //     const myHeaders = new Headers();
+  //     myHeaders.append("Content-Type", "application/json");
 
-      const raw = JSON.stringify({ method: "GET", lang: lang });
+  //     const raw = JSON.stringify({ method: "GET", lang: lang });
+
+  //     const requestOptions = {
+  //       method: "POST",
+  //       headers: myHeaders,
+  //       body: raw,
+  //       redirect: "follow" as RequestRedirect,
+  //     };
+
+  //     const res = await fetch(
+  //       "https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb",
+  //       requestOptions
+  //     );
+  //     if (!res.ok) {
+  //       throw new Error("Failed to fetch data");
+  //     }
+  //     const data = await res.json();
+  //     const transformedProducts: Product[] = data.map((item: any) => ({
+  //       row: item.row_number,
+  //       id: item.id,
+  //       name: item.name,
+  //       category: item.category,
+  //       price: item.price,
+  //       description: item.description,
+  //       images: [
+  //         item.i_one,
+  //         item.i_two,
+  //         item.i_three,
+  //         item.i_four,
+  //         item.i_five,
+  //         item.i_six,
+  //       ].filter((url) => url !== ""),
+  //     }));
+
+  //     console.log("check data: ", data);
+  //     return transformedProducts.sort((a, b) => b.id - a.id);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  const fetchProducts = async (): Promise<Product[]> => {
+    try {
+      //   const myHeaders = new Headers();
+      //   myHeaders.append("Content-Type", "application/json");
+
+      //   const raw = JSON.stringify({
+      //     method: "GET",
+      //   });
+
+      //   const requestOptions = {
+      //     method: "GET",
+      //     headers: myHeaders,
+      //     redirect: "follow" as RequestRedirect,
+      //   };
+
+      //   const res = await fetch(
+      //     "https://api.farmcode.io.vn/v1/ecoka/product",
+      //     requestOptions
+      //   );
+
+      //   if (!res.ok) {
+      //     throw new Error("Failed to fetch data");
+      //   }
+      //   const data = await res.json();
+      //   const transformedProducts: Product[] = data.map((item: any) => ({
+      //     // row: item.row_number,
+      //     // id: item.id,
+      //     // name: item.name,
+      //     // category: item.category,
+      //     // price: item.price,
+      //     // description: item.description,
+      //     // images: [
+      //     //   item.i_one,
+      //     //   item.i_two,
+      //     //   item.i_three,
+      //     //   item.i_four,
+      //     //   item.i_five,
+      //     //   item.i_six,
+
+      //     _id: item._id,
+      //     main_image: item.main_image,
+      //     vietnam_name: item.vietnam_name,
+      //     english_name: item.english_name,
+      //     japan_name: item.japan_name,
+      //     vietnam_description: item.vietnam_description,
+      //     english_description: item.english_description,
+      //     japan_description: item.japan_description,
+      //     category: item.category,
+      //     price: item.price,
+      //     side_images: [item.side_images].filter((url) => url !== ""),
+      //   }));
+      //   setProducts(transformedProducts);
+
+      //   console.log("check pro", transformedProducts);
 
       const requestOptions = {
-        method: "POST",
-        headers: myHeaders,
-        body: raw,
-        redirect: "follow" as RequestRedirect
+        // method: "GET",
+        // headers: { "Content-Type": "application/json" },
+        // redirect: "follow" as RequestRedirect,
+        method: "GET",
+        redirect: "follow" as RequestRedirect,
       };
 
-      const res = await fetch("https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb", requestOptions);
-      if (!res.ok) {
-        throw new Error('Failed to fetch data');
-      }
-      const data = await res.json();
-      const transformedProducts: Product[] = data.map((item: any) => ({
-        row: item.row_number,
-        id: item.id,
-        name: item.name,
-        category: item.category,
-        price: item.price,
-        description: item.description,
-        images: [
-          item.i_one,
-          item.i_two,
-          item.i_three,
-          item.i_four,
-          item.i_five,
-          item.i_six,
-        ].filter((url) => url !== ""),
-      }));
+      // Corrected fetchProducts implementation
+      const response = await fetch(
+        "https://api.farmcode.io.vn/v1/ecoka/product",
+        requestOptions
+      )
+        .then((response) => response.json()) // Parse JSON directly instead of text
+        // .then((result) => {
+        //   // Process the products data
+        //   const groupedProducts: { [key: string]: Product[] } = {};
+        //   result.forEach((item: any) => {
+        //     const category = item.category;
+        //     if (!groupedProducts[category]) groupedProducts[category] = [];
+        //     groupedProducts[category].push({
+        //       row: item.row_number,
+        //       id: item.id,
+        //       name: item.name,
+        //       category: item.category,
+        //       price: item.price,
+        //       description: item.description,
+        //       images: [
+        //         item.i_one,
+        //         item.i_two,
+        //         item.i_three,
+        //         item.i_four,
+        //         item.i_five,
+        //         item.i_six,
+        //       ].filter((url) => url !== ""),
+        //     });
+        //   });
+        //   return groupedProducts; // Return the processed data
+        // }
+        // )
+        .then((data) => {
+          return data.data.map((item: any) => ({
+            _id: item._id,
+            main_image: item.main_image,
+            side_images: item.side_images || [],
+            vietnam_name: item.vietnam_name,
+            english_name: item.english_name,
+            japan_name: item.japan_name,
+            vietnam_description: item.vietnam_description,
+            english_description: item.english_description,
+            japan_description: item.japan_description,
+            category: item.category,
+            price: item.price,
+          }));
+        })
+        .catch((error) => {
+          console.error("Error fetching products:", error);
+          return [];
+        });
+      return response;
 
-      console.log("check data: ", data)
-      return transformedProducts.sort((a, b) => b.id - a.id);
+      // Set the products state with the fetched data
+      // setProducts(fetchProducts.data);
+
+      //   const uniqueCategories = Array.from(
+      //     new Set(transformedProducts.map((p) => p.category))
+      //   );
+      //   setCategories(uniqueCategories);
     } catch (err) {
       console.log(err);
+      return []; // Return an empty array in case of an error
+    } finally {
+      setLoading(false);
     }
+    return []; // Ensure a return value in all code paths
   };
 
   const handleQuantityChange = (amount: number) => {
@@ -102,16 +247,23 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      let id = 0;
+      let id = "";
       const regex = /\/san-pham\/(\d+)/;
       const match = pathname.match(regex);
-      const products = await fetchProducts();
+      const pathnameSplit = pathname.split("/");
+
+      const products: Product[] = await fetchProducts();
+
       if (match && match[1]) {
-        id = parseInt(match[1], 10);
+        id = pathnameSplit[3];
+
         products?.forEach((product: Product) => {
-          if (product?.id === id) {
-            const filteredProducts = products.filter(p => p.category === product?.category);
+          if (product?._id === id.toString()) {
+            const filteredProducts = products.filter(
+              (p) => p.category === product?.category
+            );
             setRelatedProducts(filteredProducts);
+
             setCurrentData(product);
           }
         });
@@ -124,31 +276,50 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
-      <Header page={`san-pham/${currentData?.id}`} lang={lang} dictionary={dictionary} />
+      <Header
+        page={`san-pham/${currentData?._id}`}
+        lang={lang}
+        dictionary={dictionary}
+      />
       {loading ? (
         <div className="w-full min-h-screen flex justify-center items-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
         </div>
       ) : (
         <>
-          <div className="relative w-full bg-cover bg-center h-[250px] flex justify-center items-center z-10"
-            style={{ backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')` }}>
+          <div
+            className="relative w-full bg-cover bg-center h-[250px] flex justify-center items-center z-10"
+            style={{
+              backgroundImage: `url('https://res.cloudinary.com/farmcode/image/upload/v1732725346/ecoka/ea06mx34c2bjgjqoggsf.png')`,
+            }}
+          >
             <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
             <div className="relative w-full flex flex-col justify-center text-white items-center">
               <Image
                 src={IMAGES?.BANNER_LOGO}
-                alt='Meubel House'
+                alt="Meubel House"
                 width={50}
                 height={50}
                 className="text-center"
               />
-              <h1 className="text-4xl font-semibold mb-2">{dictionary?.PRODUCT_breadcrumb_main}</h1>
+              <h1 className="text-4xl font-semibold mb-2">
+                {dictionary?.PRODUCT_breadcrumb_main}
+              </h1>
               <div className="flex gap-2 items-center">
-                <Link href={`/${lang}`} className="font-semibold text-sm">{dictionary?.PRODUCT_breadcrumb_submain_1}</Link>
+                <Link href={`/${lang}`} className="font-semibold text-sm">
+                  {dictionary?.PRODUCT_breadcrumb_submain_1}
+                </Link>
                 <ChevronRight size={20} />
-                <Link href={`/${lang}/san-pham`} className="font-semibold text-sm">{dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}</Link>
+                <Link
+                  href={`/${lang}/san-pham`}
+                  className="font-semibold text-sm"
+                >
+                  {dictionary?.DETAIL_PRODUCT_breadcrumb_submain_2}
+                </Link>
                 <ChevronRight size={20} />
-                <h1 className="text-sm">{truncateText(currentData?.name, 12)}</h1>
+                <h1 className="text-sm">
+                  {truncateText(currentData?.vietnam_name, 12)}
+                </h1>
               </div>
             </div>
           </div>
@@ -157,21 +328,23 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
               <div className="flex flex-col md:flex-row w-full max-w-6xl p-4 mt-5 space-y-6 md:space-y-0">
                 <div className="flex md:flex-row flex-col-reverse items-start md:space-x-4">
                   <div className="flex md:flex-col flex-row md:space-y-4 mt-2 space-x-2 md:space-x-0 overflow-x-auto">
-                    {currentData.images?.map((src: any, index: any) => (
+                    {currentData.side_images?.map((src: any, index: any) => (
                       <Image
                         key={index}
-                        src={currentData?.images[index]}
+                        src={currentData?.side_images[index]}
                         alt="img"
                         width={80}
                         height={80}
                         className="rounded-lg cursor-pointer flex-shrink-0"
-                        onClick={() => handleThumbnailClick(currentData?.images[index])}
+                        onClick={() =>
+                          handleThumbnailClick(currentData?.side_images[index])
+                        }
                       />
                     ))}
                   </div>
                   <div className="w-full flex justify-center mt-2 mb-6 md:mb-0 lg:mb-0">
                     <Image
-                      src={mainImage || currentData?.images[0]}
+                      src={mainImage || currentData?.main_image}
                       alt="img"
                       width={500}
                       height={500}
@@ -181,20 +354,30 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                 </div>
                 <div className="flex flex-col flex-1 space-y-6 md:ml-20">
                   <h1 className="text-2xl font-bold text-center md:text-left">
-                    {currentData?.name}
+                    {lang === "vi"
+                      ? currentData.vietnam_name
+                      : lang === "en"
+                      ? currentData.english_name
+                      : currentData.japan_name}
                   </h1>
                   <p className="text-lg md:text-xl text-gray-400 font-semibold text-center md:text-left">
-                    {Intl.NumberFormat('de-DE').format(currentData?.price)} VND
+                    {Intl.NumberFormat("de-DE").format(currentData?.price)} VND
                   </p>
                   <div className="flex items-center justify-center md:justify-start space-x-2">
                     {[...Array(5)].map((_, i) => (
                       <FaStar key={i} className="text-yellow-500" />
                     ))}
                     <div className="border-l-2 h-6 mx-2 md:mx-4 border-gray-300"></div>
-                    <p className="text-sm text-gray-600">99 {dictionary?.DETAIL_PRODUCT_rating}</p>
+                    <p className="text-sm text-gray-600">
+                      99 {dictionary?.DETAIL_PRODUCT_rating}
+                    </p>
                   </div>
                   <p className="text-gray-600 text-center md:text-left">
-                    {currentData?.description}
+                    {lang === "vi"
+                      ? currentData.vietnam_description
+                      : lang === "en"
+                      ? currentData.english_description
+                      : currentData.japan_description}
                   </p>
                   <div>
                     <h3 className="text-lg font-semibold text-center md:text-left">
@@ -206,10 +389,11 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                           key={size}
                           variant="outline"
                           size="sm"
-                          className={`px-4 ${activeSize === size
-                            ? "bg-[#B88E2F] text-white"
-                            : "bg-white text-black"
-                            }`}
+                          className={`px-4 ${
+                            activeSize === size
+                              ? "bg-[#B88E2F] text-white"
+                              : "bg-white text-black"
+                          }`}
                           onClick={() => setActiveSize(size)}
                         >
                           {size}
@@ -229,10 +413,11 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                           variant="outline"
                           size="sm"
                           onClick={() => setSelectedColor(colorObj.color)}
-                          className={`w-8 h-8 ${colorObj.bg} rounded-full ${selectedColor === colorObj.color
-                            ? "border-2 border-[#B88E2F]"
-                            : "border border-transparent"
-                            } hover:${colorObj.bg} focus:${colorObj.bg}`}
+                          className={`w-8 h-8 ${colorObj.bg} rounded-full ${
+                            selectedColor === colorObj.color
+                              ? "border-2 border-[#B88E2F]"
+                              : "border border-transparent"
+                          } hover:${colorObj.bg} focus:${colorObj.bg}`}
                         />
                       ))}
                     </div>
@@ -275,27 +460,47 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
                   <hr />
                   <div className="text-sm text-gray-600 mt-4 space-y-2">
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_1}:</p>
+                      <p className="w-24 font-semibold">
+                        {dictionary?.DETAIL_PRODUCT_sub_description_1}:
+                      </p>
                       <p>Thời trang</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_2}:</p>
+                      <p className="w-24 font-semibold">
+                        {dictionary?.DETAIL_PRODUCT_sub_description_2}:
+                      </p>
                       <p>Việt Nam</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_3}:</p>
+                      <p className="w-24 font-semibold">
+                        {dictionary?.DETAIL_PRODUCT_sub_description_3}:
+                      </p>
                       <p>Da</p>
                     </div>
                     <div className="flex items-center">
-                      <p className="w-24 font-semibold">{dictionary?.DETAIL_PRODUCT_sub_description_origin}</p>
+                      <p className="w-24 font-semibold">
+                        {dictionary?.DETAIL_PRODUCT_sub_description_origin}
+                      </p>
                       <div className="flex space-x-2">
-                        <Button variant="outline" size="sm" className="p-1 border-none">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="p-1 border-none"
+                        >
                           <FaFacebook className="text-lg" />
                         </Button>
-                        <Button variant="outline" size="sm" className="p-1 border-none">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="p-1 border-none"
+                        >
                           <SiShopee className="text-lg" />
                         </Button>
-                        <Button variant="outline" size="sm" className="p-1 border-none">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="p-1 border-none"
+                        >
                           <FaYoutube className="text-lg" />
                         </Button>
                       </div>
@@ -305,9 +510,15 @@ const ProductDetailPage = ({ dictionary, lang }: { dictionary: any; lang: string
               </div>
               <div className="w-full h-1 bg-[rgb(var(--primary-rgb))] mt-16"></div>
               <div className="w-full flex flex-col justify-start items-start mt-8">
-                <div className="text-2xl font-bold text-left mb-8">{dictionary?.DETAIL_PRODUCT_subtitle_1}</div>
+                <div className="text-2xl font-bold text-left mb-8">
+                  {dictionary?.DETAIL_PRODUCT_subtitle_1}
+                </div>
                 <div className="w-full z-10">
-                  <Product lang={lang} dictionary={dictionary} products={relatedProducts} />
+                  <Product
+                    lang={lang}
+                    dictionary={dictionary}
+                    products={relatedProducts}
+                  />
                 </div>
               </div>
             </div>

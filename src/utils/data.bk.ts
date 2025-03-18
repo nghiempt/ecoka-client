@@ -1509,6 +1509,37 @@ const COMPANY_JP = [
   },
 ];
 
+const CATEGORIES = [
+  {
+    id: 1,
+    category: "fashion",
+    category_vi: "Thời Trang",
+    category_en: "Fashion",
+    category_jp: "ファッション",
+  },
+  {
+    id: 2,
+    category: "home-decor",
+    category_vi: "Trang Trí Nhà Cửa",
+    category_en: "Home Decoration",
+    category_jp: "ホームデコレーション",
+  },
+  {
+    id: 3,
+    category: "kitchen",
+    category_vi: "Nhà Bếp",
+    category_en: "Kitchen",
+    category_jp: "台所",
+  },
+  {
+    id: 4,
+    category: "pet-house",
+    category_vi: "Nhà Thú Cưng",
+    category_en: "Pet Houses",
+    category_jp: "ペットハウス",
+  },
+];
+
 export const DATA = {
   HOMEPAGE,
   BLOG,
@@ -1523,4 +1554,5 @@ export const DATA = {
   PRODUCT,
   PRODUCT_EN,
   PRODUCT_JP,
+  CATEGORIES,
 };
