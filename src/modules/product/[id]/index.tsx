@@ -56,147 +56,18 @@ const ProductDetailPage = ({
     { color: "yellow-500", bg: "bg-yellow-500" },
   ];
 
-  // const fetchProducts = async () => {
-  //   try {
-  //     const myHeaders = new Headers();
-  //     myHeaders.append("Content-Type", "application/json");
-
-  //     const raw = JSON.stringify({ method: "GET", lang: lang });
-
-  //     const requestOptions = {
-  //       method: "POST",
-  //       headers: myHeaders,
-  //       body: raw,
-  //       redirect: "follow" as RequestRedirect,
-  //     };
-
-  //     const res = await fetch(
-  //       "https://n8n.khiemfle.com/webhook/b68e20ce-4e9a-4d96-8c48-c28f61bdc4cb",
-  //       requestOptions
-  //     );
-  //     if (!res.ok) {
-  //       throw new Error("Failed to fetch data");
-  //     }
-  //     const data = await res.json();
-  //     const transformedProducts: Product[] = data.map((item: any) => ({
-  //       row: item.row_number,
-  //       id: item.id,
-  //       name: item.name,
-  //       category: item.category,
-  //       price: item.price,
-  //       description: item.description,
-  //       images: [
-  //         item.i_one,
-  //         item.i_two,
-  //         item.i_three,
-  //         item.i_four,
-  //         item.i_five,
-  //         item.i_six,
-  //       ].filter((url) => url !== ""),
-  //     }));
-
-  //     console.log("check data: ", data);
-  //     return transformedProducts.sort((a, b) => b.id - a.id);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
   const fetchProducts = async (): Promise<Product[]> => {
     try {
-      //   const myHeaders = new Headers();
-      //   myHeaders.append("Content-Type", "application/json");
-
-      //   const raw = JSON.stringify({
-      //     method: "GET",
-      //   });
-
-      //   const requestOptions = {
-      //     method: "GET",
-      //     headers: myHeaders,
-      //     redirect: "follow" as RequestRedirect,
-      //   };
-
-      //   const res = await fetch(
-      //     "https://api.farmcode.io.vn/v1/ecoka/product",
-      //     requestOptions
-      //   );
-
-      //   if (!res.ok) {
-      //     throw new Error("Failed to fetch data");
-      //   }
-      //   const data = await res.json();
-      //   const transformedProducts: Product[] = data.map((item: any) => ({
-      //     // row: item.row_number,
-      //     // id: item.id,
-      //     // name: item.name,
-      //     // category: item.category,
-      //     // price: item.price,
-      //     // description: item.description,
-      //     // images: [
-      //     //   item.i_one,
-      //     //   item.i_two,
-      //     //   item.i_three,
-      //     //   item.i_four,
-      //     //   item.i_five,
-      //     //   item.i_six,
-
-      //     _id: item._id,
-      //     main_image: item.main_image,
-      //     vietnam_name: item.vietnam_name,
-      //     english_name: item.english_name,
-      //     japan_name: item.japan_name,
-      //     vietnam_description: item.vietnam_description,
-      //     english_description: item.english_description,
-      //     japan_description: item.japan_description,
-      //     category: item.category,
-      //     price: item.price,
-      //     side_images: [item.side_images].filter((url) => url !== ""),
-      //   }));
-      //   setProducts(transformedProducts);
-
-      //   console.log("check pro", transformedProducts);
-
       const requestOptions = {
-        // method: "GET",
-        // headers: { "Content-Type": "application/json" },
-        // redirect: "follow" as RequestRedirect,
         method: "GET",
         redirect: "follow" as RequestRedirect,
       };
 
-      // Corrected fetchProducts implementation
       const response = await fetch(
         "https://api.farmcode.io.vn/v1/ecoka/product",
         requestOptions
       )
-        .then((response) => response.json()) // Parse JSON directly instead of text
-        // .then((result) => {
-        //   // Process the products data
-        //   const groupedProducts: { [key: string]: Product[] } = {};
-        //   result.forEach((item: any) => {
-        //     const category = item.category;
-        //     if (!groupedProducts[category]) groupedProducts[category] = [];
-        //     groupedProducts[category].push({
-        //       row: item.row_number,
-        //       id: item.id,
-        //       name: item.name,
-        //       category: item.category,
-        //       price: item.price,
-        //       description: item.description,
-        //       images: [
-        //         item.i_one,
-        //         item.i_two,
-        //         item.i_three,
-        //         item.i_four,
-        //         item.i_five,
-        //         item.i_six,
-        //       ].filter((url) => url !== ""),
-        //     });
-        //   });
-        //   return groupedProducts; // Return the processed data
-        // }
-        // )
+        .then((response) => response.json())
         .then((data) => {
           return data.data.map((item: any) => ({
             _id: item._id,
@@ -217,21 +88,12 @@ const ProductDetailPage = ({
           return [];
         });
       return response;
-
-      // Set the products state with the fetched data
-      // setProducts(fetchProducts.data);
-
-      //   const uniqueCategories = Array.from(
-      //     new Set(transformedProducts.map((p) => p.category))
-      //   );
-      //   setCategories(uniqueCategories);
     } catch (err) {
       console.log(err);
-      return []; // Return an empty array in case of an error
+      return [];
     } finally {
       setLoading(false);
     }
-    return []; // Ensure a return value in all code paths
   };
 
   const handleQuantityChange = (amount: number) => {
@@ -256,14 +118,12 @@ const ProductDetailPage = ({
 
       if (match && match[1]) {
         id = pathnameSplit[3];
-
         products?.forEach((product: Product) => {
           if (product?._id === id.toString()) {
             const filteredProducts = products.filter(
               (p) => p.category === product?.category
             );
             setRelatedProducts(filteredProducts);
-
             setCurrentData(product);
           }
         });

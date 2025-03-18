@@ -17,13 +17,21 @@ import { useMediaQuery } from "@/utils/media";
 import { DATA } from "@/utils/data.bk";
 
 interface Product {
-  row: number;
-  id: number;
-  name: string;
+  _id: string;
+  main_image: string;
+  side_images: string[];
+  vietnam_name: string;
+  english_name: string;
+  japan_name: string;
+  vietnam_description: string;
+  english_description: string;
+  japan_description: string;
   category: string;
   price: number;
-  description: string;
-  images: string[];
+}
+
+interface Products {
+  [category: string]: Product[];
 }
 interface ESG {
   id: number;
@@ -57,115 +65,45 @@ export function HomePage({
 
   const fetchData = async () => {
     try {
-      // setLoading(true);
-
-      //   const fetchProducts = fetch(
-      //     "https://api.farmcode.io.vn/v1/ecoka/product/",
-      //     {
-      //       method: "GET",
-      //       headers: { "Content-Type": "application/json" },
-      //       body: JSON.stringify({ method: "GET", lang }),
-      //     }
-      //   ).then((res) => res.json());
-
-      //   console.log("fetchProducts", fetchProducts);
-
-      // const fetchEsgs = fetch("https://n8n.khiemfle.com/webhook/ec20cfc2-50bf-461c-b625-5f0eb0a72648", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify({ method: "GET", lang }),
-      // }).then(res => res.json());
-
-      // const fetchBlogs = fetch("https://n8n.khiemfle.com/webhook/f3608e3a-c00a-415d-b7e2-d6184b5d27d3", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify({ method: "GET", lang }),
-      // }).then(res => res.json());
-
-      //   const [productsData, esgsData, blogsData] = await Promise.all([fetchProducts, fetchEsgs, fetchBlogs]);
-
-      //   const productsData: any = [];
       const esgsData: any =
         lang === "vi" ? DATA.ESG : lang === "en" ? DATA.ESG_EN : DATA.ESG_JP;
       const blogsData: any =
         lang === "vi" ? DATA.BLOG : lang === "en" ? DATA.BLOG_EN : DATA.BLOG_JP;
 
-      //   // Xử lý dữ liệu products
-      //   const groupedProducts: { [key: string]: Product[] } = {};
-      //   productsData.forEach((item: any) => {
-      //     const category = item.category;
-      //     if (!groupedProducts[category]) groupedProducts[category] = [];
-      //     groupedProducts[category].push({
-      //       row: item.row_number,
-      //       id: item.id,
-      //       name: item.name,
-      //       category: item.category,
-      //       price: item.price,
-      //       description: item.description,
-      //       images: [
-      //         item.i_one,
-      //         item.i_two,
-      //         item.i_three,
-      //         item.i_four,
-      //         item.i_five,
-      //         item.i_six,
-      //       ].filter((url) => url !== ""),
-      //     });
-      //   });
-      //   setProducts(groupedProducts);
-
       const requestOptions = {
-        // method: "GET",
-        // headers: { "Content-Type": "application/json" },
-        // redirect: "follow" as RequestRedirect,
         method: "GET",
         redirect: "follow" as RequestRedirect,
       };
 
-      // Corrected fetchProducts implementation
-      const fetchProducts = await fetch(
+      const response = await fetch(
         "https://api.farmcode.io.vn/v1/ecoka/product",
         requestOptions
-      )
-        .then((response) => response.json()) // Parse JSON directly instead of text
-        // .then((result) => {
-        //   // Process the products data
-        //   const groupedProducts: { [key: string]: Product[] } = {};
-        //   result.forEach((item: any) => {
-        //     const category = item.category;
-        //     if (!groupedProducts[category]) groupedProducts[category] = [];
-        //     groupedProducts[category].push({
-        //       row: item.row_number,
-        //       id: item.id,
-        //       name: item.name,
-        //       category: item.category,
-        //       price: item.price,
-        //       description: item.description,
-        //       images: [
-        //         item.i_one,
-        //         item.i_two,
-        //         item.i_three,
-        //         item.i_four,
-        //         item.i_five,
-        //         item.i_six,
-        //       ].filter((url) => url !== ""),
-        //     });
-        //   });
-        //   return groupedProducts; // Return the processed data
-        // }
-        // )
-        .catch((error) => {
-          console.error("Error fetching products:", error);
-          throw error; // Re-throw to be caught by try-catch
+      );
+      const result = await response.json();
+
+      const groupedProducts: { [key: string]: Product[] } = {};
+
+      result.data.forEach((item: any, index: number) => {
+        const category = item.category;
+        if (!groupedProducts[category]) groupedProducts[category] = [];
+        groupedProducts[category].push({
+          _id: item._id,
+          main_image: item.main_image,
+          side_images: item.side_images || [],
+          vietnam_name: item.vietnam_name,
+          english_name: item.english_name,
+          japan_name: item.japan_name,
+          vietnam_description: item.vietnam_description,
+          english_description: item.english_description,
+          japan_description: item.japan_description,
+          category: item.category,
+          price: item.price,
         });
+      });
 
-      // Set the products state with the fetched data
-      setProducts(fetchProducts.data);
+      setProducts(groupedProducts);
 
-      console.log("fetchProducts", fetchProducts.data);
-
-      // Lấy thông tin filtered products
-      // await getProductsHomePage(productsData);
+      console.log("groupedProducts", groupedProducts);
 
       // Xử lý dữ liệu esgs
       const transformedEsgs: ESG[] = esgsData.map((item: any) => ({
@@ -192,51 +130,6 @@ export function HomePage({
       console.error("Failed to fetch data:", error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const getProductsHomePage = async (productOrigin: any) => {
-    try {
-      const response = await fetch(
-        "https://api.farmcode.io.vn/v1/ecoka/product/",
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ method: "GET" }),
-        }
-      );
-      const result = await response.json();
-
-      const groupedProducts: { [key: string]: any[] } = {};
-      result.forEach((item: any) => {
-        const product = productOrigin.find(
-          (pro: any) => pro.id.toString() === item.product_id.toString()
-        );
-        if (product) {
-          const category = product.category;
-          if (!groupedProducts[category]) groupedProducts[category] = [];
-          groupedProducts[category].push({
-            row: product.row,
-            id: product.id,
-            name: product.name,
-            category: product.category,
-            price: product.price,
-            description: product.description,
-            images: [
-              product.i_one,
-              product.i_two,
-              product.i_three,
-              product.i_four,
-              product.i_five,
-              product.i_six,
-            ].filter((url) => url !== ""),
-          });
-        }
-      });
-
-      setFilterProducts(groupedProducts);
-    } catch (error) {
-      console.error("Error fetching homepage products:", error);
     }
   };
 
@@ -693,25 +586,21 @@ export function HomePage({
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {
-                  // Object.entries(filterProducts)
-                  //   // .filter(([category, items]: [category: any, items: any]) => items.length >= 4)
-                  //   .flatMap(([category, items]: [category: any, items: any]) =>
-                  Object.values(products)
-                    ?.flat()
-                    .slice(0, 12)
-                    ?.map((product: any) => (
+                {Object.entries(products as Products)
+                  .filter(([category, items]) => items.length >= 4)
+                  .flatMap(([category, items]) =>
+                    items.slice(0, 4).map((product: Product) => (
                       <Link
-                        href={`${lang}/san-pham/${product?._id}`}
-                        key={product?.id}
+                        href={`${lang}/san-pham/${product._id}`}
+                        key={product._id}
                         className="relative group cursor-pointer rounded-lg"
                       >
                         <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                           <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
-                            {product?.main_image ? (
+                            {product.main_image ? (
                               <Image
-                                src={product?.main_image}
-                                alt={`${product?.main_image} image`}
+                                src={product.main_image}
+                                alt={`${product.main_image} image`}
                                 fill
                                 style={{ objectFit: "cover" }}
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -726,22 +615,22 @@ export function HomePage({
                           <div className="flex flex-col justify-center p-3 text-start">
                             <div className="text-lg font-bold mb-1 max-h-[28px] truncate">
                               {lang === "vi"
-                                ? product?.vietnam_name
+                                ? product.vietnam_name
                                 : lang === "en"
-                                ? product?.english_name
-                                : product?.japan_name}
+                                ? product.english_name
+                                : product.japan_name}
                             </div>
                             <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
                               {lang === "vi"
-                                ? product?.vietnam_description
+                                ? product.vietnam_description
                                 : lang === "en"
-                                ? product?.english_description
-                                : product?.japan_description}
+                                ? product.english_description
+                                : product.japan_description}
                             </div>
                             <div className="w-full grid grid-cols-5 items-center">
                               <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
                                 {Intl.NumberFormat("de-DE").format(
-                                  product?.price
+                                  product.price
                                 )}{" "}
                                 VND
                               </p>
@@ -753,7 +642,7 @@ export function HomePage({
                         </div>
                       </Link>
                     ))
-                }
+                  )}
               </div>
             )}
           </div>
