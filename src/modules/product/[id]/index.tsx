@@ -233,11 +233,21 @@ const ProductDetailPage = ({
                     </p>
                   </div>
                   <p className="text-gray-600 text-center md:text-left">
-                    {lang === "vi"
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html:
+                          lang === "vi"
+                            ? currentData.vietnam_description
+                            : lang === "en"
+                            ? currentData.english_description
+                            : currentData.japan_description,
+                      }}
+                    />
+                    {/* {lang === "vi"
                       ? currentData.vietnam_description
                       : lang === "en"
                       ? currentData.english_description
-                      : currentData.japan_description}
+                      : currentData.japan_description} */}
                   </p>
                   <div>
                     <h3 className="text-lg font-semibold text-center md:text-left">

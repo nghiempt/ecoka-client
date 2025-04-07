@@ -185,8 +185,8 @@ export function ProductPage({
                   <div className="rounded-lg bg-gray-50 flex flex-col border-none">
                     <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
                       <Image
-                        src={product.main_image}
-                        alt={`${product.vietnam_name} image`}
+                        src={product?.main_image}
+                        alt={`${product?.vietnam_name} image`}
                         fill
                         style={{ objectFit: "cover" }}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -202,11 +202,21 @@ export function ProductPage({
                           : product.japan_name}
                       </div>
                       <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
-                        {lang === "vi"
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              lang === "vi"
+                                ? product.vietnam_description
+                                : lang === "en"
+                                ? product.english_description
+                                : product.japan_description,
+                          }}
+                        />
+                        {/* {lang === "vi"
                           ? product.vietnam_description
                           : lang === "en"
                           ? product.english_description
-                          : product.japan_description}
+                          : product.japan_description} */}
                       </div>
                       <div className="w-full grid grid-cols-5 items-center">
                         <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
