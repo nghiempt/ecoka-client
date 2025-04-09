@@ -11,7 +11,7 @@ import { IMAGES } from "@/utils/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { truncateText } from "@/utils/helper";
+import { formatCurrency, truncateText } from "@/utils/helper";
 import { Product } from "@/components/global/product";
 
 export interface Color {
@@ -217,11 +217,11 @@ const ProductDetailPage = ({
                     {lang === "vi"
                       ? currentData.vietnam_name
                       : lang === "en"
-                      ? currentData.english_name
-                      : currentData.japan_name}
+                        ? currentData.english_name
+                        : currentData.japan_name}
                   </h1>
                   <p className="text-lg md:text-xl text-gray-400 font-semibold text-center md:text-left">
-                    {Intl.NumberFormat("de-DE").format(currentData?.price)} VND
+                    {formatCurrency(currentData?.price, lang)}
                   </p>
                   <div className="flex items-center justify-center md:justify-start space-x-2">
                     {[...Array(5)].map((_, i) => (
@@ -239,8 +239,8 @@ const ProductDetailPage = ({
                           lang === "vi"
                             ? currentData.vietnam_description
                             : lang === "en"
-                            ? currentData.english_description
-                            : currentData.japan_description,
+                              ? currentData.english_description
+                              : currentData.japan_description,
                       }}
                     />
                     {/* {lang === "vi"
@@ -249,49 +249,6 @@ const ProductDetailPage = ({
                       ? currentData.english_description
                       : currentData.japan_description} */}
                   </p>
-                  <div>
-                    <h3 className="text-lg font-semibold text-center md:text-left">
-                      {dictionary?.DETAIL_PRODUCT_size}
-                    </h3>
-                    <div className="flex justify-center md:justify-start space-x-2 mt-2">
-                      {sizes.map((size) => (
-                        <Button
-                          key={size}
-                          variant="outline"
-                          size="sm"
-                          className={`px-4 ${
-                            activeSize === size
-                              ? "bg-[#B88E2F] text-white"
-                              : "bg-white text-black"
-                          }`}
-                          onClick={() => setActiveSize(size)}
-                        >
-                          {size}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-center md:text-left">
-                      {dictionary?.DETAIL_PRODUCT_color}
-                    </h3>
-                    <div className="flex justify-center md:justify-start space-x-2 mt-2">
-                      {colors.map((colorObj) => (
-                        <Button
-                          key={colorObj.color}
-                          aria-label={`Select color ${colorObj.color}`}
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setSelectedColor(colorObj.color)}
-                          className={`w-8 h-8 ${colorObj.bg} rounded-full ${
-                            selectedColor === colorObj.color
-                              ? "border-2 border-[#B88E2F]"
-                              : "border border-transparent"
-                          } hover:${colorObj.bg} focus:${colorObj.bg}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
                   <div className="flex flex-col md:flex-row md:items-center md:justify-start space-y-4 md:space-y-0 md:space-x-4 mt-4">
                     <div className="flex items-center justify-center md:justify-start border border-gray-300 rounded-full px-3 py-1">
                       <Button
@@ -340,40 +297,6 @@ const ProductDetailPage = ({
                         {dictionary?.DETAIL_PRODUCT_sub_description_2}:
                       </p>
                       <p>Việt Nam</p>
-                    </div>
-                    <div className="flex items-center">
-                      <p className="w-24 font-semibold">
-                        {dictionary?.DETAIL_PRODUCT_sub_description_3}:
-                      </p>
-                      <p>Da</p>
-                    </div>
-                    <div className="flex items-center">
-                      <p className="w-24 font-semibold">
-                        {dictionary?.DETAIL_PRODUCT_sub_description_origin}
-                      </p>
-                      <div className="flex space-x-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="p-1 border-none"
-                        >
-                          <FaFacebook className="text-lg" />
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="p-1 border-none"
-                        >
-                          <SiShopee className="text-lg" />
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="p-1 border-none"
-                        >
-                          <FaYoutube className="text-lg" />
-                        </Button>
-                      </div>
                     </div>
                   </div>
                 </div>

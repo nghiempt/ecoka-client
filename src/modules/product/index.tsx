@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { Share2, ArrowRightLeft, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DATA } from "@/utils/data.bk";
+import { formatCurrency } from "@/utils/helper";
 interface Product {
   _id: string;
   main_image: string;
@@ -220,7 +221,7 @@ export function ProductPage({
                       </div>
                       <div className="w-full grid grid-cols-5 items-center">
                         <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
-                          {Intl.NumberFormat("de-DE").format(product.price)} VND
+                          {formatCurrency(product?.price, lang)}
                         </p>
                       </div>
                     </div>

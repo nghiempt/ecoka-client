@@ -11,7 +11,7 @@ import { Slider } from "./slider";
 import { ROUTES } from "@/utils/route";
 import Image from "next/image";
 import { NavMobile } from "@/layout/nav-mobile";
-import { truncateText } from "@/utils/helper";
+import { formatCurrency, truncateText } from "@/utils/helper";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/utils/media";
 import { DATA } from "@/utils/data.bk";
@@ -218,9 +218,8 @@ export function HomePage({
                     height={23}
                   />
                   <div
-                    className={`transition-transform duration-300 ${
-                      isOpen ? "-translate-y-0.5" : "-rotate-90"
-                    } mt-1`}
+                    className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
+                      } mt-1`}
                   >
                     <svg
                       className="-mr-1 size-5 text-gray-400"
@@ -273,9 +272,8 @@ export function HomePage({
                     height={23}
                   />
                   <div
-                    className={`transition-transform duration-300 ${
-                      isOpen ? "-translate-y-0.5" : "-rotate-90"
-                    } mt-1`}
+                    className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
+                      } mt-1`}
                   >
                     <svg
                       className="-mr-1 size-5 text-gray-400"
@@ -356,9 +354,8 @@ export function HomePage({
                   height={23}
                 />
                 <div
-                  className={`transition-transform duration-300 ${
-                    isOpen ? "-translate-y-0.5" : "-rotate-90"
-                  } mt-1`}
+                  className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
+                    } mt-1`}
                 >
                   <svg
                     className="-mr-1 size-5 text-gray-400"
@@ -617,22 +614,19 @@ export function HomePage({
                               {lang === "vi"
                                 ? product.vietnam_name
                                 : lang === "en"
-                                ? product.english_name
-                                : product.japan_name}
+                                  ? product.english_name
+                                  : product.japan_name}
                             </div>
                             <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
                               {lang === "vi"
                                 ? product.vietnam_description
                                 : lang === "en"
-                                ? product.english_description
-                                : product.japan_description}
+                                  ? product.english_description
+                                  : product.japan_description}
                             </div>
                             <div className="w-full grid grid-cols-5 items-center">
                               <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
-                                {Intl.NumberFormat("de-DE").format(
-                                  product.price
-                                )}{" "}
-                                VND
+                                {formatCurrency(product?.price, lang)}
                               </p>
                             </div>
                           </div>
