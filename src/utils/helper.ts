@@ -6,26 +6,25 @@ export const truncateText = (text: string, maxLength: number) => {
 };
 
 export const formatCurrency = (price: any, currency: any) => {
-
   const exchangeRates: any = {
-    vi: 1,           // Giá gốc là VND
-    en: 1 / 25000,   // 1 VND = 0.00004 USD
-    jp: 1 / 170,     // 1 VND = 0.00588 JPY
+    vi: 1, // Giá gốc là VND
+    en: 1 / 25000, // 1 VND = 0.00004 USD
+    jp: 1 / 170, // 1 VND = 0.00588 JPY
   };
 
   const convertedPrice = price * exchangeRates[currency];
 
   switch (currency) {
-    case 'vi':
+    case "vi":
       return `${Intl.NumberFormat("de-DE").format(price)} VND`;
-    case 'en':
+    case "en":
       return `${Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }).format(convertedPrice)}`;
-    case 'jp':
+    case "jp":
       return `${Intl.NumberFormat("ja-JP", {
         style: "currency",
         currency: "JPY",
@@ -41,6 +40,14 @@ export const formatPrice = (price: number) => {
   return new Intl.NumberFormat("de-DE").format(price);
 };
 
+export const formatDate = (isoDate: string) => {
+  const date = new Date(isoDate);
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const year = date.getUTCFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 export const renderCategory = (category: string, lang: string) => {
   let result = "";
   switch (category) {
@@ -52,24 +59,24 @@ export const renderCategory = (category: string, lang: string) => {
         lang === "vi"
           ? "Nhà thú cưng"
           : lang === "en"
-            ? "Pet Houses"
-            : "ペットハウス";
+          ? "Pet Houses"
+          : "ペットハウス";
       break;
     case "fashion":
       result =
         lang === "vi"
           ? "Thời trang"
           : lang === "en"
-            ? "Fashion"
-            : "ファッション";
+          ? "Fashion"
+          : "ファッション";
       break;
     case "home-decor":
       result =
         lang === "vi"
           ? "Trang trí nhà cửa"
           : lang === "en"
-            ? "Home Decoration"
-            : "ホームデコレーション";
+          ? "Home Decoration"
+          : "ホームデコレーション";
       break;
     default:
       break;
