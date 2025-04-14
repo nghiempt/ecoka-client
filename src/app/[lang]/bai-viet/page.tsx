@@ -1,16 +1,12 @@
-'use client'
-
-import { getDictionary } from '@/i18n/get-dictionary'
+import { getDictionary } from "@/i18n/get-dictionary";
 import { BlogPage } from "@/modules/blog";
 
 export default async function Blog({
-  params: { lang }
+  params: { lang },
 }: {
-  params: { lang: string }
+  params: { lang: string };
 }) {
-  const dictionary = await getDictionary(lang as any)
+  const dictionary = await getDictionary(lang as any);
 
-  return (
-    <BlogPage lang={lang} dictionary={dictionary} />
-  );
+  return <BlogPage lang={lang} dictionary={dictionary} />;
 }

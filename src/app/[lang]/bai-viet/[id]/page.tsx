@@ -1,4 +1,3 @@
-"use client";
 import { getDictionary } from "@/i18n/get-dictionary";
 import BlogDetailPage from "@/modules/blog/[id]";
 

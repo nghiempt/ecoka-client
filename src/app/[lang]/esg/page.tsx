@@ -1,17 +1,12 @@
-'use client'
-
 import { ESGPage } from "@/modules/esg";
-import { getDictionary } from '@/i18n/get-dictionary'
-
+import { getDictionary } from "@/i18n/get-dictionary";
 
 export default async function ESG({
-  params: { lang }
+  params: { lang },
 }: {
-  params: { lang: string }
+  params: { lang: string };
 }) {
-  const dictionary = await getDictionary(lang as any)
+  const dictionary = await getDictionary(lang as any);
 
-  return (
-    <ESGPage lang={lang} dictionary={dictionary} />
-  );
+  return <ESGPage lang={lang} dictionary={dictionary} />;
 }
