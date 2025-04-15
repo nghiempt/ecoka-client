@@ -28,6 +28,7 @@ interface Product {
   japan_description: string;
   category: string;
   price: number;
+  show_status: string;
 }
 
 interface Products {
@@ -98,6 +99,7 @@ export function HomePage({
           japan_description: item.japan_description,
           category: item.category,
           price: item.price,
+          show_status: item.show_status,
         });
       });
 
@@ -218,8 +220,9 @@ export function HomePage({
                     height={23}
                   />
                   <div
-                    className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
-                      } mt-1`}
+                    className={`transition-transform duration-300 ${
+                      isOpen ? "-translate-y-0.5" : "-rotate-90"
+                    } mt-1`}
                   >
                     <svg
                       className="-mr-1 size-5 text-gray-400"
@@ -272,8 +275,9 @@ export function HomePage({
                     height={23}
                   />
                   <div
-                    className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
-                      } mt-1`}
+                    className={`transition-transform duration-300 ${
+                      isOpen ? "-translate-y-0.5" : "-rotate-90"
+                    } mt-1`}
                   >
                     <svg
                       className="-mr-1 size-5 text-gray-400"
@@ -354,8 +358,9 @@ export function HomePage({
                   height={23}
                 />
                 <div
-                  className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
-                    } mt-1`}
+                  className={`transition-transform duration-300 ${
+                    isOpen ? "-translate-y-0.5" : "-rotate-90"
+                  } mt-1`}
                 >
                   <svg
                     className="-mr-1 size-5 text-gray-400"
@@ -583,60 +588,61 @@ export function HomePage({
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {Object.entries(products as Products)
-                  .filter(([category, items]) => items.length >= 4)
-                  .flatMap(([category, items]) =>
-                    items.slice(0, 4).map((product: Product) => (
-                      <Link
-                        href={`${lang}/san-pham/${product._id}`}
-                        key={product._id}
-                        className="relative group cursor-pointer rounded-lg"
-                      >
-                        <div className="rounded-lg bg-gray-50 flex flex-col border-none">
-                          <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
-                            {product.main_image ? (
-                              <Image
-                                src={product.main_image}
-                                alt={`${product.main_image} image`}
-                                fill
-                                style={{ objectFit: "cover" }}
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                className="rounded-lg"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-gray-200 rounded-lg">
-                                <span>No Image</span>
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex flex-col justify-center p-3 text-start">
-                            <div className="text-lg font-bold mb-1 max-h-[28px] truncate">
-                              {lang === "vi"
-                                ? product.vietnam_name
-                                : lang === "en"
+                {Object.entries(products as Products).flatMap(
+                  ([category, items]) =>
+                    items
+                      .filter((product) => product.show_status === "show")
+                      .map((product: Product) => (
+                        <Link
+                          href={`${lang}/san-pham/${product._id}`}
+                          key={product._id}
+                          className="relative group cursor-pointer rounded-lg"
+                        >
+                          <div className="rounded-lg bg-gray-50 flex flex-col border-none">
+                            <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
+                              {product.main_image ? (
+                                <Image
+                                  src={product.main_image}
+                                  alt={`${product.main_image} image`}
+                                  fill
+                                  style={{ objectFit: "cover" }}
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                  className="rounded-lg"
+                                />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center bg-gray-200 rounded-lg">
+                                  <span>No Image</span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex flex-col justify-center p-3 text-start">
+                              <div className="text-lg font-bold mb-1 max-h-[28px] truncate">
+                                {lang === "vi"
+                                  ? product.vietnam_name
+                                  : lang === "en"
                                   ? product.english_name
                                   : product.japan_name}
-                            </div>
-                            <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
-                              {lang === "vi"
-                                ? product.vietnam_description
-                                : lang === "en"
+                              </div>
+                              <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
+                                {lang === "vi"
+                                  ? product.vietnam_description
+                                  : lang === "en"
                                   ? product.english_description
                                   : product.japan_description}
-                            </div>
-                            <div className="w-full grid grid-cols-5 items-center">
-                              <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
-                                {formatCurrency(product?.price, lang)}
-                              </p>
+                              </div>
+                              <div className="w-full grid grid-cols-5 items-center">
+                                <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
+                                  {formatCurrency(product?.price, lang)}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
-                          {dictionary?.HOME_new_tag}
-                        </div>
-                      </Link>
-                    ))
-                  )}
+                          <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
+                            {dictionary?.HOME_new_tag}
+                          </div>
+                        </Link>
+                      ))
+                )}
               </div>
             )}
           </div>
