@@ -132,8 +132,8 @@ export function ContactPage({
               <div className="flex items-start space-x-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="44"
+                  height="44"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"

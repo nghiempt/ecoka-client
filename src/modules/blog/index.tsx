@@ -137,7 +137,11 @@ export function BlogPage({ lang, dictionary }: { lang: any; dictionary: any }) {
                       {formatDate(blog?.created_at)}
                     </h1>
                     <h1 className="w-full text-[16px] font-semibold max-h-[48px] line-clamp-2">
-                      {blog?.s1_title_vn}
+                      {lang === "vi"
+                        ? blog.s1_title_vn
+                        : lang === "en"
+                        ? blog.s1_title_en
+                        : blog.s1_title_jp}
                     </h1>
                     <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">
                       {dictionary?.HOME_blog_author}: {blog?.author}
