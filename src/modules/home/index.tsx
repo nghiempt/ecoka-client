@@ -12,7 +12,7 @@ import { Slider } from "./slider";
 import { ROUTES } from "@/utils/route";
 import Image from "next/image";
 import { NavMobile } from "@/layout/nav-mobile";
-import { formatCurrency, truncateText } from "@/utils/helper";
+import { formatCurrency, formatDate, truncateText } from "@/utils/helper";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/utils/media";
 import { DATA } from "@/utils/data.bk";
@@ -29,17 +29,21 @@ interface Product {
   japan_description: string;
   category: string;
   price: number;
+  show_status: string;
 }
 
 interface Products {
   [category: string]: Product[];
 }
 interface ESG {
-  id: number;
-  row: number;
-  title: string;
-  description: string;
+  _id: string;
+  name_vn: string;
+  name_en: string;
+  name_jp: string;
   thumbnail: string;
+  description_vn: string;
+  description_en: string;
+  description_jp: string;
 }
 interface Blog {
   row: number;
@@ -48,7 +52,7 @@ interface Blog {
   description: string;
   thumbnail: string;
   author: string;
-  date: string;
+  created_at: string;
 }
 
 export function HomePage({
@@ -66,10 +70,10 @@ export function HomePage({
 
   const fetchData = async () => {
     try {
-      const esgsData: any =
-        lang === "vi" ? DATA.ESG : lang === "en" ? DATA.ESG_EN : DATA.ESG_JP;
-      const blogsData: any =
-        lang === "vi" ? DATA.BLOG : lang === "en" ? DATA.BLOG_EN : DATA.BLOG_JP;
+      // const esgsData: any =
+      //   lang === "vi" ? DATA.ESG : lang === "en" ? DATA.ESG_EN : DATA.ESG_JP;
+      // const blogsData: any =
+      //   lang === "vi" ? DATA.BLOG : lang === "en" ? DATA.BLOG_EN : DATA.BLOG_JP;
 
       const requestOptions = {
         method: "GET",
@@ -99,34 +103,30 @@ export function HomePage({
           japan_description: item.japan_description,
           category: item.category,
           price: item.price,
+          show_status: item.show_status,
         });
       });
 
       setProducts(groupedProducts);
 
-      console.log("groupedProducts", groupedProducts);
+      // ESG
+      const ESGresponse = await fetch(
+        "https://api.farmcode.io.vn/v1/ecoka/esg",
+        requestOptions
+      );
+      const ESGresult = await ESGresponse.json();
 
-      // Xử lý dữ liệu esgs
-      const transformedEsgs: ESG[] = esgsData.map((item: any) => ({
-        id: item.id,
-        row: item.row_number,
-        title: item.title,
-        description: item.description,
-        thumbnail: item.thumbnail,
-      }));
-      setEsgs(transformedEsgs);
+      setEsgs(ESGresult.data);
 
-      // Xử lý dữ liệu blogs
-      const transformedBlogs: Blog[] = blogsData.map((item: any) => ({
-        row: item.row_number,
-        id: item.id,
-        title: item.title,
-        description: item.description,
-        thumbnail: item.thumbnail,
-        author: item.author,
-        date: new Date(item.date).toLocaleString("vi-VN"),
-      }));
-      setBlogs(transformedBlogs);
+      // Blogs
+
+      const BLOGresponse = await fetch(
+        "https://api.farmcode.io.vn/v1/ecoka/blog",
+        requestOptions
+      );
+      const BLOGresult = await BLOGresponse.json();
+
+      setBlogs(BLOGresult.data);
     } catch (error) {
       console.error("Failed to fetch data:", error);
     } finally {
@@ -219,8 +219,9 @@ export function HomePage({
                     height={23}
                   />
                   <div
-                    className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
-                      } mt-1`}
+                    className={`transition-transform duration-300 ${
+                      isOpen ? "-translate-y-0.5" : "-rotate-90"
+                    } mt-1`}
                   >
                     <svg
                       className="-mr-1 size-5 text-gray-400"
@@ -273,8 +274,9 @@ export function HomePage({
                     height={23}
                   />
                   <div
-                    className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
-                      } mt-1`}
+                    className={`transition-transform duration-300 ${
+                      isOpen ? "-translate-y-0.5" : "-rotate-90"
+                    } mt-1`}
                   >
                     <svg
                       className="-mr-1 size-5 text-gray-400"
@@ -355,8 +357,9 @@ export function HomePage({
                   height={23}
                 />
                 <div
-                  className={`transition-transform duration-300 ${isOpen ? "-translate-y-0.5" : "-rotate-90"
-                    } mt-1`}
+                  className={`transition-transform duration-300 ${
+                    isOpen ? "-translate-y-0.5" : "-rotate-90"
+                  } mt-1`}
                 >
                   <svg
                     className="-mr-1 size-5 text-gray-400"
@@ -509,9 +512,13 @@ export function HomePage({
             ) : (
               esgs.map((esg, index) => (
                 <Link href={`/${lang}${ROUTES.ESG}`} key={index}>
-                  <div className="flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
+                  <div className="w-60 flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
                     <div className="font-bold text-gray-800 text-xl lg:text-2xl md:text-2xl text-center">
-                      {esg.title}
+                      {lang === "vi"
+                        ? esg.name_vn
+                        : lang === "en"
+                        ? esg.name_en
+                        : esg.name_jp}
                     </div>
                     <div
                       className="hidden md:flex lg:flex font-light text-md text-center line-clamp-3"
@@ -523,7 +530,11 @@ export function HomePage({
                         textOverflow: "ellipsis",
                       }}
                     >
-                      {esg.description}
+                      {lang === "vi"
+                        ? esg.description_vn
+                        : lang === "en"
+                        ? esg.description_en
+                        : esg.description_jp}
                     </div>
                   </div>
                 </Link>
@@ -554,60 +565,66 @@ export function HomePage({
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {Object.entries(products as Products)
-                  .filter(([category, items]) => items.length >= 4)
-                  .flatMap(([category, items]) =>
-                    items.slice(0, 4).map((product: Product) => (
-                      <Link
-                        href={`${lang}/san-pham/${product._id}`}
-                        key={product._id}
-                        className="relative group cursor-pointer rounded-lg"
-                      >
-                        <div className="rounded-lg bg-gray-50 flex flex-col border-none">
-                          <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
-                            {product.main_image ? (
-                              <Image
-                                src={product.main_image}
-                                alt={`${product.main_image} image`}
-                                fill
-                                style={{ objectFit: "cover" }}
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                className="rounded-lg"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-gray-200 rounded-lg">
-                                <span>No Image</span>
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex flex-col justify-center p-3 text-start">
-                            <div className="text-lg font-bold mb-1 max-h-[28px] truncate">
-                              {lang === "vi"
-                                ? product.vietnam_name
-                                : lang === "en"
+                {Object.entries(products as Products).flatMap(
+                  ([category, items]) =>
+                    items
+                      .filter((product) => product.show_status === "show")
+                      .map((product: Product) => (
+                        <Link
+                          href={`${lang}/san-pham/${product._id}`}
+                          key={product._id}
+                          className="relative group cursor-pointer rounded-lg"
+                        >
+                          <div className="rounded-lg bg-gray-50 flex flex-col border-none">
+                            <div className="relative w-full h-[160px] md:h-[280px] lg:h-[280px] rounded-lg">
+                              {product.main_image ? (
+                                <Image
+                                  src={product.main_image}
+                                  alt={`${product.main_image} image`}
+                                  fill
+                                  style={{ objectFit: "cover" }}
+                                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                  className="rounded-lg"
+                                />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center bg-gray-200 rounded-lg">
+                                  <span>No Image</span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex flex-col justify-center p-3 text-start">
+                              <div className="text-lg font-bold mb-1 max-h-[28px] truncate">
+                                {lang === "vi"
+                                  ? product.vietnam_name
+                                  : lang === "en"
                                   ? product.english_name
                                   : product.japan_name}
-                            </div>
-                            <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
-                              {lang === "vi"
-                                ? product.vietnam_description
-                                : lang === "en"
-                                  ? product.english_description
-                                  : product.japan_description}
-                            </div>
-                            <div className="w-full grid grid-cols-5 items-center">
-                              <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
-                                {formatCurrency(product?.price, lang)}
-                              </p>
+                              </div>
+                              <div className="text-xs font-semibold text-gray-400 text-left mb-2 max-h-[32px] text-clip overflow-hidden">
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html:
+                                      lang === "vi"
+                                        ? product.vietnam_description
+                                        : lang === "en"
+                                        ? product.english_description
+                                        : product.japan_description,
+                                  }}
+                                />
+                              </div>
+                              <div className="w-full grid grid-cols-5 items-center">
+                                <p className="col-span-3 max-h-[24px] text-md font-semibold text-left truncate">
+                                  {formatCurrency(product?.price, lang)}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
-                          {dictionary?.HOME_new_tag}
-                        </div>
-                      </Link>
-                    ))
-                  )}
+                          <div className="absolute top-2 right-2 h-10 w-10 rounded-full bg-[#E97171] text-white text-[12px] font-semibold flex items-center justify-center">
+                            {dictionary?.HOME_new_tag}
+                          </div>
+                        </Link>
+                      ))
+                )}
               </div>
             )}
           </div>
@@ -663,11 +680,11 @@ export function HomePage({
                 {blogs?.slice(0, 3)?.map((blog: any, index: any) => {
                   return (
                     <div key={index}>
-                      <Link href={`/${lang}/bai-viet/${blog?.id}`}>
+                      <Link href={`/${lang}/bai-viet/${blog?._id}`}>
                         <div className="flex flex-col items-start justify-center gap-2 hover:opacity-80 cursor-pointer">
                           <div className="relative w-full h-[220px] rounded-lg">
                             <Image
-                              src={blog?.thumbnail}
+                              src={blog?.s1_thumbnail}
                               alt="img"
                               fill
                               style={{ objectFit: "cover" }}
@@ -676,10 +693,17 @@ export function HomePage({
                             />
                           </div>
                           <h1 className="text-[13px] font-medium mt-1">
-                            {blog?.date}
+                            {formatDate(blog?.created_at)}
                           </h1>
                           <h1 className="text-[16px] font-semibold max-h-[48px] line-clamp-2">
-                            {truncateText(blog?.title, 76)}
+                            {truncateText(
+                              lang === "vi"
+                                ? blog.s1_title_vn
+                                : lang === "en"
+                                ? blog.s1_title_en
+                                : blog.s1_title_jp,
+                              76
+                            )}
                           </h1>
                           <h1 className="text-[14px] font-medium bg-[rgb(var(--secondary-rgb))] rounded-md px-2 py-1">
                             {dictionary?.HOME_blog_author}: {blog?.author}
