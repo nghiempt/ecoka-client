@@ -55,6 +55,31 @@ interface Blog {
   created_at: string;
 }
 
+const HOME_PRODUCTS_PER_CATEGORY = 4;
+
+/**
+ * Trang chủ hiển thị mỗi danh mục thành 1 hàng gồm 4 sản phẩm.
+ * Ưu tiên các sản phẩm admin bật hiển thị; nếu danh mục chưa chọn đủ 4 thì bù
+ * bằng sản phẩm khác trong chính danh mục đó để hàng không bị lẻ.
+ */
+const pickHomeProducts = (products: Products): Product[] => {
+  const orderedCategories: string[] = categories.map((item: any) =>
+    String(item.path).replace("/", "")
+  );
+  const otherCategories = Object.keys(products).filter(
+    (category) => !orderedCategories.includes(category)
+  );
+
+  return [...orderedCategories, ...otherCategories].flatMap((category) => {
+    const items = products[category] || [];
+    // Danh mục không đủ sản phẩm để lấp đầy 1 hàng thì bỏ qua.
+    if (items.length < HOME_PRODUCTS_PER_CATEGORY) return [];
+    const selected = items.filter((item) => item.show_status === "show");
+    const fillers = items.filter((item) => item.show_status !== "show");
+    return [...selected, ...fillers].slice(0, HOME_PRODUCTS_PER_CATEGORY);
+  });
+};
+
 export function HomePage({
   lang,
   dictionary,
@@ -565,11 +590,8 @@ export function HomePage({
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {Object.entries(products as Products).flatMap(
-                  ([category, items]) =>
-                    items
-                      .filter((product) => product.show_status === "show")
-                      .map((product: Product) => (
+                {pickHomeProducts(products as Products).map(
+                  (product: Product) => (
                         <Link
                           href={`${lang}/san-pham/${product._id}`}
                           key={product._id}
@@ -623,7 +645,7 @@ export function HomePage({
                             {dictionary?.HOME_new_tag}
                           </div>
                         </Link>
-                      ))
+                  )
                 )}
               </div>
             )}
