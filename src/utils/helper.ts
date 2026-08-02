@@ -1,3 +1,22 @@
+/**
+ * Locale của website là vi/en/jp, còn dữ liệu từ API dùng hậu tố vn/en/jp.
+ */
+export const getLangSuffix = (lang: string) => {
+  switch (lang) {
+    case "en":
+      return "en";
+    case "jp":
+      return "jp";
+    default:
+      return "vn";
+  }
+};
+
+export const pickByLang = (data: any, field: string, lang: string) => {
+  if (!data) return "";
+  return data[`${field}_${getLangSuffix(lang)}`] || data[`${field}_vn`] || "";
+};
+
 export const truncateText = (text: string, maxLength: number) => {
   if (text?.length > maxLength) {
     return text?.slice(0, maxLength) + "...";

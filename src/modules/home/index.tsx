@@ -1,6 +1,7 @@
 "use client";
 
 import { Product } from "@/components/global/product";
+import { Certificates } from "@/components/global/certificate";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/layout/footer";
 import { categories, languages, URL } from "@/utils/constant";
@@ -531,37 +532,7 @@ export function HomePage({
           </div>
         </div>
         <div className="w-full h-1 bg-[rgb(var(--primary-rgb))] mb-10"></div>
-        <div className="w-full pb-14 mt-10 flex flex-col justify-center items-center">
-          <div className="w-full text-gray-800 text-3xl font-bold mb-8 text-center">
-            {dictionary?.HOME_subtitle_2}
-          </div>
-          <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-4">
-            <Image
-              src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/hhzrcqlvmhrylzwwqqi5.jpg"
-              alt="img"
-              width={200}
-              height={0}
-            />
-            <Image
-              src="https://res.cloudinary.com/farmcode/image/upload/v1732782449/ecoka/kypqpxwuqlrzivuqulfd.png"
-              alt="img"
-              width={280}
-              height={0}
-            />
-            <Image
-              src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/ccrn8pxro2oayevqrg4d.jpg"
-              alt="img"
-              width={260}
-              height={0}
-            />
-            <Image
-              src="https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/pjqmxyre74hfxhs7vras.png"
-              alt="img"
-              width={200}
-              height={0}
-            />
-          </div>
-        </div>
+        <Certificates lang={lang} dictionary={dictionary} />
         <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
         <div className="w-full flex flex-col justify-start items-center mb-14 mt-8">
           <div className="text-3xl text-gray-800 font-bold text-center mb-8">
