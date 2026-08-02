@@ -50,9 +50,14 @@ export const API = {
 };
 
 /**
- * Lấy danh sách từ API portal. Trả về [] khi lỗi để trang vẫn render bình thường.
+ * Lấy danh sách từ API portal.
+ * - Trả về mảng (có thể rỗng) khi gọi thành công.
+ * - Trả về null khi KHÔNG gọi được API.
+ * Phân biệt hai trường hợp này rất quan trọng: "admin chưa nhập gì" phải khác
+ * với "API lỗi", nếu không trang sẽ hiển thị dữ liệu cũ hardcode và lệch hẳn
+ * với những gì admin nhìn thấy.
  */
-const fetchList = async (url: string): Promise<any[]> => {
+const fetchList = async (url: string): Promise<any[] | null> => {
   try {
     const res = await fetch(url, { method: "GET", cache: "no-store" });
     if (!res.ok) {
@@ -67,20 +72,21 @@ const fetchList = async (url: string): Promise<any[]> => {
       throw error;
     }
     console.error("========= Error fetching:", url, error);
-    return [];
+    return null;
   }
 };
 
 export const AboutService = {
   get: async () => {
     const data = await fetchList(API.GET_ALL_ABOUT);
-    return data.length > 0 ? data[0] : null;
+    return data && data.length > 0 ? data[0] : null;
   },
 };
 
 export const CertificateService = {
-  getAll: async () => {
+  getAll: async (): Promise<any[] | null> => {
     const data = await fetchList(API.GET_ALL_CERTIFICATES);
+    if (data === null) return null;
     return data.filter((item: any) => item?.show_status !== "not show");
   },
 };

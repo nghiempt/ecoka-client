@@ -15,7 +15,8 @@ interface Certificate {
   file_name: string;
 }
 
-// Dữ liệu hiển thị tạm khi Admin chưa nhập chứng nhận nào.
+// Chỉ dùng khi KHÔNG gọi được API. Nếu admin thật sự chưa có chứng nhận nào
+// thì ẩn hẳn mục này, tránh việc web hiển thị dữ liệu mà admin không quản lý.
 const FALLBACK_ICONS = [
   "https://res.cloudinary.com/farmcode/image/upload/v1732724892/ecoka/hhzrcqlvmhrylzwwqqi5.jpg",
   "https://res.cloudinary.com/farmcode/image/upload/v1732782449/ecoka/kypqpxwuqlrzivuqulfd.png",
@@ -30,14 +31,15 @@ export function Certificates({
   lang: string;
   dictionary: any;
 }) {
-  const [certificates, setCertificates] = useState<Certificate[]>([]);
+  // null = chưa gọi xong hoặc gọi API thất bại
+  const [certificates, setCertificates] = useState<Certificate[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     let mounted = true;
     CertificateService.getAll()
       .then((data) => {
-        if (mounted) setCertificates(data as Certificate[]);
+        if (mounted) setCertificates(data as Certificate[] | null);
       })
       .finally(() => {
         if (mounted) setLoading(false);
@@ -46,6 +48,11 @@ export function Certificates({
       mounted = false;
     };
   }, []);
+
+  // Admin không có chứng nhận nào đang hiển thị -> ẩn hẳn mục này.
+  if (!loading && certificates !== null && certificates.length === 0) {
+    return null;
+  }
 
   return (
     <div className="w-full pb-14 mt-10 flex flex-col justify-center items-center">
@@ -61,7 +68,7 @@ export function Certificates({
             ></div>
           ))}
         </div>
-      ) : certificates.length === 0 ? (
+      ) : certificates === null ? (
         <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-8">
           {FALLBACK_ICONS.map((icon, index) => (
             <Image

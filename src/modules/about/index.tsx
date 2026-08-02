@@ -59,10 +59,13 @@ export function AboutPage({
 }) {
   const title = pickByLang(about, "title", lang) || dictionary?.ABOUT_title;
   const brief = pickByLang(about, "brief", lang) || dictionary?.ABOUT_brief;
-  const sections: AboutSection[] =
-    Array.isArray(about?.sections) && about.sections.length > 0
+  // Đã có bản ghi trong DB thì hiển thị đúng những gì admin đang thấy.
+  // Chỉ khi chưa có bản ghi nào (hoặc API lỗi) mới dựng lại từ file ngôn ngữ.
+  const sections: AboutSection[] = about
+    ? Array.isArray(about.sections)
       ? about.sections
-      : sectionsFromDictionary(dictionary);
+      : []
+    : sectionsFromDictionary(dictionary);
 
   return (
     <div className="w-full min-h-screen flex flex-col justify-start items-center relative">
