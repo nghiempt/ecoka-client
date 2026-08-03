@@ -10,21 +10,9 @@ interface GalleryItem {
   image: string;
 }
 
-/**
- * Khuôn xếp ô lặp lại để bộ hình trông so le, "nghệ thuật" nhưng vẫn ổn định
- * giữa server và client (không dùng random để tránh lệch hydrate).
- * Kết hợp grid-flow-row-dense nên các khoảng trống được lấp tự động.
- */
-const TILE_PATTERN = [
-  "col-span-1 row-span-3",
-  "col-span-2 row-span-2",
-  "col-span-1 row-span-2",
-  "col-span-1 row-span-2",
-  "col-span-2 row-span-3",
-  "col-span-1 row-span-3",
-  "col-span-1 row-span-2",
-  "col-span-1 row-span-3",
-];
+// Xếp kiểu masonry bằng CSS multi-column: mỗi tấm giữ đúng tỉ lệ gốc nên
+// chiều cao so le tự nhiên, và không bao giờ để lại ô trống dù admin tải lên
+// bao nhiêu hình. Không dùng random để tránh lệch giữa server và client.
 
 export function DecorGallery({ dictionary }: { dictionary: any }) {
   // null = chưa tải xong hoặc gọi API thất bại
@@ -83,20 +71,19 @@ export function DecorGallery({ dictionary }: { dictionary: any }) {
   return (
     <div className="w-full mb-20">
       {heading}
-      <div className="grid grid-cols-2 md:grid-cols-4 grid-flow-row-dense auto-rows-[70px] md:auto-rows-[100px] lg:auto-rows-[120px] gap-3">
+      <div className="columns-2 md:columns-3 lg:columns-4 gap-3">
         {items.map((item, index) => (
           <div
             key={item._id}
-            className={`relative overflow-hidden rounded-lg group ${
-              TILE_PATTERN[index % TILE_PATTERN.length]
-            }`}
+            className="mb-3 break-inside-avoid overflow-hidden rounded-lg group"
           >
             <Image
               src={item.image}
               alt={`${dictionary?.HOME_decor_tag || "decor"} ${index + 1}`}
-              fill
-              sizes="(max-width: 768px) 50vw, 25vw"
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              width={0}
+              height={0}
+              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
             />
           </div>
         ))}
