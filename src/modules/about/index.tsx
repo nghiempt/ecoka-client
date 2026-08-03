@@ -107,14 +107,15 @@ export function AboutPage({
             </p>
           )}
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+        {/* Các mục xếp dọc thành 1 trang, không chia 2 cột */}
+        <div className="w-full flex flex-col gap-12">
           {sections.map((section, index) => (
             <div key={index} className="w-full text-center">
               <h2 className="text-2xl font-bold text-gray-800 mb-5">
                 {pickByLang(section, "title", lang)}
               </h2>
               <div
-                className="article-content text-md text-[rgb(var(--quaternary-rgb))]"
+                className="article-content text-[rgb(var(--quaternary-rgb))]"
                 dangerouslySetInnerHTML={{
                   __html: pickByLang(section, "content", lang),
                 }}
