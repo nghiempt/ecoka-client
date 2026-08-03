@@ -516,11 +516,12 @@ export function HomePage({
         </div>
       </div>
       <div className="w-5/6 md:w-2/3 lg:w-2/3 flex flex-col justify-center items-center">
-        <div className="md:px-20 lg:px-20 py-14 flex flex-col justify-start items-center">
+        <div className="w-full py-14 flex flex-col justify-start items-center">
           <div className="text-center text-3xl text-gray-800 font-bold mb-14">
             {dictionary?.HOME_subtitle_1}
           </div>
-          <div className="flex flex-col lg:flex-row gap-10">
+          {/* 3 khối trải đều hết chiều rộng, hai mép thẳng với thanh màu cam */}
+          <div className="w-full flex flex-col lg:flex-row justify-between items-start gap-10">
             {loading ? (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 {Array.from({ length: 3 }).map((_, index) => (
@@ -537,9 +538,13 @@ export function HomePage({
               </div>
             ) : (
               esgs.map((esg, index) => (
-                <Link href={`/${lang}${ROUTES.ESG}`} key={index}>
-                  <div className="w-60 flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-110 hover:cursor-pointer">
-                    <div className="font-bold text-gray-800 text-xl lg:text-2xl md:text-2xl text-center">
+                <Link
+                  href={`/${lang}${ROUTES.ESG}`}
+                  key={index}
+                  className="w-full lg:flex-1"
+                >
+                  <div className="w-full flex flex-col justify-center items-center gap-5 transform transition-transform hover:scale-105 hover:cursor-pointer">
+                    <div className="font-bold text-gray-800 text-[22px] lg:text-[26px] md:text-[26px] text-center">
                       {lang === "vi"
                         ? esg.name_vn
                         : lang === "en"
@@ -547,7 +552,7 @@ export function HomePage({
                         : esg.name_jp}
                     </div>
                     <div
-                      className="hidden md:flex lg:flex font-light text-md text-center line-clamp-3"
+                      className="hidden md:flex lg:flex font-light text-[17px] text-center line-clamp-3"
                       style={{
                         display: "-webkit-box",
                         WebkitLineClamp: 3,
