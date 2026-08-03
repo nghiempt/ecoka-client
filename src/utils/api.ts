@@ -47,6 +47,8 @@ export const API = {
   GET_ALL_ABOUT: `${BASE_URL}/ecoka/about`,
   // CERTIFICATE
   GET_ALL_CERTIFICATES: `${BASE_URL}/ecoka/certificate`,
+  // GALLERY (Góc decor)
+  GET_ALL_GALLERIES: `${BASE_URL}/ecoka/gallery`,
 };
 
 /**
@@ -80,6 +82,14 @@ export const AboutService = {
   get: async () => {
     const data = await fetchList(API.GET_ALL_ABOUT);
     return data && data.length > 0 ? data[0] : null;
+  },
+};
+
+export const GalleryService = {
+  getAll: async (): Promise<any[] | null> => {
+    const data = await fetchList(API.GET_ALL_GALLERIES);
+    if (data === null) return null;
+    return data.filter((item: any) => item?.show_status !== "not show");
   },
 };
 

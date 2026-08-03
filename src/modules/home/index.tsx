@@ -2,6 +2,7 @@
 
 import { Product } from "@/components/global/product";
 import { Certificates } from "@/components/global/certificate";
+import { DecorGallery } from "@/components/global/decor-gallery";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/layout/footer";
 import { categories, languages, URL } from "@/utils/constant";
@@ -662,22 +663,7 @@ export function HomePage({
         <div className="w-full py-10 bg-[rgb(var(--secondary-rgb))] px-10 lg:lx-0 md:px-0 mb-24 rounded-lg">
           <Slider lang={lang} dictionary={dictionary} />
         </div>
-        <div
-          className="bg-cover bg-center h-[300px] lg:h-[600px] md:h-[600px] w-full mb-20"
-          style={{ backgroundImage: `url(${IMAGES?.HOME_GRID})` }}
-        >
-          <div
-            className="flex flex-col items-center justify-center"
-            style={{ marginTop: "-40px" }}
-          >
-            <div className="text-sm text-gray-500 font-semibold">
-              {dictionary?.HOME_decor_tag}
-            </div>
-            <div className="text-2xl text-gray-700 font-extrabold">
-              {dictionary?.HOME_hashtag}
-            </div>
-          </div>
-        </div>
+        <DecorGallery dictionary={dictionary} />
         <div className="w-full h-1 bg-[rgb(var(--primary-rgb))]"></div>
         <div className="w-full flex flex-col justify-start items-center mt-8">
           <div className="text-3xl font-bold text-center mb-8">
