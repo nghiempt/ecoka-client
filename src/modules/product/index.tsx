@@ -14,6 +14,7 @@ import { Share2, ArrowRightLeft, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DATA } from "@/utils/data.bk";
 import { formatCurrency } from "@/utils/helper";
+import { CategoryService } from "@/services/category";
 interface Product {
   _id: string;
   main_image: string;
@@ -37,9 +38,23 @@ export function ProductPage({
 }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [loading, setLoading] = useState<boolean>(true);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await CategoryService.getAll();
+      if (res && res.data) {
+        const sorted = res.data
+          .filter((cat: any) => !cat.deleted_at)
+          .sort((a: any, b: any) => a.order - b.order);
+        setCategories(sorted);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const fetchProducts = async () => {
     try {
@@ -79,6 +94,7 @@ export function ProductPage({
 
   useEffect(() => {
     fetchProducts();
+    fetchCategories();
   }, []);
 
   useEffect(() => {
@@ -140,24 +156,22 @@ export function ProductPage({
             >
               {dictionary?.PRODUCT_all_products}
             </li>
-            {DATA.CATEGORIES.map((category: any, index: number) => (
-              <>
-                <li
-                  key={index}
-                  className={`hover:border-2 hover:bg-gray-100 cursor-pointer py-2.5 px-4 rounded-md ${
-                    selectedCategory === category.category
-                      ? " bg-white text-gray-950 border font-medium "
-                      : "text-black"
-                  }`}
-                  onClick={() => handleFilterChange(category.category)}
-                >
-                  {lang === "vi"
-                    ? category.category_vi
-                    : lang === "en"
-                    ? category.category_en
-                    : category.category_jp}
-                </li>
-              </>
+            {categories.map((category: any) => (
+              <li
+                key={category._id}
+                className={`hover:border-2 hover:bg-gray-100 cursor-pointer py-2.5 px-4 rounded-md ${
+                  selectedCategory === category.path.replace('/', '')
+                    ? " bg-white text-gray-950 border font-medium "
+                    : "text-black"
+                }`}
+                onClick={() => handleFilterChange(category.path.replace('/', ''))}
+              >
+                {lang === "vi"
+                  ? category.name
+                  : lang === "en"
+                  ? category.name_en
+                  : category.name_jp}
+              </li>
             ))}
           </ul>
         </div>
