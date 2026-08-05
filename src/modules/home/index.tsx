@@ -5,7 +5,7 @@ import { Certificates } from "@/components/global/certificate";
 import { DecorGallery } from "@/components/global/decor-gallery";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/layout/footer";
-import { categories, languages, URL } from "@/utils/constant";
+import { languages, URL } from "@/utils/constant";
 import { IMAGES } from "@/utils/image";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -17,6 +17,7 @@ import { formatCurrency, formatDate, truncateText } from "@/utils/helper";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/utils/media";
 import { DATA } from "@/utils/data.bk";
+import { CategoryService } from "@/services/category";
 
 interface Product {
   _id: string;
@@ -63,7 +64,7 @@ const HOME_PRODUCTS_PER_CATEGORY = 4;
  * Ưu tiên các sản phẩm admin bật hiển thị; nếu danh mục chưa chọn đủ 4 thì bù
  * bằng sản phẩm khác trong chính danh mục đó để hàng không bị lẻ.
  */
-const pickHomeProducts = (products: Products): Product[] => {
+const pickHomeProducts = (products: Products, categories: any[]): Product[] => {
   const orderedCategories: string[] = categories.map((item: any) =>
     String(item.path).replace("/", "")
   );
@@ -91,6 +92,7 @@ export function HomePage({
   const [products, setProducts] = useState<{ [key: string]: Product[] }>({});
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [esgs, setEsgs] = useState<ESG[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [filterProducts, setFilterProducts] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -153,6 +155,15 @@ export function HomePage({
       const BLOGresult = await BLOGresponse.json();
 
       setBlogs(BLOGresult.data);
+
+      // Categories
+      const categoryRes = await CategoryService.getAll();
+      if (categoryRes && categoryRes.data) {
+        const sortedCategories = categoryRes.data
+          .filter((cat: any) => !cat.deleted_at)
+          .sort((a: any, b: any) => a.order - b.order);
+        setCategories(sortedCategories);
+      }
     } catch (error) {
       console.error("Failed to fetch data:", error);
     } finally {
@@ -596,7 +607,7 @@ export function HomePage({
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {pickHomeProducts(products as Products).map(
+                {pickHomeProducts(products as Products, categories).map(
                   (product: Product) => (
                         <Link
                           href={`${lang}/san-pham/${product._id}`}
