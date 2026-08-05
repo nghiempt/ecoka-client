@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { ROUTES } from "@/utils/route";
 import { IMAGES } from "@/utils/image";
-import { categories, languages, URL } from "@/utils/constant";
+import { languages, URL } from "@/utils/constant";
 import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/utils/media";
+import { CategoryService } from "@/services/category";
 
 export const Header = ({
   page,
@@ -20,11 +21,25 @@ export const Header = ({
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const [isOpen, setIsOpen] = useState(false);
+  const [categories, setCategories] = useState<any[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const [currentLang, setCurrentLang] = useState(
     () => languages.find((l) => l.lang === lang) || languages[0]
   );
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const res = await CategoryService.getAll();
+      if (res && res.data) {
+        const sortedCategories = res.data
+          .filter((cat: any) => !cat.deleted_at)
+          .sort((a: any, b: any) => a.order - b.order);
+        setCategories(sortedCategories);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleLanguageChange = (lang: string) => {
     const selectedLang = languages.find((l) => l.lang === lang);
