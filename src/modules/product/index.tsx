@@ -190,8 +190,36 @@ export function ProductPage({
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredProducts.map((product) => (
+            <>
+              {filteredProducts.length === 0 ? (
+                <div className="col-span-3 text-center w-full flex flex-col justify-center items-center py-20">
+                  <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-12 w-12 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-gray-500 text-xl font-medium">
+                    {lang === "vi"
+                      ? "Ch\u01b0a c\u00f3 s\u1ea3n ph\u1ea9m trong danh m\u1ee5c n\u00e0y"
+                      : lang === "en"
+                      ? "No products in this category yet"
+                      : "\u3053\u306e\u30ab\u30c6\u30b4\u30ea\u306b\u306f\u307e\u3060\u88fd\u54c1\u304c\u3042\u308a\u307e\u305b\u3093"}
+                  </p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {filteredProducts.map((product) => (
                 <Link
                   href={`/${lang}/san-pham/${product._id}`}
                   key={product._id}
@@ -264,8 +292,10 @@ export function ProductPage({
                     </div>
                   </div>
                 </Link>
-              ))}
-            </div>
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
