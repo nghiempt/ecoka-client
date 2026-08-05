@@ -2,10 +2,16 @@ import { API } from "@/utils/api";
 
 const getAll = async () => {
   try {
-    const response = await API.get(`/ecoka/category`);
-    return response?.data;
-  } catch (error) {
-    console.log("GET ALL CATEGORIES ERROR", error);
+    const response = await fetch(API.GET_ALL_CATEGORIES, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error(`Failed - Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error: any) {
+    console.error("========= Error Get All Categories:", error);
     return null;
   }
 };

@@ -28,6 +28,8 @@ export const API = {
   CREATE_PRODUCT: `${BASE_URL}/ecoka/product/`,
   UPDATE_PRODUCT: `${BASE_URL}/ecoka/product`,
   DELETE_PRODUCT: `${BASE_URL}/ecoka/product`,
+  // CATEGORY
+  GET_ALL_CATEGORIES: `${BASE_URL}/ecoka/category`,
   // BLOG
   GET_ALL_BLOGS: `${BASE_URL}/ecoka/blog`,
   GET_BLOG_BY_ID: `${BASE_URL}/ecoka/blog`,
