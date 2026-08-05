@@ -51,6 +51,9 @@ export const API = {
   GET_ALL_CERTIFICATES: `${BASE_URL}/ecoka/certificate`,
   // GALLERY (Góc decor)
   GET_ALL_GALLERIES: `${BASE_URL}/ecoka/gallery`,
+  // NAVIGATION
+  GET_ALL_NAVIGATIONS: `${BASE_URL}/ecoka/navigation`,
+  UPDATE_NAVIGATION: (id: string) => `${BASE_URL}/ecoka/navigation/${id}`,
 };
 
 /**
