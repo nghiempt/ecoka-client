@@ -39,6 +39,7 @@ export const Header = ({
           .sort((a: any, b: any) => a.order - b.order);
         setCategories(sortedCategories);
       }
+    };
     const fetchNavigations = async () => {
       const res = await NavigationService.getAll();
       if (res && res.data) {
@@ -49,8 +50,7 @@ export const Header = ({
       }
     };
     fetchCategories();
-    fetchNavigation
-    fetchCategories();
+    fetchNavigations();
   }, []);
 
   const handleLanguageChange = (lang: string) => {
